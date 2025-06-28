@@ -6,705 +6,1009 @@
   <title>Sample Design System - Development</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
+      padding: 40px;
+      background: #f8f9fa;
+      line-height: 1.6;
     }
-
+    
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-
-    h1 {
-      color: #333;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      color: #666;
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-
-    .component-section {
-      margin-bottom: 40px;
-      padding: 20px;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-    }
-
-    .example-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .example-item {
+    
+    .header {
       text-align: center;
+      margin-bottom: 60px;
+      padding: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-
-    .example-item p {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #666;
+    
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
     }
-
-    /* Custom CSS variables for theming */
-    :root {
-      --sample-button-bg: #007bff;
-      --sample-button-color: white;
-      --sample-button-border: #007bff;
-      --sample-button-radius: 6px;
-      --sample-button-focus-ring: rgba(0, 123, 255, 0.25);
+    
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
     }
-
-    .card-grid {
+    
+    .subtitle {
+      margin: 16px 0 0 0;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .component-section {
+      background: white;
+      margin-bottom: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .component-header {
+      background: #f8f9fa;
+      padding: 24px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .component-header h2 {
+      margin: 0;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .component-content {
+      padding: 32px;
+    }
+    
+    .demo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+      gap: 32px;
+      margin-bottom: 32px;
     }
-
-    .card-demo {
-      height: 200px;
-    }
-
-    .demo-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .demo-card-header h4 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .demo-badge {
-      background: rgba(0,123,255,0.1);
-      color: #007bff;
-      padding: 2px 8px;
+    
+    .demo-group {
+      background: #f8f9fa;
+      padding: 24px;
       border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
+      border: 1px solid #e9ecef;
     }
-
-    .demo-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: flex-end;
+    
+    .demo-group h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #495057;
     }
-
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
     .demo-button {
-      padding: 6px 12px;
-      border: 1px solid #007bff;
-      background: transparent;
-      color: #007bff;
-      border-radius: 4px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 12px;
-      transition: all 0.2s;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
     }
-
+    
     .demo-button:hover {
-      background: #007bff;
-      color: white;
-    }
-
-    .demo-button.primary {
-      background: #007bff;
-      color: white;
-    }
-
-    .demo-button.primary:hover {
       background: #0056b3;
+    }
+    
+    .demo-button.secondary {
+      background: #6c757d;
+    }
+    
+    .demo-button.secondary:hover {
+      background: #545b62;
+    }
+    
+    .demo-button.success {
+      background: #28a745;
+    }
+    
+    .demo-button.success:hover {
+      background: #1e7e34;
+    }
+    
+    .demo-button.danger {
+      background: #dc3545;
+    }
+    
+    .demo-button.danger:hover {
+      background: #c82333;
+    }
+    
+    .console-section {
+      background: #2d3748;
+      color: #f7fafc;
+      padding: 24px;
+      border-radius: 12px;
+      margin: 32px 0;
+    }
+    
+    .console-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #4a5568;
+    }
+    
+    .console-output {
+      background: rgba(0,0,0,0.3);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 13px;
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #4a5568;
+    }
+    
+    .event-log {
+      margin-bottom: 4px;
+    }
+    
+    .timestamp {
+      color: #a0aec0;
+    }
+    
+    .event {
+      color: #68d391;
+    }
+    
+    .info {
+      color: #63b3ed;
+    }
+    
+    /* Modal custom themes for demo */
+    sample-modal.dev-dark-theme {
+      --sample-modal-bg: #2d3748;
+      --sample-modal-overlay-bg: rgba(0, 0, 0, 0.8);
+      --sample-modal-header-border: 1px solid #4a5568;
+      --sample-modal-footer-border: 1px solid #4a5568;
+      --sample-modal-close-color: #a0aec0;
+      --sample-modal-close-hover-color: #f7fafc;
+      --sample-modal-close-hover-bg: #4a5568;
+    }
+    
+    sample-modal.dev-gradient-theme {
+      --sample-modal-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --sample-modal-border-radius: 20px;
+      --sample-modal-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+      --sample-modal-close-color: white;
+      --sample-modal-close-hover-bg: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Modal custom themes for demo */
+    sample-modal.dev-dark-theme {
+      --sample-modal-bg: #2d3748;
+      --sample-modal-overlay-bg: rgba(0, 0, 0, 0.8);
+      --sample-modal-header-border: 1px solid #4a5568;
+      --sample-modal-footer-border: 1px solid #4a5568;
+      --sample-modal-close-color: #a0aec0;
+      --sample-modal-close-hover-color: #f7fafc;
+      --sample-modal-close-hover-bg: #4a5568;
+    }
+    
+    sample-modal.dev-gradient-theme {
+      --sample-modal-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --sample-modal-border-radius: 20px;
+      --sample-modal-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+      --sample-modal-close-color: white;
+      --sample-modal-close-hover-bg: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+      
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Sample Design System</h1>
-    <p>This is the development environment for testing and showcasing components.</p>
+    <div class="header">
+      <div class="badge">Development Environment</div>
+      <h1>🎨 Sample Design System</h1>
+      <p class="subtitle">Lit Framework Components with Dual-Usage Patterns</p>
+    </div>
 
     <div class="component-section">
-      <h2>Button Component</h2>
-      <p>A versatile button component with multiple variants and sizes.</p>
+      <div class="component-header">
+        <h2>🎯 Button Component</h2>
+      </div>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Variants</h3>
+            <div class="button-grid">
+              <sample-button id="btn-primary" variant="primary">Primary</sample-button>
+              <sample-button id="btn-secondary" variant="secondary">Secondary</sample-button>
+              <sample-button id="btn-success" variant="success">Success</sample-button>
+              <sample-button id="btn-danger" variant="danger">Danger</sample-button>
+            </div>
+          </div>
 
-      <div class="example-grid">
-        <div class="example-item">
-          <sample-button>Default Button</sample-button>
-          <p>Primary / Medium</p>
+          <div class="demo-group">
+            <h3>Sizes</h3>
+            <div class="button-grid">
+              <sample-button id="btn-small" size="small">Small</sample-button>
+              <sample-button id="btn-medium" size="medium">Medium</sample-button>
+              <sample-button id="btn-large" size="large">Large</sample-button>
+            </div>
+          </div>
+
+          <div class="demo-group">
+            <h3>States</h3>
+            <div class="button-grid">
+              <sample-button id="btn-disabled" disabled>Disabled</sample-button>
+              <sample-button id="btn-loading" loading>Loading</sample-button>
+            </div>
+          </div>
+
+          <div class="demo-group">
+            <h3>Event Testing</h3>
+            <div class="button-grid">
+              <sample-button id="btn-click-test">Click Me</sample-button>
+              <sample-button id="btn-counter">Counter: 0</sample-button>
+            </div>
+          </div>
+        </div>
+        </div>
         </div>
 
-        <div class="example-item">
-          <sample-button variant="secondary">Secondary Button</sample-button>
-          <p>Secondary / Medium</p>
-        </div>
+    <div class="component-section">
+      <div class="component-header">
+        <h2>🚨 Alert Component</h2>
+      </div>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Variants</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <sample-alert id="alert-info" variant="info" dismissible>
+                <strong>Info:</strong> This is an info alert with some important information.
+              </sample-alert>
+              <sample-alert id="alert-success" variant="success" dismissible>
+                <strong>Success:</strong> Your action was completed successfully!
+              </sample-alert>
+              <sample-alert id="alert-warning" variant="warning" dismissible>
+                <strong>Warning:</strong> Please be careful with this action.
+              </sample-alert>
+              <sample-alert id="alert-danger" variant="danger" dismissible>
+                <strong>Error:</strong> Something went wrong. Please try again.
+              </sample-alert>
+              </div>
+              </div>
 
-        <div class="example-item">
-          <sample-button size="small">Small Button</sample-button>
-          <p>Primary / Small</p>
-        </div>
+          <div class="demo-group">
+            <h3>Event Testing</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showAlert('dynamic-alert')">Show Alert</button>
+              <button class="demo-button" onclick="hideAlert('alert-info')">Hide Info Alert</button>
+            </div>
+            <sample-alert id="dynamic-alert" variant="info" dismissible style="margin-top: 12px; display: none;">
+              Dynamic alert triggered by button click!
+            </sample-alert>
+          </div>
+          </div>
+          </div>
+          </div>
 
-        <div class="example-item">
-          <sample-button size="large">Large Button</sample-button>
-          <p>Primary / Large</p>
-        </div>
+    <div class="component-section">
+      <div class="component-header">
+        <h2>🃏 Card Component</h2>
+      </div>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Basic Cards</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <sample-card id="card-basic">
+                <h3 slot="header">Basic Card</h3>
+                <p>This is a basic card with header and content.</p>
+                <div slot="footer">
+                  <button class="demo-button">Action</button>
+                </div>
+              </sample-card>
+              <sample-card id="card-interactive" interactive>
+                <h3 slot="header">Interactive Card</h3>
+                <p>This card is interactive and responds to hover and click.</p>
+              </sample-card>
+            </div>
+          </div>
 
-        <div class="example-item">
-          <sample-button disabled>Disabled Button</sample-button>
-          <p>Disabled</p>
-        </div>
+          <div class="demo-group">
+            <h3>Event Testing</h3>
+            <div class="button-grid">
+              <sample-card id="card-clickable" interactive style="cursor: pointer;">
+                <p style="margin: 8px 0; text-align: center;">Click this card!</p>
+              </sample-card>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
 
-        <div class="example-item">
-          <sample-button variant="secondary" size="small">Small Secondary</sample-button>
-          <p>Secondary / Small</p>
+    <div class="component-section">
+      <div class="component-header">
+        <h2>📂 Accordion Component</h2>
+      </div>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Basic Accordion</h3>
+            <sample-accordion id="accordion-basic">
+              <sample-accordion-item id="acc-item-1" title="Section 1">
+                <p>Content for section 1. This can include any HTML content.</p>
+              </sample-accordion-item>
+              <sample-accordion-item id="acc-item-2" title="Section 2" open>
+                <p>Content for section 2. This item starts open.</p>
+              </sample-accordion-item>
+              <sample-accordion-item id="acc-item-3" title="Section 3">
+                <p>Content for section 3 with more detailed information.</p>
+              </sample-accordion-item>
+            </sample-accordion>
+          </div>
+
+          <div class="demo-group">
+            <h3>Multiple Allowed</h3>
+            <sample-accordion id="accordion-multiple" allow-multiple>
+              <sample-accordion-item id="acc-multi-1" title="Item A">
+                <p>Multiple items can be open at once.</p>
+              </sample-accordion-item>
+              <sample-accordion-item id="acc-multi-2" title="Item B">
+                <p>Try opening multiple sections simultaneously.</p>
+              </sample-accordion-item>
+            </sample-accordion>
+          </div>
+          </div>
+          </div>
+          </div>
+
+        <div class="component-section">
+          <div class="component-header">
+            <h2>🍞 Breadcrumb Component</h2>
+          </div>
+          <div class="component-content">
+            <div class="demo-grid">
+              <div class="demo-group">
+                <h3>Basic Breadcrumbs</h3>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <sample-breadcrumb id="breadcrumb-basic">
+                    <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+                    <sample-breadcrumb-item href="/products">Products</sample-breadcrumb-item>
+                    <sample-breadcrumb-item href="/products/electronics">Electronics</sample-breadcrumb-item>
+                    <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
+                  </sample-breadcrumb>
+                  <sample-breadcrumb id="breadcrumb-separator" separator="→">
+                    <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+                    <sample-breadcrumb-item href="/docs">Documentation</sample-breadcrumb-item>
+                    <sample-breadcrumb-item>Breadcrumbs</sample-breadcrumb-item>
+                  </sample-breadcrumb>
+                </div>
+              </div>
+
+          <div class="demo-group">
+            <h3>Variants & Sizes</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <sample-breadcrumb id="breadcrumb-minimal" variant="minimal" size="compact">
+                <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+                <sample-breadcrumb-item href="/products">Products</sample-breadcrumb-item>
+                <sample-breadcrumb-item>Current</sample-breadcrumb-item>
+              </sample-breadcrumb>
+              <sample-breadcrumb id="breadcrumb-filled" variant="filled" clickable>
+                <sample-breadcrumb-item href="/">🏠 Home</sample-breadcrumb-item>
+                <sample-breadcrumb-item href="/products">📦 Products</sample-breadcrumb-item>
+                <sample-breadcrumb-item>📄 Page</sample-breadcrumb-item>
+              </sample-breadcrumb>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+
+    <div class="component-section">
+      <div class="component-header">
+        <h2>🎭 Modal Component</h2>
+      </div>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Sizes</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-small')">Small</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-medium')">Medium</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-large')">Large</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-full')">Full Screen</button>
+            </div>
+          </div>
+
+          <div class="demo-group">
+            <h3>Variants</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-default')">Default</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-centered')">Centered</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-slideup')">Slide Up</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-slidedown')">Slide Down</button>
+            </div>
+          </div>
+          <div class="demo-group">
+            <h3>Interactive Examples</h3>
+            <div class="button-grid">
+              <button class="demo-button success" onclick="showDevModal('dev-modal-form')">Form Modal</button>
+              <button class="demo-button danger" onclick="showDevModal('dev-modal-confirm')">Confirm Delete</button>
+              <button class="demo-button secondary" onclick="showDevModal('dev-modal-info')">Info Modal</button>
+            </div>
+          </div>
+
+          <div class="demo-group">
+            <h3>Custom Themes</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-dark')">Dark Theme</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-gradient')">Gradient Theme</button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <h3>Events</h3>
-      <p>Click the buttons below to see custom events in the console:</p>
-      <div style="margin-top: 20px;">
-        <sample-button id="event-button">Click me!</sample-button>
+    <div class="component-section">
+      <div class="component-header">
+        <h2>🎭 Modal Component</h2>
       </div>
-    </div>
-<div class="component-section">
-  <h2>🚨 Alert Component</h2>
-  <p>Contextual feedback messages for user actions with multiple variants and interactive features.</p>
-  
-  <div class="example-grid">
-    <div class="example-item">
-      <sample-alert variant="success" title="Success!" dismissible>
-        Your changes have been saved successfully.
-      </sample-alert>
-      <p>Success / Dismissible</p>
-    </div>
-  
-    <div class="example-item">
-      <sample-alert variant="warning" title="Warning">
-        This action requires confirmation.
-      </sample-alert>
-      <p>Warning / Standard</p>
-    </div>
-  
-    <div class="example-item">
-      <sample-alert variant="error" title="Error" dismissible>
-        Unable to process your request.
-      </sample-alert>
-      <p>Error / Dismissible</p>
-    </div>
-  
-    <div class="example-item">
-      <sample-alert variant="info" title="Information">
-        Your session will expire soon.
-      </sample-alert>
-      <p>Info / Standard</p>
-    </div>
-  
-    <div class="example-item">
-      <sample-alert variant="neutral" title="Notice">
-        Scheduled maintenance tonight.
-      </sample-alert>
-      <p>Neutral / Standard</p>
-    </div>
-  
-    <div class="example-item">
-      <sample-alert variant="success" size="compact" title="Compact">
-        Reduced padding for dense layouts.
-      </sample-alert>
-      <p>Compact Size</p>
-    </div>
-  </div>
-  
-  <h3>Interactive Features</h3>
-  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px;">
-    <sample-alert id="action-alert" variant="warning" title="Confirmation Required">
-      <p>Are you sure you want to delete this item?</p>
-      <div slot="actions" style="display: flex; gap: 8px; margin-top: 8px;">
-        <button type="button" data-action="cancel"
-          style="padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer;">Cancel</button>
-        <button type="button" data-action="delete"
-          style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
-      </div>
-    </sample-alert>
-  
-    <sample-alert id="programmatic-alert" variant="neutral" title="Programmatic Control">
-      This alert can be controlled via JavaScript methods.
-    </sample-alert>
-  
-    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <button onclick="document.getElementById('programmatic-alert').show()"
-        style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Show
-        Alert</button>
-      <button onclick="document.getElementById('programmatic-alert').hide()"
-        style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Hide
-        Alert</button>
-      <button onclick="document.getElementById('programmatic-alert').toggle()"
-        style="padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Toggle
-        Alert</button>
-      <button onclick="createDevToast()"
-        style="padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Create
-        Toast</button>
-    </div>
-  </div>
-  
-  <h3>Events</h3>
-  <p>Interact with alerts above to see custom events in the console:</p>
-  </div>
-  <div class="component-section">
-  <h2>🎯 Card Component</h2>
-  <p>A flexible container for organizing and displaying content with multiple variants and interactive behaviors.</p>
+      <div class="component-content">
+        <div class="demo-grid">
+          <div class="demo-group">
+            <h3>Sizes</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-small')">Small</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-medium')">Medium</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-large')">Large</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-full')">Full Screen</button>
+            </div>
+          </div>
+          <div class="demo-group">
+            <h3>Variants</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-default')">Default</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-centered')">Centered</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-slideup')">Slide Up</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-slidedown')">Slide Down</button>
+            </div>
+          </div>
+          <div class="demo-group">
+            <h3>Interactive Examples</h3>
+            <div class="button-grid">
+              <button class="demo-button success" onclick="showDevModal('dev-modal-form')">Form Modal</button>
+              <button class="demo-button danger" onclick="showDevModal('dev-modal-confirm')">Confirm Delete</button>
+              <button class="demo-button secondary" onclick="showDevModal('dev-modal-info')">Info Modal</button>
+            </div>
+          </div>
+          <div class="demo-group">
+            <h3>Custom Themes</h3>
+            <div class="button-grid">
+              <button class="demo-button" onclick="showDevModal('dev-modal-dark')">Dark Theme</button>
+              <button class="demo-button" onclick="showDevModal('dev-modal-gradient')">Gradient Theme</button>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
 
-  <div class="card-grid">
-    <!-- Variant Examples -->
-    <sample-card variant="default" class="card-demo">
-      <div slot="header">
-        <div class="demo-card-header">
-          <h4>Default Card</h4>
-          <span class="demo-badge">Standard</span>
-        </div>
+    <div class="console-section">
+      <div class="console-header">
+        <h3 style="margin: 0;">📊 Event Console</h3>
+        <button class="demo-button" onclick="clearConsole()">Clear</button>
       </div>
-      <p>Standard card with subtle border and shadow. Perfect for most use cases.</p>
+      <div class="console-output" id="console-output">
+        <div class="info">🔧 Development server ready</div>
+        <div class="info">📦 All components loaded</div>
+        <div style="margin: 8px 0;">---</div>
+      </div>
+    </div>
+    </div>
+    <!-- Modal Definitions for Development -->
+    <!-- Size modals -->
+    <sample-modal id="dev-modal-small" size="small">
+      <h3 slot="header">Small Modal</h3>
+      <p>Development test for small modal size.</p>
       <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button">Learn More</button>
+        <button class="demo-button" onclick="hideDevModal('dev-modal-small')">Close</button>
         </div>
-      </div>
-    </sample-card>
-
-    <sample-card variant="elevated" class="card-demo">
-      <div slot="header">
-        <div class="demo-card-header">
-          <h4>Elevated Card</h4>
-          <span class="demo-badge">Prominent</span>
-        </div>
-      </div>
-      <p>Card with prominent shadow and no border. Great for highlighting content.</p>
+    </sample-modal>
+    <sample-modal id="dev-modal-medium" size="medium">
+      <h3 slot="header">Medium Modal</h3>
+      <p>Development test for medium modal size (default).</p>
       <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button primary">Get Started</button>
+        <button class="demo-button" onclick="hideDevModal('dev-modal-medium')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-large" size="large">
+    <h3 slot="header">Large Modal</h3>
+    <p>Development test for large modal size with more content space.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-large')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-full" size="full">
+    <h3 slot="header">Full Screen Modal</h3>
+    <p>Development test for full screen modal experience.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-full')">Close</button>
+    </div>
+  </sample-modal>
+  <!-- Variant modals -->
+  <sample-modal id="dev-modal-default" variant="default">
+    <h3 slot="header">Default Variant</h3>
+    <p>Development test for default modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-default')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-centered" variant="centered">
+    <h3 slot="header">Centered Variant</h3>
+    <p>Development test for centered modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-centered')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-slideup" variant="slideup">
+    <h3 slot="header">Slide Up Variant</h3>
+    <p>Development test for slide up modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-slideup')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-slidedown" variant="slidedown">
+    <h3 slot="header">Slide Down Variant</h3>
+    <p>Development test for slide down modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-slidedown')">Close</button>
+      </div>
+      </sample-modal>
+      <!-- Interactive modals -->
+      <sample-modal id="dev-modal-form" backdrop-dismiss="false">
+        <h3 slot="header">Development Form</h3>
+        <form id="dev-form">
+          <div style="margin-bottom: 16px;">
+            <label for="dev-name" style="display: block; margin-bottom: 4px;">Name:</label>
+            <input type="text" id="dev-name" name="name"
+              style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label for="dev-email" style="display: block; margin-bottom: 4px;">Email:</label>
+            <input type="email" id="dev-email" name="email"
+              style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+    </form>
+    <div slot="footer">
+      <button class="demo-button secondary" onclick="hideDevModal('dev-modal-form')">Cancel</button>
+      <button class="demo-button success" onclick="submitDevForm()">Submit</button>
+      </div>
+      </sample-modal>
+      <sample-modal id="dev-modal-confirm" size="small">
+        <h3 slot="header">⚠️ Confirm Action</h3>
+        <p>Are you sure you want to perform this development action?</p>
+        <div slot="footer">
+          <button class="demo-button secondary" onclick="hideDevModal('dev-modal-confirm')">Cancel</button>
+          <button class="demo-button danger" onclick="confirmDevAction()">Confirm</button>
         </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-info">
+    <h3 slot="header">ℹ️ Development Info</h3>
+    <p>This is a development information modal for testing purposes.</p>
+    <ul>
+      <li>Component integration testing</li>
+      <li>Event handling verification</li>
+      <li>Styling validation</li>
+    </ul>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-info')">Got it</button>
       </div>
-    </sample-card>
-
-    <sample-card variant="outlined" class="card-demo">
-      <div slot="header">
-        <div class="demo-card-header">
-          <h4>Outlined Card</h4>
-          <span class="demo-badge">Defined</span>
-        </div>
+  </sample-modal>
+  <!-- Themed modals -->
+  <sample-modal id="dev-modal-dark" class="dev-dark-theme">
+    <h3 slot="header" style="color: #f7fafc;">🌙 Dark Theme</h3>
+    <p style="color: #e2e8f0;">Development test for dark themed modal.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-dark')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-gradient" class="dev-gradient-theme">
+    <h3 slot="header" style="color: white;">🌈 Gradient Theme</h3>
+    <p style="color: rgba(255,255,255,0.9);">Development test for gradient themed modal.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-gradient')"
+        style="background: rgba(255,255,255,0.2); color: white;">Close</button>
       </div>
-      <p>Card with emphasized border and no shadow. Clean, minimal appearance.</p>
+  </sample-modal>
+  <!-- Modal Definitions for Development -->
+  <!-- Size modals -->
+  <sample-modal id="dev-modal-small" size="small">
+    <h3 slot="header">Small Modal</h3>
+    <p>Development test for small modal size.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-small')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-medium" size="medium">
+    <h3 slot="header">Medium Modal</h3>
+    <p>Development test for medium modal size (default).</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-medium')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-large" size="large">
+    <h3 slot="header">Large Modal</h3>
+    <p>Development test for large modal size with more content space.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-large')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-full" size="full">
+    <h3 slot="header">Full Screen Modal</h3>
+    <p>Development test for full screen modal experience.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-full')">Close</button>
+      </div>
+  </sample-modal>
+  <!-- Variant modals -->
+  <sample-modal id="dev-modal-default" variant="default">
+    <h3 slot="header">Default Variant</h3>
+    <p>Development test for default modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-default')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-centered" variant="centered">
+    <h3 slot="header">Centered Variant</h3>
+    <p>Development test for centered modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-centered')">Close</button>
+    </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-slideup" variant="slideup">
+    <h3 slot="header">Slide Up Variant</h3>
+    <p>Development test for slide up modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-slideup')">Close</button>
+      </div>
+  </sample-modal>
+  <sample-modal id="dev-modal-slidedown" variant="slidedown">
+    <h3 slot="header">Slide Down Variant</h3>
+    <p>Development test for slide down modal variant.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-slidedown')">Close</button>
+      </div>
+      </sample-modal>
+      <!-- Interactive modals -->
+      <sample-modal id="dev-modal-form" backdrop-dismiss="false">
+        <h3 slot="header">Development Form</h3>
+        <form id="dev-form">
+          <div style="margin-bottom: 16px;">
+            <label for="dev-name" style="display: block; margin-bottom: 4px;">Name:</label>
+            <input type="text" id="dev-name" name="name"
+              style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label for="dev-email" style="display: block; margin-bottom: 4px;">Email:</label>
+            <input type="email" id="dev-email" name="email"
+              style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+    </form>
+    <div slot="footer">
+      <button class="demo-button secondary" onclick="hideDevModal('dev-modal-form')">Cancel</button>
+      <button class="demo-button success" onclick="submitDevForm()">Submit</button>
+    </div>
+    </sample-modal>
+    <sample-modal id="dev-modal-confirm" size="small">
+      <h3 slot="header">⚠️ Confirm Action</h3>
+      <p>Are you sure you want to perform this development action?</p>
       <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button">View Details</button>
-        </div>
+        <button class="demo-button secondary" onclick="hideDevModal('dev-modal-confirm')">Cancel</button>
+        <button class="demo-button danger" onclick="confirmDevAction()">Confirm</button>
       </div>
-    </sample-card>
-
-    <sample-card variant="filled" class="card-demo">
-      <div slot="header">
-        <div class="demo-card-header">
-          <h4>Filled Card</h4>
-          <span class="demo-badge">Subtle</span>
-        </div>
-      </div>
-      <p>Card with background fill. Ideal for secondary content areas.</p>
-      <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button">Explore</button>
-        </div>
-      </div>
-    </sample-card>
-
-    <!-- Size Examples -->
-    <sample-card size="compact" variant="outlined" class="card-demo">
-      <div slot="header">
-        <h4>Compact Size</h4>
-      </div>
-      <p>Dense layout with reduced padding for space-efficient designs.</p>
-      <div slot="footer">
-        <button class="demo-button">Action</button>
-      </div>
-    </sample-card>
-
-    <sample-card size="spacious" variant="elevated" class="card-demo">
-      <div slot="header">
-        <h4>Spacious Layout</h4>
-      </div>
-      <p>Generous padding for comfortable reading and interaction. Perfect for important content.</p>
-      <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button">Maybe Later</button>
-          <button class="demo-button primary">Continue</button>
-        </div>
-      </div>
-    </sample-card>
-
-    <!-- Interactive Examples -->
-    <sample-card clickable id="dev-clickable-card" class="card-demo">
-      <div slot="header">
-        <h4>Clickable Card</h4>
-      </div>
-      <p>Click anywhere on this card to trigger an event. Notice the hover effects.</p>
-      <div slot="footer">
-        <small>💡 Try clicking me!</small>
-      </div>
-    </sample-card>
-
-    <sample-card clickable disabled class="card-demo">
-      <div slot="header">
-        <h4>Disabled Card</h4>
-      </div>
-      <p>This card is disabled and won't respond to clicks or show hover effects.</p>
-      <div slot="footer">
-        <small>❌ Disabled state</small>
-      </div>
-    </sample-card>
-  </div>
-
-  <h3>Events</h3>
-  <p>Click the clickable cards above to see custom events in the console:</p>
-  <div style="margin-top: 20px;">
-    <sample-card clickable variant="outlined" id="card-event-demo">
-      <div slot="header">
-        <h4>Event Demo Card</h4>
-      </div>
-      <p>This card will show alert and console log when clicked.</p>
-      <div slot="footer">
-        <div class="demo-actions">
-          <button class="demo-button primary">Click Card Instead</button>
-        </div>
-      </div>
-    </sample-card>
-  </div>
-</div>
-<div class="component-section">
-  <h2>🍞 Breadcrumb Component</h2>
-  <p>A hierarchical navigation component that displays the current page's location within a navigational hierarchy.</p>
-
-  <div class="card-grid">
-    <!-- Variant Examples -->
-    <div>
-      <h4>Default Variant</h4>
-      <sample-breadcrumb variant="default">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
-      </sample-breadcrumb>
+  </sample-modal>
+  <sample-modal id="dev-modal-info">
+    <h3 slot="header">ℹ️ Development Info</h3>
+    <p>This is a development information modal for testing purposes.</p>
+    <ul>
+      <li>Component integration testing</li>
+      <li>Event handling verification</li>
+      <li>Styling validation</li>
+    </ul>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-info')">Got it</button>
     </div>
-
-    <div>
-      <h4>Filled Variant</h4>
-      <sample-breadcrumb variant="filled">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/docs" icon="📚">Documentation</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="🧩">Components</sample-breadcrumb-item>
-      </sample-breadcrumb>
+  </sample-modal>
+  <!-- Themed modals -->
+  <sample-modal id="dev-modal-dark" class="dev-dark-theme">
+    <h3 slot="header" style="color: #f7fafc;">🌙 Dark Theme</h3>
+    <p style="color: #e2e8f0;">Development test for dark themed modal.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-dark')">Close</button>
     </div>
-
-    <div>
-      <h4>Outlined Variant</h4>
-      <sample-breadcrumb variant="outlined">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/admin" icon="⚙️">Admin</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="👥">Users</sample-breadcrumb-item>
-      </sample-breadcrumb>
+  </sample-modal>
+  
+  <sample-modal id="dev-modal-gradient" class="dev-gradient-theme">
+    <h3 slot="header" style="color: white;">🌈 Gradient Theme</h3>
+    <p style="color: rgba(255,255,255,0.9);">Development test for gradient themed modal.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideDevModal('dev-modal-gradient')"
+        style="background: rgba(255,255,255,0.2); color: white;">Close</button>
     </div>
+  </sample-modal>
+  
+  <!-- Component imports -->
+  <script type="module" src="../src/index.ts"></script>
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+    let clickCounter = 0;
 
-    <div>
-      <h4>Minimal Variant</h4>
-      <sample-breadcrumb variant="minimal">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/minimal" icon="🎯">Minimal</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="✨">Style</sample-breadcrumb-item>
-      </sample-breadcrumb>
-    </div>
+                            function addConsoleMessage(message, type = 'info', detail = null) {
+                              const div = document.createElement('div');
+                              div.className = 'event-log';
+                          
+                            const timestamp = new Date().toLocaleTimeString();
+                            const timestampSpan = document.createElement('span');
+                            timestampSpan.className = 'timestamp';
+                            timestampSpan.textContent = `[${timestamp}] `;
+                          
+                            const messageSpan = document.createElement('span');
+                            messageSpan.className = type;
+                            messageSpan.textContent = message;
+                          
+                            div.appendChild(timestampSpan);
+                            div.appendChild(messageSpan);
 
-    <!-- Size Examples -->
-    <div>
-      <h4>Compact Size</h4>
-      <sample-breadcrumb size="compact" variant="filled">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/compact" icon="📱">Mobile</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="🔍">Details</sample-breadcrumb-item>
-      </sample-breadcrumb>
-    </div>
+                            if (detail) {
+                              const detailDiv = document.createElement('div');
+                              detailDiv.style.marginLeft = '20px';
+                              detailDiv.style.fontSize = '12px';
+                              detailDiv.style.color = '#a0aec0';
+                              detailDiv.textContent = `└─ ${JSON.stringify(detail)}`;
+                              div.appendChild(detailDiv);
+                            }
 
-    <div>
-      <h4>Spacious Size</h4>
-      <sample-breadcrumb size="spacious" variant="outlined">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/spacious" icon="🚀">Premium</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="⭐">Elite</sample-breadcrumb-item>
-      </sample-breadcrumb>
-    </div>
+                            consoleOutput.appendChild(div);
+                            consoleOutput.scrollTop = consoleOutput.scrollHeight;
 
-    <!-- Separator Examples -->
-    <div>
-      <h4>Custom Separators</h4>
-      <sample-breadcrumb separator="→" variant="default">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/arrow" icon="➡️">Arrow</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="🎯">Style</sample-breadcrumb-item>
-      </sample-breadcrumb>
+                            // Keep console manageable
+                            if (consoleOutput.children.length > 100) {
+                              consoleOutput.removeChild(consoleOutput.firstChild);
+                            }
+                          }
 
-      <br><br>
+                            function clearConsole() {
+                              consoleOutput.innerHTML = `
+        <div class="info">🔧 Development server ready</div>
+        <div class="info">📦 All components loaded</div>
+        <div style="margin: 8px 0;">---</div>
+      `;
+                            }
 
-      <sample-breadcrumb separator="▶" variant="filled">
-        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/triangle" icon="🔸">Triangle</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="🔥">Style</sample-breadcrumb-item>
-      </sample-breadcrumb>
-    </div>
+                            // Modal functions
+                            function showDevModal(modalId) {
+                              const modal = document.getElementById(modalId);
+                              if (modal) {
+                                modal.show();
+                                addConsoleMessage(`🎭 Dev: Modal opened - ${modalId}`, 'event');
+                              }
+                            }
 
-    <!-- Advanced Features -->
-    <div>
-      <h4>Real-world Example</h4>
-      <sample-breadcrumb variant="outlined" separator=">">
-        <sample-breadcrumb-item href="/shop" icon="🛍️">Shop</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/shop/electronics" icon="💻">Electronics</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/shop/electronics/laptops" icon="💻">Laptops</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="⭐">MacBook Pro 16"</sample-breadcrumb-item>
-      </sample-breadcrumb>
+                            function hideDevModal(modalId) {
+                              const modal = document.getElementById(modalId);
+                              if (modal) {
+                                modal.hide();
+                                addConsoleMessage(`📴 Dev: Modal closed - ${modalId}`, 'event');
+                              }
+                            }
 
-      <br><br>
+                            function submitDevForm() {
+                              const form = document.getElementById('dev-form');
+                              const formData = new FormData(form);
+                              const data = Object.fromEntries(formData.entries());
+                          
+                            addConsoleMessage('📝 Dev: Form submitted', 'event', data);
+                            hideDevModal('dev-modal-form');
+                            form.reset();
+                          }
 
-      <sample-breadcrumb variant="minimal" separator="|">
-        <sample-breadcrumb-item href="/files" icon="💾">Files</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/files/documents" icon="📁">Documents</sample-breadcrumb-item>
-        <sample-breadcrumb-item href="/files/documents/projects" icon="📁">Projects</sample-breadcrumb-item>
-        <sample-breadcrumb-item current icon="📄">Report.pdf</sample-breadcrumb-item>
-      </sample-breadcrumb>
-    </div>
-  </div>
+                            function confirmDevAction() {
+                              addConsoleMessage('✅ Dev: Action confirmed', 'event', { action: 'confirm', timestamp: Date.now() });
+                              hideDevModal('dev-modal-confirm');
+                            }
 
-  <h3>Events</h3>
-  <p>Click breadcrumb items to see navigation events in the console:</p>
-  <div style="margin-top: 20px;">
-    <sample-breadcrumb id="breadcrumb-event-demo" variant="filled">
-      <sample-breadcrumb-item href="/event-test" icon="🏠">Home</sample-breadcrumb-item>
-      <sample-breadcrumb-item href="/event-test/navigate" icon="🧭">Navigation</sample-breadcrumb-item>
-      <sample-breadcrumb-item href="/event-test/navigate/demo" icon="🎯">Demo</sample-breadcrumb-item>
-      <sample-breadcrumb-item current icon="🔬">Event Test</sample-breadcrumb-item>
-    </sample-breadcrumb>
-  </div>
-</div>
+                                // Modal functions
+                                function showDevModal(modalId) {
+                                  const modal = document.getElementById(modalId);
+                                  if (modal) {
+                                    modal.show();
+                                    addConsoleMessage(`🎭 Dev: Modal opened - ${modalId}`, 'event');
+                                  }
+                                }
 
-<div class="component-section">
-  <h2>🪗 Accordion Component</h2>
-  <p>A collapsible content component for organizing information in expandable sections.</p>
+              function hideDevModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                  modal.hide();
+                  addConsoleMessage(`📴 Dev: Modal closed - ${modalId}`, 'event');
+                }
+              }
 
-  <div class="card-grid">
-    <!-- Variant Examples -->
-    <div>
-      <h4>Default Variant</h4>
-      <sample-accordion>
-        <sample-accordion-item label="What is this component?">
-          <p>A flexible accordion with multiple customization options.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="How do I use it?" description="Basic usage guide">
-          <p>Add accordion items inside the accordion container.</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
+              function submitDevForm() {
+                const form = document.getElementById('dev-form');
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+            
+              addConsoleMessage('📝 Dev: Form submitted', 'event', data);
+              hideDevModal('dev-modal-form');
+              form.reset();
+            }
 
-    <div>
-      <h4>Minimal Variant</h4>
-      <sample-accordion variant="minimal">
-        <sample-accordion-item label="Clean design">
-          <p>Minimal styling without borders for a clean look.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="Content focused">
-          <p>Puts the focus on your content, not the container.</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
+              function confirmDevAction() {
+                addConsoleMessage('✅ Dev: Action confirmed', 'event', { action: 'confirm', timestamp: Date.now() });
+                hideDevModal('dev-modal-confirm');
+              }
 
-    <div>
-      <h4>Filled Variant</h4>
-      <sample-accordion variant="filled">
-        <sample-accordion-item label="Background fill">
-          <p>Subtle background fill without borders.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="Soft appearance">
-          <p>Gentle visual separation between sections.</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
+              // Alert functions
+              function showAlert(alertId) {
+                const alert = document.getElementById(alertId);
+                if (alert) {
+                  alert.style.display = 'block';
+                  addConsoleMessage(`🚨 Dev: Alert shown - ${alertId}`, 'event');
+                }
+              }
 
-    <div>
-      <h4>Outlined Variant</h4>
-      <sample-accordion variant="outlined">
-        <sample-accordion-item label="Emphasized border">
-          <p>Strong border with transparent background.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="Clear boundaries">
-          <p>Creates distinct visual sections.</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
+              function hideAlert(alertId) {
+                const alert = document.getElementById(alertId);
+                if (alert) {
+                  alert.style.display = 'none';
+                  addConsoleMessage(`🚨 Dev: Alert hidden - ${alertId}`, 'event');
+                }
+              }
 
-    <div>
-      <h4>Multiple Items Allowed</h4>
-      <sample-accordion allow-multiple>
-        <sample-accordion-item label="FAQ 1" expanded>
-          <p>This item starts expanded.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="FAQ 2">
-          <p>Multiple items can be open at once.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="FAQ 3">
-          <p>All items can be expanded simultaneously.</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
+                            // Event listeners for buttons
+                            document.querySelectorAll('sample-button').forEach(button => {
+                              button.addEventListener('sample-button-click', (e) => {
+                                addConsoleMessage(`🎯 ${button.constructor.name} clicked: ${button.id || 'unnamed'}`, 'event', e.detail);
+                                console.log('🔧 Dev: Button event:', e.detail);
 
-    <div>
-      <h4>Custom Icons</h4>
-      <sample-accordion>
-        <sample-accordion-item label="Custom Arrow" icon="→">
-          <p>Uses a custom arrow icon.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="Plus Symbol" icon="+">
-          <p>Plus/minus style indicator.</p>
-        </sample-accordion-item>
-        <sample-accordion-item label="Emoji Icon" icon="🔽">
-          <p>Even emojis work as icons!</p>
-        </sample-accordion-item>
-      </sample-accordion>
-    </div>
-  </div>
+                              // Special handling for counter button
+                              if (button.id === 'btn-counter') {
+                                clickCounter++;
+                                button.textContent = `Counter: ${clickCounter}`;
+                              }
+                            });
+                          });
 
-  <h3>Events</h3>
-  <p>Interact with accordions to see custom events in the console:</p>
-  <div style="margin-top: 20px;">
-    <sample-accordion id="accordion-event-demo" allow-multiple>
-      <sample-accordion-item label="Event Test Item 1">
-        <p>Click to expand and see events in console.</p>
-      </sample-accordion-item>
-      <sample-accordion-item label="Event Test Item 2">
-        <p>Multiple items can be open for testing events.</p>
-      </sample-accordion-item>
-    </sample-accordion>
-  </div>
-</div>
-  </div>
+                            // Event listeners for alerts
+                            document.querySelectorAll('sample-alert').forEach(alert => {
+                            alert.addEventListener('sample-alert-dismiss', (e) => {
+                              addConsoleMessage(`🚨 ${alert.constructor.name} dismissed: ${alert.id || 'unnamed'}`, 'event', e.detail);
+                              console.log('🔧 Dev: Alert event:', e.detail);
+                            });
+                          });
 
-  <script type="module">
-    import '../src/components/sample-button/sample-button.ts';
-          import '../src/components/sample-card/sample-card.ts';
-            import '../src/components/sample-accordion/sample-accordion.ts';
-            import '../src/components/sample-alert/sample-alert.ts';
-                    import '../src/components/sample-breadcrumb/sample-breadcrumb.ts';
+                            // Event listeners for cards
+                            document.querySelectorAll('sample-card').forEach(card => {
+                              card.addEventListener('sample-card-click', (e) => {
+                                addConsoleMessage(`🃏 ${card.constructor.name} clicked: ${card.id || 'unnamed'}`, 'event', e.detail);
+                                console.log('🔧 Dev: Card event:', e.detail);
+                              });
+                            });
 
-          // Add event listener to demonstrate button events
-    document.getElementById('event-button').addEventListener('sample-click', (event) => {
-      console.log('Button clicked!', event.detail);
-      alert(`Button clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}`);
-    });
+                            // Event listeners for accordion
+                            document.querySelectorAll('sample-accordion-item').forEach(item => {
+                              item.addEventListener('sample-accordion-toggle', (e) => {
+                                addConsoleMessage(`📂 ${item.constructor.name} toggled: ${item.id || 'unnamed'}`, 'event', e.detail);
+                                console.log('🔧 Dev: Accordion event:', e.detail);
+                              });
+                            });
 
-  // Add event listeners for card events
-  document.querySelectorAll('sample-card[clickable]').forEach(card => {
-    card.addEventListener('sample-card-click', (event) => {
-      console.log('🔧 Dev: Card clicked!', event.detail);
+                                // Event listeners for breadcrumbs
+                                document.querySelectorAll('sample-breadcrumb').forEach(breadcrumb => {
+                                  breadcrumb.addEventListener('sample-breadcrumb-navigate', (e) => {
+                                    addConsoleMessage(`🍞 ${breadcrumb.constructor.name} navigate: ${breadcrumb.id || 'unnamed'}`, 'event', e.detail);
+                                    console.log('🔧 Dev: Breadcrumb event:', e.detail);
+                                  });
+                                });
 
-      // Special handling for demo card
-      if (card.id === 'card-event-demo') {
-        alert(`Card clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}, Timestamp: ${event.detail.timestamp}`);
-      }
-    });
-  });
+          // Event listeners for modals
+          document.querySelectorAll('sample-modal').forEach(modal => {
+            modal.addEventListener('sample-modal-open', (e) => {
+              addConsoleMessage(`🎭 ${modal.constructor.name} opened: ${modal.id || 'unnamed'}`, 'event', e.detail);
+              console.log('🔧 Dev: Modal open event:', e.detail);
+            });
 
-      // Add event listeners for alert events
-      document.querySelectorAll('sample-alert').forEach(alert => {
-        alert.addEventListener('sample-alert-dismiss', (event) => {
-          console.log('🚨 Dev: Alert dismissed!', event.detail);
+          modal.addEventListener('sample-modal-close', (e) => {
+            addConsoleMessage(`🎭 ${modal.constructor.name} closed: ${modal.id || 'unnamed'}`, 'event', e.detail);
+            console.log('🔧 Dev: Modal close event:', e.detail);
         });
 
-        alert.addEventListener('sample-alert-action', (event) => {
-          console.log('🚨 Dev: Alert action!', event.detail);
-
-          // Handle specific actions for demo
-          if (event.detail.action === 'delete') {
-            setTimeout(() => {
-              console.log('🗑️ Dev: Delete action simulated');
-              alert('Delete action would be performed here in a real application.');
-            }, 500);
-          } else if (event.detail.action === 'cancel') {
-            console.log('❌ Dev: Cancel action triggered');
-          }
+          modal.addEventListener('sample-modal-cancel', (e) => {
+            addConsoleMessage(`🎭 ${modal.constructor.name} cancelled: ${modal.id || 'unnamed'}`, 'event', e.detail);
+            console.log('🔧 Dev: Modal cancel event:', e.detail);
+          });
         });
-      });
 
-      // Toast creation function for development demo
-      function createDevToast() {
-        const toast = document.createElement('sample-alert');
-        toast.variant = 'success';
-        toast.title = 'Development Toast';
-        toast.textContent = 'This is a toast-style notification from the dev environment!';
-        toast.dismissible = true;
+                            // Event listeners for modals
+                            document.querySelectorAll('sample-modal').forEach(modal => {
+                              modal.addEventListener('sample-modal-open', (e) => {
+                                addConsoleMessage(`🎭 ${modal.constructor.name} opened: ${modal.id || 'unnamed'}`, 'event', e.detail);
+                                console.log('🔧 Dev: Modal open event:', e.detail);
+                              });
 
-        // Position as toast
-        toast.style.position = 'fixed';
-        toast.style.top = '20px';
-        toast.style.right = '20px';
-        toast.style.zIndex = '1000';
-        toast.style.maxWidth = '350px';
-        toast.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
+                            modal.addEventListener('sample-modal-close', (e) => {
+                              addConsoleMessage(`🎭 ${modal.constructor.name} closed: ${modal.id || 'unnamed'}`, 'event', e.detail);
+                              console.log('🔧 Dev: Modal close event:', e.detail);
+                            });
 
-        document.body.appendChild(toast);
-        console.log('🚨 Dev: Toast created and positioned');
+                            modal.addEventListener('sample-modal-cancel', (e) => {
+                              addConsoleMessage(`🎭 ${modal.constructor.name} cancelled: ${modal.id || 'unnamed'}`, 'event', e.detail);
+                              console.log('🔧 Dev: Modal cancel event:', e.detail);
+                            });
+                          });
 
-        // Auto-dismiss after 5 seconds
-        setTimeout(() => {
-          if (!toast.dismissed) {
-            toast.hide();
-            console.log('🚨 Dev: Toast auto-dismissed');
-          }
-        }, 5000);
+            // Performance monitoring
+            window.addEventListener('load', () => {
+              addConsoleMessage('✅ All components loaded and ready', 'info');
+              addConsoleMessage('🚀 Development environment ready for testing', 'info');
 
-        // Remove from DOM after dismissal
-        toast.addEventListener('sample-alert-dismiss', () => {
-          setTimeout(() => toast.remove(), 300);
-        });
-      }
+              // Component count
+              const components = {
+                buttons: document.querySelectorAll('sample-button').length,
+                alerts: document.querySelectorAll('sample-alert').length,
+                cards: document.querySelectorAll('sample-card').length,
+                accordions: document.querySelectorAll('sample-accordion').length,
+                breadcrumbs: document.querySelectorAll('sample-breadcrumb').length,
+                modals: document.querySelectorAll('sample-modal').length
+              };
 
-      // Make function globally available
-      window.createDevToast = createDevToast;
-
-  // Add event listeners for accordion events
-  document.querySelectorAll('sample-accordion').forEach(accordion => {
-    accordion.addEventListener('sample-accordion-toggle', (event) => {
-      console.log('🔧 Dev: Accordion toggle!', event.detail);
-    });
-
-    accordion.addEventListener('sample-accordion-expand', (event) => {
-      console.log('🔧 Dev: Accordion expand!', event.detail);
-    });
-
-    accordion.addEventListener('sample-accordion-collapse', (event) => {
-      console.log('🔧 Dev: Accordion collapse!', event.detail);
-    });
-  });
-
-  // Add event listeners for breadcrumb events
-  document.querySelectorAll('sample-breadcrumb').forEach(breadcrumb => {
-    breadcrumb.addEventListener('sample-breadcrumb-navigate', (event) => {
-      console.log('🍞 Dev: Breadcrumb navigation!', event.detail);
-
-      // Special handling for demo breadcrumb
-      if (breadcrumb.id === 'breadcrumb-event-demo') {
-        alert(`Breadcrumb navigation!\nHref: ${event.detail.href}\nText: ${event.detail.text}\nTimestamp: ${event.detail.timestamp}`);
-      }
-    });
+            addConsoleMessage(`📊 Components loaded: ${JSON.stringify(components)}`, 'info');
   });
   </script>
 </body>

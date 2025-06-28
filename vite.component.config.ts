@@ -26,6 +26,10 @@ const componentMap = {
   'sample-breadcrumb': {
     entry: resolve(root, 'src/components/sample-breadcrumb/index.ts'),
     name: 'SampleBreadcrumb'
+  },
+  'sample-modal': {
+    entry: resolve(root, 'src/components/sample-modal/index.ts'),
+    name: 'SampleModal'
   }
 };
 

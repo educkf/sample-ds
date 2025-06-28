@@ -142,6 +142,10 @@ A collapsible content component for organizing information in expandable section
 
 A hierarchical navigation component that displays the current page's location within a navigational hierarchy.
 
+### Modal (`sample-modal`)
+
+A versatile dialog overlay component with comprehensive accessibility features, multiple sizes and variants, and customizable content sections.
+
 #### Properties
 
 - `variant`: `'primary' | 'secondary'` (default: `'primary'`)

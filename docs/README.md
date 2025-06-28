@@ -15,6 +15,7 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 - **[Accordion Component](./components/accordion.md)** - Collapsible content sections for information organization
 - **[Breadcrumb Component](./components/breadcrumb.md)** - Hierarchical navigation with customizable separators
 - **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
+- **[Modal Component](./components/modal.md)** - Dialog overlay with comprehensive accessibility features
 
 ### Advanced Topics
 - **[Theming Guide](./theming.md)** *(Coming Soon)* - Custom CSS properties and theming
@@ -98,11 +99,20 @@ import 'sample-design-system/components/sample-button';
   <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
   <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
 </sample-breadcrumb>
+<sample-modal id="example-modal">
+  <h3 slot="header">Example Modal</h3>
+  <p>This is a modal dialog with comprehensive accessibility features.</p>
+  <div slot="footer">
+    <button onclick="document.getElementById('example-modal').hide()">Close</button>
+  </div>
+</sample-modal>
+<button onclick="document.getElementById('example-modal').show()">Open Modal</button>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
+<script src="https://unpkg.com/sample-design-system/dist/components/sample-modal.js"></script>
 ```
 
 ## 📊 Component Status
@@ -114,8 +124,8 @@ import 'sample-design-system/components/sample-button';
 | Alert | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Accordion | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Breadcrumb | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
+| Modal | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
-| Modal | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |
 
 ## 🌐 Browser Support
 

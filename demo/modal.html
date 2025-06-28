@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Component Demo - Standalone</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 25px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      color: #2c3e50;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      color: #6c757d;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border: 1px solid #b3e5fc;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .info-box strong {
+      color: #1976d2;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .demo-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section h3 {
+      margin-top: 0;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-section .emoji {
+      font-size: 1.5rem;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .demo-button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .demo-button:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    .demo-button.secondary {
+      background: #6c757d;
+    }
+
+    .demo-button.secondary:hover {
+      background: #545b62;
+    }
+
+    .demo-button.success {
+      background: #28a745;
+    }
+
+    .demo-button.success:hover {
+      background: #1e7e34;
+    }
+
+    .demo-button.danger {
+      background: #dc3545;
+    }
+
+    .demo-button.danger:hover {
+      background: #c82333;
+    }
+
+    .console-section {
+      grid-column: 1 / -1;
+      background: #2d3748;
+      color: #f7fafc;
+      padding: 24px;
+      border-radius: 12px;
+      margin-top: 24px;
+    }
+
+    .console-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #4a5568;
+    }
+
+    .console-output {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      min-height: 100px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #4a5568;
+    }
+
+    .console-output .timestamp {
+      color: #a0aec0;
+    }
+
+    .console-output .event {
+      color: #68d391;
+    }
+
+    .console-output .info {
+      color: #63b3ed;
+    }
+
+    .theming-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px;
+      border-radius: 16px;
+      margin-top: 32px;
+    }
+
+    .theming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .theme-demo {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      margin-top: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Modal custom themes */
+    sample-modal.dark-theme {
+      --sample-modal-bg: #2d3748;
+      --sample-modal-overlay-bg: rgba(0, 0, 0, 0.8);
+      --sample-modal-header-border: 1px solid #4a5568;
+      --sample-modal-footer-border: 1px solid #4a5568;
+      --sample-modal-close-color: #a0aec0;
+      --sample-modal-close-hover-color: #f7fafc;
+      --sample-modal-close-hover-bg: #4a5568;
+    }
+
+    sample-modal.gradient-theme {
+      --sample-modal-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --sample-modal-border-radius: 20px;
+      --sample-modal-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+      --sample-modal-close-color: white;
+      --sample-modal-close-hover-bg: rgba(255, 255, 255, 0.2);
+    }
+
+    sample-modal.rounded-theme {
+      --sample-modal-border-radius: 24px;
+      --sample-modal-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      --sample-modal-animation-duration: 0.5s;
+      --sample-modal-close-bg: #ff4757;
+      --sample-modal-close-color: white;
+      --sample-modal-close-hover-bg: #ff3742;
+    }
+
+    /* Performance info */
+    .perf-info {
+      background: #e8f5e8;
+      border: 1px solid #c3e6c3;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    .perf-info .size {
+      font-weight: 600;
+      color: #155724;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .container {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🎭 Modal Component</h1>
+      <p class="subtitle">Versatile dialog overlay with comprehensive accessibility features</p>
+
+      <div class="info-box">
+        <strong>How it works:</strong> This page loads the complete Modal component (~31KB)
+        via a single script tag. All dependencies including Lit Framework are bundled.
+
+        <div class="perf-info">
+          📦 <span class="size">~31KB</span> self-contained component with zero dependencies
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-section">
+        <h3><span class="emoji">📏</span> Sizes</h3>
+        <p>Different modal sizes for various use cases</p>
+        <div class="button-grid">
+          <button class="demo-button" onclick="showModal('size-small')">Small</button>
+          <button class="demo-button" onclick="showModal('size-medium')">Medium</button>
+          <button class="demo-button" onclick="showModal('size-large')">Large</button>
+          <button class="demo-button" onclick="showModal('size-xl')">Extra Large</button>
+          <button class="demo-button" onclick="showModal('size-full')">Full Screen</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3><span class="emoji">🎭</span> Variants</h3>
+        <p>Different animation and positioning styles</p>
+        <div class="button-grid">
+          <button class="demo-button" onclick="showModal('variant-default')">Default</button>
+          <button class="demo-button" onclick="showModal('variant-centered')">Centered</button>
+          <button class="demo-button" onclick="showModal('variant-slideup')">Slide Up</button>
+          <button class="demo-button" onclick="showModal('variant-slidedown')">Slide Down</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3><span class="emoji">⚙️</span> Configuration</h3>
+        <p>Different modal configuration options</p>
+        <div class="button-grid">
+          <button class="demo-button" onclick="showModal('config-no-close')">No Close Button</button>
+          <button class="demo-button" onclick="showModal('config-no-backdrop')">No Backdrop Dismiss</button>
+          <button class="demo-button" onclick="showModal('config-no-escape')">No ESC Dismiss</button>
+          <button class="demo-button" onclick="showModal('config-persistent')">Persistent</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3><span class="emoji">📐</span> Footer Alignment</h3>
+        <p>Different footer button alignments</p>
+        <div class="button-grid">
+          <button class="demo-button" onclick="showModal('footer-start')">Start</button>
+          <button class="demo-button" onclick="showModal('footer-center')">Center</button>
+          <button class="demo-button" onclick="showModal('footer-end')">End</button>
+          <button class="demo-button" onclick="showModal('footer-between')">Between</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3><span class="emoji">🔧</span> Interactive Examples</h3>
+        <p>Real-world usage scenarios</p>
+        <div class="button-grid">
+          <button class="demo-button success" onclick="showModal('example-form')">Registration Form</button>
+          <button class="demo-button danger" onclick="showModal('example-confirm')">Confirm Delete</button>
+          <button class="demo-button secondary" onclick="showModal('example-info')">Information</button>
+          <button class="demo-button" onclick="showModal('example-content')">Rich Content</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3><span class="emoji">🎨</span> Custom Themes</h3>
+        <p>Styled modals with custom CSS properties</p>
+        <div class="button-grid">
+          <button class="demo-button" onclick="showModal('theme-dark')">Dark Theme</button>
+          <button class="demo-button" onclick="showModal('theme-gradient')">Gradient Theme</button>
+          <button class="demo-button" onclick="showModal('theme-rounded')">Rounded Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="console-section">
+      <div class="console-header">
+        <span class="emoji">📊</span>
+        <h3 style="margin: 0;">Event Console & Performance Monitor</h3>
+      </div>
+      <div class="console-output" id="console-output">
+        <div class="info">🎯 Standalone Modal demo loaded</div>
+        <div class="info">📦 ~31KB self-contained component ready</div>
+        <div class="info">🚀 All interactive features available</div>
+        <div style="margin: 8px 0;">---</div>
+      </div>
+    </div>
+
+    <div class="theming-section">
+      <h3>🎨 Custom Theming with CSS</h3>
+      <p>Easily customize the Modal appearance using CSS custom properties</p>
+
+      <div class="theming-grid">
+        <div class="theme-demo">
+          <h4>🌙 Dark Theme</h4>
+          <div class="code-block">sample-modal.dark-theme {
+            --sample-modal-bg: #2d3748;
+            --sample-modal-overlay-bg: rgba(0, 0, 0, 0.8);
+            --sample-modal-close-color: #a0aec0;
+            }</div>
+        </div>
+
+        <div class="theme-demo">
+          <h4>🌈 Gradient Theme</h4>
+          <div class="code-block">sample-modal.gradient-theme {
+            --sample-modal-bg: linear-gradient(135deg,
+            #667eea 0%, #764ba2 100%);
+            --sample-modal-border-radius: 20px;
+            }</div>
+        </div>
+
+        <div class="theme-demo">
+          <h4>🔵 Rounded Theme</h4>
+          <div class="code-block">sample-modal.rounded-theme {
+            --sample-modal-border-radius: 24px;
+            --sample-modal-shadow: 0 30px 60px
+            rgba(0, 0, 0, 0.2);
+            }</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sample Modal Definitions -->
+
+  <!-- Size examples -->
+  <sample-modal id="size-small" size="small">
+    <h3 slot="header">Small Modal</h3>
+    <p>This is a small modal perfect for simple confirmations or quick actions.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('size-small')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="size-medium" size="medium">
+    <h3 slot="header">Medium Modal</h3>
+    <p>This is a medium modal, the default size that works well for most use cases including forms and detailed
+      information.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('size-medium')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="size-large" size="large">
+    <h3 slot="header">Large Modal</h3>
+    <p>This is a large modal suitable for complex forms, detailed content, or when you need more space to display
+      information. It provides ample room for multiple sections and interactive elements.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('size-large')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="size-xl" size="xl">
+    <h3 slot="header">Extra Large Modal</h3>
+    <p>This is an extra large modal for when you need maximum space while still maintaining the modal feel. Perfect for
+      dashboards, detailed forms, or rich content presentation.</p>
+    <p>You can include multiple paragraphs, lists, and other content elements here.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('size-xl')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="size-full" size="full">
+    <h3 slot="header">Full Screen Modal</h3>
+    <p>This is a full screen modal that takes up most of the viewport, providing an immersive experience similar to a
+      new page.</p>
+    <p>Full screen modals are perfect for:</p>
+    <ul>
+      <li>Complex multi-step forms</li>
+      <li>Rich content experiences</li>
+      <li>Image or video galleries</li>
+      <li>Dashboard overlays</li>
+    </ul>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('size-full')">Close</button>
+    </div>
+  </sample-modal>
+
+  <!-- Variant examples -->
+  <sample-modal id="variant-default" variant="default">
+    <h3 slot="header">Default Variant</h3>
+    <p>The default modal variant with standard positioning and animation.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('variant-default')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="variant-centered" variant="centered">
+    <h3 slot="header">Centered Variant</h3>
+    <p>A perfectly centered modal that appears in the middle of the viewport.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('variant-centered')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="variant-slideup" variant="slideup">
+    <h3 slot="header">Slide Up Variant</h3>
+    <p>This modal slides up from the bottom, similar to mobile bottom sheets.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('variant-slideup')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="variant-slidedown" variant="slidedown">
+    <h3 slot="header">Slide Down Variant</h3>
+    <p>This modal slides down from the top of the screen.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('variant-slidedown')">Close</button>
+    </div>
+  </sample-modal>
+
+  <!-- Configuration examples -->
+  <sample-modal id="config-no-close" show-close="false">
+    <h3 slot="header">No Close Button</h3>
+    <p>This modal doesn't have a close button in the header. You must use the footer button to close it.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('config-no-close')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="config-no-backdrop" backdrop-dismiss="false">
+    <h3 slot="header">No Backdrop Dismiss</h3>
+    <p>Clicking the backdrop won't close this modal. You must use a button or the ESC key.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('config-no-backdrop')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="config-no-escape" escape-dismiss="false">
+    <h3 slot="header">No ESC Dismiss</h3>
+    <p>The ESC key won't close this modal. You must use a button or click the backdrop.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('config-no-escape')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="config-persistent" backdrop-dismiss="false" escape-dismiss="false">
+    <h3 slot="header">Persistent Modal</h3>
+    <p>This modal can only be closed by clicking a button. Neither backdrop clicks nor ESC key will close it.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('config-persistent')">Close</button>
+    </div>
+  </sample-modal>
+
+  <!-- Footer alignment examples -->
+  <sample-modal id="footer-start" footer-align="start">
+    <h3 slot="header">Start Aligned Footer</h3>
+    <p>Footer buttons are aligned to the left/start.</p>
+    <div slot="footer">
+      <button class="demo-button">Primary</button>
+      <button class="demo-button secondary">Secondary</button>
+      <button class="demo-button" onclick="hideModal('footer-start')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="footer-center" footer-align="center">
+    <h3 slot="header">Center Aligned Footer</h3>
+    <p>Footer buttons are centered.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('footer-center')">OK</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="footer-end" footer-align="end">
+    <h3 slot="header">End Aligned Footer</h3>
+    <p>Footer buttons are aligned to the right/end (default).</p>
+    <div slot="footer">
+      <button class="demo-button secondary">Cancel</button>
+      <button class="demo-button" onclick="hideModal('footer-end')">Save</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="footer-between" footer-align="between">
+    <h3 slot="header">Space Between Footer</h3>
+    <p>Footer buttons are spaced apart with justify-content: space-between.</p>
+    <div slot="footer">
+      <button class="demo-button danger">Delete</button>
+      <button class="demo-button" onclick="hideModal('footer-between')">Save</button>
+    </div>
+  </sample-modal>
+
+  <!-- Interactive examples -->
+  <sample-modal id="example-form" backdrop-dismiss="false">
+    <h3 slot="header">User Registration</h3>
+    <form id="user-form">
+      <div style="margin-bottom: 16px;">
+        <label for="name" style="display: block; margin-bottom: 4px; font-weight: 500;">Name:</label>
+        <input type="text" id="name" name="name" required
+          style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label for="email" style="display: block; margin-bottom: 4px; font-weight: 500;">Email:</label>
+        <input type="email" id="email" name="email" required
+          style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label for="password" style="display: block; margin-bottom: 4px; font-weight: 500;">Password:</label>
+        <input type="password" id="password" name="password" required
+          style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+    </form>
+    <div slot="footer">
+      <button class="demo-button secondary" onclick="hideModal('example-form')">Cancel</button>
+      <button class="demo-button success" onclick="submitForm()">Register</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="example-confirm" size="small">
+    <h3 slot="header">⚠️ Confirm Delete</h3>
+    <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+    <div slot="footer">
+      <button class="demo-button secondary" onclick="hideModal('example-confirm')">Cancel</button>
+      <button class="demo-button danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="example-info">
+    <h3 slot="header">ℹ️ Information</h3>
+    <p>This is an informational modal that provides important details to the user.</p>
+    <p>You can include multiple paragraphs, lists, and other content here.</p>
+    <ul>
+      <li>Feature update notifications</li>
+      <li>Important announcements</li>
+      <li>Help and documentation</li>
+    </ul>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('example-info')">Got it</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="example-content" size="large">
+    <h3 slot="header">📄 Rich Content Modal</h3>
+    <div style="line-height: 1.7;">
+      <h4>About Our Service</h4>
+      <p>This modal demonstrates how to display rich content including headings, paragraphs, lists, and other formatted
+        text.</p>
+
+      <h5>Features:</h5>
+      <ul>
+        <li>📱 Responsive design</li>
+        <li>♿ Full accessibility support</li>
+        <li>🎨 Customizable theming</li>
+        <li>⚡ High performance</li>
+      </ul>
+
+      <h5>Browser Support:</h5>
+      <p>Our component works across all modern browsers including Chrome, Firefox, Safari, and Edge.</p>
+
+      <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 16px 0;">
+        <strong>Pro Tip:</strong> You can customize the modal appearance using CSS custom properties for seamless
+        integration with your design system.
+      </div>
+    </div>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('example-content')">Close</button>
+    </div>
+  </sample-modal>
+
+  <!-- Themed examples -->
+  <sample-modal id="theme-dark" class="dark-theme">
+    <h3 slot="header" style="color: #f7fafc;">🌙 Dark Theme Modal</h3>
+    <p style="color: #e2e8f0;">This modal uses a dark theme with custom CSS properties.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('theme-dark')">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="theme-gradient" class="gradient-theme">
+    <h3 slot="header" style="color: white;">🌈 Gradient Theme Modal</h3>
+    <p style="color: rgba(255,255,255,0.9);">This modal features a beautiful gradient background.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('theme-gradient')"
+        style="background: rgba(255,255,255,0.2); color: white;">Close</button>
+    </div>
+  </sample-modal>
+
+  <sample-modal id="theme-rounded" class="rounded-theme">
+    <h3 slot="header">🔵 Rounded Theme Modal</h3>
+    <p>This modal has extra rounded corners and custom styling.</p>
+    <div slot="footer">
+      <button class="demo-button" onclick="hideModal('theme-rounded')">Close</button>
+    </div>
+  </sample-modal>
+
+  <!-- Load the Modal component -->
+  <script src="../dist/components/sample-modal.js"></script>
+
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+    let eventCounter = 0;
+
+    function addConsoleMessage(message, type = 'info', detail = null) {
+      eventCounter++;
+      const div = document.createElement('div');
+      div.style.marginBottom = '4px';
+
+      const timestamp = new Date().toLocaleTimeString();
+      const timestampSpan = document.createElement('span');
+      timestampSpan.className = 'timestamp';
+      timestampSpan.textContent = `[${timestamp}] `;
+
+      const messageSpan = document.createElement('span');
+      messageSpan.className = type;
+      messageSpan.textContent = message;
+
+      div.appendChild(timestampSpan);
+      div.appendChild(messageSpan);
+
+      if (detail) {
+        const detailDiv = document.createElement('div');
+        detailDiv.style.marginLeft = '20px';
+        detailDiv.style.fontSize = '12px';
+        detailDiv.style.color = '#a0aec0';
+        detailDiv.textContent = `└─ ${JSON.stringify(detail)}`;
+        div.appendChild(detailDiv);
+      }
+
+      consoleOutput.appendChild(div);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+
+      // Keep console manageable
+      if (consoleOutput.children.length > 50) {
+        consoleOutput.removeChild(consoleOutput.firstChild);
+      }
+    }
+
+    function showModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.show();
+        addConsoleMessage(`🎭 Modal opened: ${modalId}`, 'event');
+      }
+    }
+
+    function hideModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.hide();
+        addConsoleMessage(`📴 Modal closed: ${modalId}`, 'event');
+      }
+    }
+
+    function submitForm() {
+      const form = document.getElementById('user-form');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      addConsoleMessage('📝 Form submitted', 'event', data);
+      hideModal('example-form');
+
+      // Reset form
+      form.reset();
+    }
+
+    function confirmDelete() {
+      addConsoleMessage('🗑️ Delete confirmed', 'event', { action: 'delete', confirmed: true });
+      hideModal('example-confirm');
+    }
+
+    // Event listeners for all modals
+    document.querySelectorAll('sample-modal').forEach((modal, index) => {
+      modal.addEventListener('sample-modal-open', (e) => {
+        addConsoleMessage(`🔓 Modal opened: ${modal.id}`, 'event', e.detail);
+        console.log('Standalone demo - Modal opened:', e.detail);
+      });
+
+      modal.addEventListener('sample-modal-close', (e) => {
+        addConsoleMessage(`🔒 Modal closed: ${modal.id}`, 'event', e.detail);
+        console.log('Standalone demo - Modal closed:', e.detail);
+      });
+
+      modal.addEventListener('sample-modal-cancel', (e) => {
+        addConsoleMessage(`❌ Modal cancelled: ${modal.id}`, 'event', e.detail);
+        console.log('Standalone demo - Modal cancelled:', e.detail);
+      });
+    });
+
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      addConsoleMessage('✅ All components loaded and ready', 'info');
+      addConsoleMessage('🚀 All demos interactive', 'info');
+
+      const performanceEntries = performance.getEntriesByType('navigation');
+      if (performanceEntries.length > 0) {
+        const loadTime = Math.round(performanceEntries[0].loadEventEnd - performanceEntries[0].loadEventStart);
+        addConsoleMessage(`⚡ Page loaded in ${loadTime}ms`, 'info');
+      }
+
+      // Display component info
+      const modals = document.querySelectorAll('sample-modal');
+      addConsoleMessage(`📊 ${modals.length} modal instances ready`, 'info');
+    });
+
+    // Keyboard shortcuts for demo
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case '1':
+            e.preventDefault();
+            showModal('size-small');
+            addConsoleMessage('⌨️ Keyboard shortcut: Ctrl+1 (Small modal)', 'info');
+            break;
+          case '2':
+            e.preventDefault();
+            showModal('size-medium');
+            addConsoleMessage('⌨️ Keyboard shortcut: Ctrl+2 (Medium modal)', 'info');
+            break;
+          case '3':
+            e.preventDefault();
+            showModal('size-large');
+            addConsoleMessage('⌨️ Keyboard shortcut: Ctrl+3 (Large modal)', 'info');
+            break;
+        }
+      }
+    });
+
+    // Add initial info
+    addConsoleMessage('🎯 Modal demo ready - try opening different modal types!', 'info');
+    addConsoleMessage('⌨️ Keyboard shortcuts: Ctrl+1/2/3 for quick modal sizes', 'info');
+  </script>
+</body>
+
+</html>
