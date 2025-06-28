@@ -30,6 +30,7 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
   </sample-card>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
 </body>
 </html>
 ```
@@ -127,6 +128,10 @@ A versatile button component with multiple variants and sizes.
 
 A flexible container for organizing and displaying content in a structured format.
 
+### Accordion (`sample-accordion`)
+
+A collapsible content component for organizing information in expandable sections.
+
 #### Properties
 
 - `variant`: `'primary' | 'secondary'` (default: `'primary'`)
@@ -148,6 +153,27 @@ A flexible container for organizing and displaying content in a structured forma
 #### Card Events
 
 - `sample-card-click`: Fired when a clickable card is clicked (custom event)
+
+#### Accordion Properties
+
+- `variant`: `'default' | 'minimal' | 'filled' | 'outlined'` (default: `'default'`)
+- `size`: `'compact' | 'default' | 'spacious'` (default: `'default'`)
+- `allowMultiple`: `boolean` (default: `false`)
+- `disabled`: `boolean` (default: `false`)
+
+#### Accordion Item Properties
+
+- `label`: `string` - The header text/title
+- `description`: `string` - Optional description text
+- `expanded`: `boolean` (default: `false`)
+- `disabled`: `boolean` (default: `false`)
+- `icon`: `string` (default: `'▼'`)
+
+#### Accordion Events
+
+- `sample-accordion-toggle`: Fired when an item is toggled
+- `sample-accordion-expand`: Fired when an item is expanded
+- `sample-accordion-collapse`: Fired when an item is collapsed
 
 #### CSS Custom Properties
 
@@ -277,14 +303,17 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 | Component | Status | NPM | Script Tag | Documentation |
 |-----------|--------|-----|------------|---------------|
 | Button | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/button.md) |
+| Card | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/card.md) |
+| Accordion | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/accordion.md) |
 | Input | 🚧 Coming Soon | ⏳ | ⏳ | Coming Soon |
-| Card | 📋 Planned | ⏳ | ⏳ | Coming Soon |
 
 ## 📚 Complete Documentation
 
 - **[Getting Started Guide](./docs/getting-started.md)** - Installation, usage patterns, and framework integration
 - **[Documentation Overview](./docs/README.md)** - Complete documentation index  
 - **[Button Component](./docs/components/button.md)** - Comprehensive button component guide
+- **[Card Component](./docs/components/card.md)** - Flexible content container documentation
+- **[Accordion Component](./docs/components/accordion.md)** - Collapsible content sections guide
 
 ### Quick Testing
 - **Development**: `npm run dev` - Component development environment (bundled mode)

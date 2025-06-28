@@ -303,11 +303,110 @@
     </sample-card>
   </div>
 </div>
+<div class="component-section">
+  <h2>🪗 Accordion Component</h2>
+  <p>A collapsible content component for organizing information in expandable sections.</p>
+
+  <div class="card-grid">
+    <!-- Variant Examples -->
+    <div>
+      <h4>Default Variant</h4>
+      <sample-accordion>
+        <sample-accordion-item label="What is this component?">
+          <p>A flexible accordion with multiple customization options.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="How do I use it?" description="Basic usage guide">
+          <p>Add accordion items inside the accordion container.</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+
+    <div>
+      <h4>Minimal Variant</h4>
+      <sample-accordion variant="minimal">
+        <sample-accordion-item label="Clean design">
+          <p>Minimal styling without borders for a clean look.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="Content focused">
+          <p>Puts the focus on your content, not the container.</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+
+    <div>
+      <h4>Filled Variant</h4>
+      <sample-accordion variant="filled">
+        <sample-accordion-item label="Background fill">
+          <p>Subtle background fill without borders.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="Soft appearance">
+          <p>Gentle visual separation between sections.</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+
+    <div>
+      <h4>Outlined Variant</h4>
+      <sample-accordion variant="outlined">
+        <sample-accordion-item label="Emphasized border">
+          <p>Strong border with transparent background.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="Clear boundaries">
+          <p>Creates distinct visual sections.</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+
+    <div>
+      <h4>Multiple Items Allowed</h4>
+      <sample-accordion allow-multiple>
+        <sample-accordion-item label="FAQ 1" expanded>
+          <p>This item starts expanded.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="FAQ 2">
+          <p>Multiple items can be open at once.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="FAQ 3">
+          <p>All items can be expanded simultaneously.</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+
+    <div>
+      <h4>Custom Icons</h4>
+      <sample-accordion>
+        <sample-accordion-item label="Custom Arrow" icon="→">
+          <p>Uses a custom arrow icon.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="Plus Symbol" icon="+">
+          <p>Plus/minus style indicator.</p>
+        </sample-accordion-item>
+        <sample-accordion-item label="Emoji Icon" icon="🔽">
+          <p>Even emojis work as icons!</p>
+        </sample-accordion-item>
+      </sample-accordion>
+    </div>
+  </div>
+
+  <h3>Events</h3>
+  <p>Interact with accordions to see custom events in the console:</p>
+  <div style="margin-top: 20px;">
+    <sample-accordion id="accordion-event-demo" allow-multiple>
+      <sample-accordion-item label="Event Test Item 1">
+        <p>Click to expand and see events in console.</p>
+      </sample-accordion-item>
+      <sample-accordion-item label="Event Test Item 2">
+        <p>Multiple items can be open for testing events.</p>
+      </sample-accordion-item>
+    </sample-accordion>
+  </div>
+</div>
   </div>
 
   <script type="module">
     import '../src/components/sample-button/sample-button.ts';
           import '../src/components/sample-card/sample-card.ts';
+                    import '../src/components/sample-accordion/sample-accordion.ts';
 
           // Add event listener to demonstrate button events
     document.getElementById('event-button').addEventListener('sample-click', (event) => {
@@ -324,6 +423,21 @@
       if (card.id === 'card-event-demo') {
         alert(`Card clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}, Timestamp: ${event.detail.timestamp}`);
       }
+    });
+  });
+
+  // Add event listeners for accordion events
+  document.querySelectorAll('sample-accordion').forEach(accordion => {
+    accordion.addEventListener('sample-accordion-toggle', (event) => {
+      console.log('🔧 Dev: Accordion toggle!', event.detail);
+    });
+
+    accordion.addEventListener('sample-accordion-expand', (event) => {
+      console.log('🔧 Dev: Accordion expand!', event.detail);
+    });
+
+    accordion.addEventListener('sample-accordion-collapse', (event) => {
+      console.log('🔧 Dev: Accordion collapse!', event.detail);
     });
   });
   </script>

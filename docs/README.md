@@ -11,6 +11,7 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 ### Components
 - **[Button Component](./components/button.md)** - Interactive button with variants and sizes
 - **[Card Component](./components/card.md)** - Flexible content container with multiple variants
+- **[Accordion Component](./components/accordion.md)** - Collapsible content sections for information organization
 - **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
 
 ### Advanced Topics
@@ -82,8 +83,14 @@ import 'sample-design-system/components/sample-button';
   <div slot="header">Card Title</div>
   <p>Card content goes here.</p>
 </sample-card>
+<sample-accordion allow-multiple>
+  <sample-accordion-item label="First Section" expanded>
+    <p>Collapsible content here</p>
+  </sample-accordion-item>
+</sample-accordion>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
+<script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
 ```
 
 ## 📊 Component Status
@@ -92,6 +99,7 @@ import 'sample-design-system/components/sample-button';
 |-----------|--------|-----|------------|------|-------|
 | Button | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
 | Card | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
+| Accordion | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
 | Modal | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |
 
