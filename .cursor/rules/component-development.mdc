@@ -128,11 +128,22 @@ The `sample-[name]` component provides [description].
 [Type safety examples]
 ```
 
-### 6. Update Documentation Index
-**MUST UPDATE** `docs/README.md` component status table:
-```markdown
-| [Name] | ✅ Stable | ✅ | ✅ | [View Docs](mdc:components/[name].md) |
-```
+### 6. Next.js Markdoc Documentation
+**MUST CREATE/UPDATE** `docs/pages/components/[name].md` using the Markdoc template:
+
+#### Required Next.js Markdoc Features:
+- **Interactive Playgrounds** - Live component examples with {% playground %} tags
+- **API Documentation Tables** - Properties, events, CSS variables, and parts using {% apiTable %}
+- **Framework Integration** - Code examples for React, Vue, Angular, Svelte
+- **Tabbed Content** - Installation and usage examples using {% tabs %}
+- **Enhanced Code Blocks** - Syntax highlighting with {% codeBlock %}
+- **Callouts** - Important notes and tips using {% callout %}
+
+#### Update Navigation:
+**MUST UPDATE** these files:
+- `docs/components/ComponentsSidebar.js` - Add component to navigation
+- `docs/pages/components/index.md` - Update component status table
+- Verify responsive design and mobile compatibility
 
 ## 🚀 MANDATORY: Demo Requirements
 
@@ -210,12 +221,15 @@ The `sample-[name]` component provides [description].
 - [ ] Accessibility features implemented
 
 ### Documentation Requirements:
-- [ ] **Component documentation** created/updated in `docs/components/[name].md`
-- [ ] **Documentation index** updated in `docs/README.md`
-- [ ] **API reference** complete with properties, events, CSS variables
-- [ ] **Usage examples** for all frameworks (React, Vue, Angular, Svelte)
-- [ ] **Accessibility guidelines** documented
-- [ ] **Theming examples** provided
+- [ ] **Next.js Markdoc documentation** created/updated in `docs/pages/components/[name].md`
+- [ ] **Interactive playgrounds** with live component examples
+- [ ] **API documentation tables** complete with properties, events, CSS variables, parts
+- [ ] **Framework integration examples** for React, Vue, Angular, Svelte
+- [ ] **Component navigation** updated in `docs/components/ComponentsSidebar.js`
+- [ ] **Components index** updated in `docs/pages/components/index.md`
+- [ ] **Accessibility guidelines** documented with callouts
+- [ ] **Theming examples** with interactive playgrounds
+- [ ] **Responsive design** verified on mobile and desktop
 
 ### Demo Requirements:
 - [ ] **Standalone demo** created/updated in `demo/[name].html`

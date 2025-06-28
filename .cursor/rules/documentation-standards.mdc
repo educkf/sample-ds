@@ -1,5 +1,407 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Next.js Markdoc Documentation System
+
+## 🎯 Documentation Architecture
+
+The Design System uses a **Next.js application with Markdoc** for comprehensive documentation:
+
+- **Location**: `docs/` folder
+- **Framework**: Next.js 15.3.4 with React 19
+- **Markdown Engine**: Markdoc with custom tags
+- **Styling**: Tailwind CSS 4.1.11
+- **Build**: Static site generation with responsive design
+
+## 📁 Documentation Structure
+
+```
+docs/
+├── pages/                    # Next.js pages (Markdoc files)
+│   ├── _app.js              # App layout with Header/Sidebar
+│   ├── _document.js         # HTML document structure
+│   ├── index.md             # Homepage
+│   ├── how-to-use.md        # Installation & usage guide
+│   └── components/          # Component documentation
+│       ├── index.md         # Components overview
+│       ├── button.md        # Button component docs
+│       ├── card.md          # Card component docs
+│       └── [name].md        # Individual component docs
+├── components/              # React components for docs
+│   ├── Header.js           # Main navigation header
+│   └── ComponentsSidebar.js # Components navigation sidebar
+├── markdoc/                # Markdoc configuration
+│   └── tags.js             # Custom Markdoc tags
+├── public/                 # Static assets
+├── globals.css             # Global styles
+├── package.json            # Dependencies
+└── next.config.ts          # Next.js + Markdoc config
+```
+
+## 📝 Markdoc Custom Tags
+
+### {% playground %}
+Interactive component playground with live examples:
+
+```markdown
+{% playground 
+   component="button" 
+   title="Basic Button Example"
+   description="Interactive button with event handling"
+   code="<sample-button variant=\"primary\">Click me!</sample-button>"
+   css="/* Optional custom CSS */"
+   height="200px" 
+/%}
+```
+
+**Features:**
+- Live component rendering in iframe
+- Event console logging
+- Copy code functionality
+- Refresh capability
+- Expandable source view
+
+### {% apiTable %}
+API documentation tables for properties, events, CSS variables, and parts:
+
+```markdown
+{% apiTable 
+   type="properties"
+   data=[
+     { property: "variant", type: "`'primary' | 'secondary'`", default: "`'primary'`", description: "Button visual style" },
+     { property: "size", type: "`'small' | 'medium' | 'large'`", default: "`'medium'`", description: "Button size" }
+   ]
+/%}
+```
+
+**Supported Types:**
+- `properties` - Component properties/attributes
+- `events` - Custom events with detail payload
+- `css` - CSS custom properties
+- `parts` - CSS parts for styling
+
+### {% codeBlock %}
+Enhanced code blocks with syntax highlighting:
+
+```markdown
+{% codeBlock 
+   language="javascript" 
+   title="React Integration"
+   showLineNumbers=true 
+%}
+import 'sample-design-system/components/sample-button';
+{% /codeBlock %}
+```
+
+### {% tabs %} / {% tab %}
+Tabbed content for organizing information:
+
+```markdown
+{% tabs defaultTab="0" %}
+  {% tab title="NPM" icon="📦" %}
+  npm install sample-design-system
+  {% /tab %}
+  
+  {% tab title="Script Tag" icon="🎯" %}
+  <script src="dist/components/sample-button.js"></script>
+  {% /tab %}
+{% /tabs %}
+```
+
+### {% callout %}
+Information callouts for important notes:
+
+```markdown
+{% callout type="tip" title="Best Practice" %}
+Always import individual components for optimal bundle size.
+{% /callout %}
+```
+
+**Types:** `note`, `warning`, `tip`, `danger`
+
+## 📋 Component Documentation Template
+
+Each component MUST have documentation in `docs/pages/components/[name].md`:
+
+```markdown
+---
+title: [Component Name]
+description: [Brief component description]
+---
+
+# [Component Name]
+
+[Detailed component description and purpose]
+
+## 📦 Installation
+
+{% tabs defaultTab="0" %}
+  {% tab title="NPM" icon="📦" %}
+  ```bash
+  npm install sample-design-system
+  ```
+  
+  ```javascript
+  import 'sample-design-system/components/sample-[name]';
+  ```
+  {% /tab %}
+  
+  {% tab title="Script Tag" icon="🎯" %}
+  ```html
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-[name].js"></script>
+  ```
+  {% /tab %}
+{% /tabs %}
+
+## 🎯 Basic Usage
+
+{% playground 
+   component="[name]" 
+   title="Basic Example"
+   code="<sample-[name] variant=\"primary\">[Name] Content</sample-[name]>"
+   height="150px" 
+/%}
+
+## 🎨 Properties
+
+{% apiTable 
+   type="properties"
+   data=[
+     { property: "variant", type: "`'primary' | 'secondary'`", default: "`'primary'`", description: "Visual style variant" },
+     { property: "size", type: "`'small' | 'medium' | 'large'`", default: "`'medium'`", description: "Component size" },
+     { property: "disabled", type: "`boolean`", default: "`false`", description: "Disabled state" }
+   ]
+/%}
+
+## 🔥 Events
+
+{% apiTable 
+   type="events"
+   data=[
+     { event: "sample-[name]-click", detail: "`{ target: HTMLElement }`", description: "Fired when component is clicked" }
+   ]
+/%}
+
+## 🎨 CSS Custom Properties
+
+{% apiTable 
+   type="css"
+   data=[
+     { property: "--sample-[name]-bg", default: "`var(--sample-primary-color, #007bff)`", description: "Background color" },
+     { property: "--sample-[name]-color", default: "`var(--sample-text-color, white)`", description: "Text color" }
+   ]
+/%}
+
+## 🎨 CSS Parts
+
+{% apiTable 
+   type="parts"
+   data=[
+     { part: "[name]", description: "Main component container" }
+   ]
+/%}
+
+## 🖼️ Examples
+
+### Variants
+{% playground 
+   component="[name]" 
+   title="All Variants"
+   code="<sample-[name] variant=\"primary\">Primary</sample-[name]>
+<sample-[name] variant=\"secondary\">Secondary</sample-[name]>"
+   height="100px" 
+/%}
+
+### Sizes
+{% playground 
+   component="[name]" 
+   title="All Sizes"
+   code="<sample-[name] size=\"small\">Small</sample-[name]>
+<sample-[name] size=\"medium\">Medium</sample-[name]>
+<sample-[name] size=\"large\">Large</sample-[name]>"
+   height="100px" 
+/%}
+
+### States
+{% playground 
+   component="[name]" 
+   title="Component States"
+   code="<sample-[name]>Normal</sample-[name]>
+<sample-[name] disabled>Disabled</sample-[name]>"
+   height="100px" 
+/%}
+
+## 🎨 Custom Theming
+
+{% codeBlock language="css" title="Global Theming" %}
+:root {
+  --sample-[name]-bg: #custom-color;
+  --sample-[name]-color: #custom-text;
+  --sample-[name]-border-radius: 8px;
+}
+{% /codeBlock %}
+
+{% playground 
+   component="[name]" 
+   title="Themed Example"
+   code="<sample-[name] class=\"themed\">Themed [Name]</sample-[name]>"
+   css=".themed { --sample-[name]-bg: #6366f1; --sample-[name]-color: white; }"
+   height="100px" 
+/%}
+
+## 🔧 Framework Integration
+
+### React
+{% codeBlock language="jsx" title="React Usage" %}
+import 'sample-design-system/components/sample-[name]';
+
+function App() {
+  return (
+    <sample-[name] 
+      variant="primary" 
+      onClick={(e) => console.log(e.detail)}
+    >
+      React Component
+    </sample-[name]>
+  );
+}
+{% /codeBlock %}
+
+### Vue
+{% codeBlock language="vue" title="Vue Usage" %}
+<template>
+  <sample-[name] 
+    variant="primary" 
+    @sample-[name]-click="handleClick"
+  >
+    Vue Component
+  </sample-[name]>
+</template>
+
+<script setup>
+import 'sample-design-system/components/sample-[name]';
+</script>
+{% /codeBlock %}
+
+### Angular
+{% codeBlock language="typescript" title="Angular Usage" %}
+// app.module.ts
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import 'sample-design-system/components/sample-[name]';
+
+@NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class AppModule { }
+{% /codeBlock %}
+
+## ♿ Accessibility
+
+{% callout type="note" title="WCAG Compliance" %}
+This component follows WCAG 2.1 AA guidelines:
+- Keyboard navigation support
+- Screen reader compatibility
+- Proper ARIA attributes
+- High contrast support
+{% /callout %}
+
+- **Keyboard Support**: Tab, Enter, Space, Arrow keys
+- **Screen Reader**: Proper labeling and descriptions
+- **Focus Management**: Visible focus indicators
+- **Color Contrast**: Meets WCAG AA standards
+
+## 🌐 Browser Support
+
+{% callout type="tip" title="Modern Browser Support" %}
+Supports all modern browsers with native web component support.
+{% /callout %}
+
+| Browser | Version | Native | Polyfill |
+|---------|---------|---------|----------|
+| Chrome | 61+ | ✅ | ✅ |
+| Firefox | 63+ | ✅ | ✅ |
+| Safari | 13+ | ✅ | ✅ |
+| Edge | 79+ | ✅ | ✅ |
+
+## 📝 TypeScript
+
+{% codeBlock language="typescript" title="TypeScript Support" %}
+import { Sample[Name] } from 'sample-design-system';
+
+// Type-safe property access
+const [name]: Sample[Name] = document.querySelector('sample-[name]');
+[name].variant = 'primary'; // TypeScript will validate this
+{% /codeBlock %}
+```
+
+## 🚀 Documentation Commands
+
+### Development Server
+```bash
+cd docs
+npm run dev
+```
+Starts Next.js development server at `http://localhost:3000`
+
+### Build Documentation
+```bash
+cd docs
+npm run build
+```
+Generates static documentation site
+
+### Linting
+```bash
+cd docs
+npm run lint
+```
+Runs ESLint on documentation files
+
+## 🎯 MANDATORY Documentation Updates
+
+### For New Components:
+1. **Create** `docs/pages/components/[name].md` using template above
+2. **Update** `docs/components/ComponentsSidebar.js` with new component
+3. **Update** `docs/pages/components/index.md` status table
+4. **Test** all interactive playgrounds work
+5. **Verify** responsive design on mobile/desktop
+
+### For Component Updates:
+1. **Update** API tables with new properties/events
+2. **Add** new examples in playgrounds
+3. **Update** framework integration examples if needed
+4. **Test** all existing playgrounds still work
+5. **Update** accessibility information if changed
+
+## 📊 Quality Checklist
+
+### Documentation Requirements:
+- [ ] Complete component documentation page
+- [ ] All API elements documented (properties, events, CSS, parts)
+- [ ] Interactive playgrounds with live examples
+- [ ] Framework integration examples
+- [ ] Accessibility guidelines documented
+- [ ] Responsive design tested
+- [ ] All Markdoc tags render correctly
+- [ ] Navigation updated (sidebar, index page)
+
+### Content Quality:
+- [ ] Clear, concise descriptions
+- [ ] Comprehensive examples
+- [ ] Proper code syntax highlighting
+- [ ] Consistent formatting
+- [ ] Up-to-date information
+- [ ] No broken links or references
+
+## 🚨 CRITICAL: Never Ship Without
+
+1. **Complete documentation** with all required sections
+2. **Working interactive playgrounds** for all major features
+3. **Updated navigation** in sidebar and index
+4. **Mobile-responsive** design verified
+5. **All Markdoc tags** properly formatted and functional
+
+**The documentation is the primary way users discover and learn components - it must be comprehensive, accurate, and interactive!**
+

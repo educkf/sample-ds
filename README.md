@@ -324,16 +324,33 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 
 ## 📚 Complete Documentation
 
-- **[Getting Started Guide](./docs/getting-started.md)** - Installation, usage patterns, and framework integration
-- **[Documentation Overview](./docs/README.md)** - Complete documentation index  
-- **[Button Component](./docs/components/button.md)** - Comprehensive button component guide
-- **[Card Component](./docs/components/card.md)** - Flexible content container documentation
-- **[Accordion Component](./docs/components/accordion.md)** - Collapsible content sections guide
-- **[Breadcrumb Component](./docs/components/breadcrumb.md)** - Hierarchical navigation component guide
+Our documentation is built with **Next.js and Markdoc** for an enhanced interactive experience:
 
-### Quick Testing
-- **Development**: `npm run dev` - Component development environment (bundled mode)
-- **Demo**: `npm run demo` - Standalone component demo (script tag mode)
+### 🚀 Documentation Site
+```bash
+cd docs
+npm run dev
+```
+Visit `http://localhost:3000` for comprehensive documentation with:
+- **Interactive Playgrounds** - Live component examples
+- **Complete API Reference** - Properties, events, CSS variables
+- **Framework Integration** - React, Vue, Angular, Svelte examples
+- **Responsive Design** - Mobile and desktop optimized
+
+### 📖 Key Documentation Pages
+- **[How to Use](http://localhost:3000/how-to-use)** - Installation, usage patterns, and framework integration
+- **[Components Overview](http://localhost:3000/components)** - Complete component library
+- **[Button Component](http://localhost:3000/components/button)** - Interactive button guide
+- **[Card Component](http://localhost:3000/components/card)** - Flexible content container
+- **[Accordion Component](http://localhost:3000/components/accordion)** - Collapsible content sections
+- **[Breadcrumb Component](http://localhost:3000/components/breadcrumb)** - Hierarchical navigation
+- **[Alert Component](http://localhost:3000/components/alert)** - Contextual feedback messages
+- **[Modal Component](http://localhost:3000/components/modal)** - Dialog overlay component
+
+### 🧪 Testing & Development
+- **Documentation**: `cd docs && npm run dev` - Interactive documentation site
+- **Component Development**: `npm run dev` - Component development environment (bundled mode)
+- **Standalone Demos**: `npm run demo` - Standalone component demos (script tag mode)
 
 ## 🤝 Contributing
 

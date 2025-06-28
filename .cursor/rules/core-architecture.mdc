@@ -72,10 +72,12 @@ src/components/[name]/
 ## 📚 Documentation Requirements
 
 Every component change MUST include:
-- **API Documentation** in `docs/components/[name].md`
+- **Next.js Markdoc Documentation** in `docs/pages/components/[name].md`
+- **Interactive Playgrounds** with live component examples
 - **Standalone Demo** in `demo/[name].html`
 - **Development Integration** in `dev/index.html`
-- **Index Updates** in `docs/README.md` and main `README.md`
+- **Navigation Updates** in sidebar and component index pages
+- **README Updates** to reflect documentation changes
 
 
 

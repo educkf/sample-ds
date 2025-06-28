@@ -1,0 +1,399 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Next.js Markdoc Documentation System
+
+## 🎯 System Overview
+
+The Sample Design System uses a **sophisticated Next.js documentation application** with Markdoc for comprehensive, interactive component documentation.
+
+### 🏗️ Architecture
+- **Framework**: Next.js 15.3.4 with React 19
+- **Markdown Engine**: Markdoc 0.4.0 with custom tags
+- **Styling**: Tailwind CSS 4.1.11 with responsive design
+- **Syntax Highlighting**: Prism.js 1.29.0
+- **Theme Support**: next-themes 0.4.4 for dark mode
+- **Build Target**: Static site generation
+
+## 📁 Directory Structure
+
+```
+docs/
+├── 📄 Configuration
+│   ├── next.config.ts          # Next.js + Markdoc configuration
+│   ├── package.json            # Dependencies & scripts
+│   ├── tsconfig.json           # TypeScript configuration
+│   ├── eslint.config.mjs       # ESLint configuration
+│   └── postcss.config.mjs      # PostCSS configuration
+│
+├── 🎨 Styling
+│   └── globals.css             # Tailwind CSS + custom styles
+│
+├── 📖 Pages (Markdoc Files)
+│   ├── _app.js                 # App layout with Header/Sidebar
+│   ├── _document.js            # HTML document structure
+│   ├── index.md                # Documentation homepage
+│   ├── how-to-use.md           # Installation & usage guide
+│   └── components/
+│       ├── index.md            # Components overview & status
+│       ├── button.md           # Button component (107KB - comprehensive)
+│       ├── card.md             # Card component documentation
+│       ├── alert.md            # Alert component documentation
+│       ├── accordion.md        # Accordion component documentation
+│       ├── breadcrumb.md       # Breadcrumb component documentation
+│       └── modal.md            # Modal component documentation
+│
+├── ⚛️ React Components
+│   ├── Header.js               # Main navigation header
+│   └── ComponentsSidebar.js    # Components navigation sidebar
+│
+├── 🏷️ Markdoc Configuration
+│   └── tags.js                 # Custom Markdoc tags (340 lines)
+│
+└── 🖼️ Static Assets
+    └── public/                 # SVG icons and static files
+```
+
+## 🏷️ Custom Markdoc Tags System
+
+### Interactive Components
+
+#### 1. `{% playground %}` - Live Component Playground
+**Most Important Tag** - Creates interactive component examples:
+
+```markdown
+{% playground 
+   component="button" 
+   title="Interactive Button Example"
+   description="Try clicking the button to see events"
+   code="<sample-button variant=\"primary\" size=\"large\">Click me!</sample-button>"
+   css="/* Optional custom styling */"
+   height="200px" 
+/%}
+```
+
+**Features:**
+- ✅ **Live Rendering** - Components render in iframe with full functionality
+- ✅ **Event Logging** - Real-time console output for component events
+- ✅ **Code Copying** - One-click code copying functionality
+- ✅ **Refresh Capability** - Reload playground without page refresh
+- ✅ **Source Toggle** - Expandable source code view
+- ✅ **CDN Integration** - Automatically loads components from CDN
+
+#### 2. `{% apiTable %}` - API Documentation Tables
+Structured API documentation with consistent formatting:
+
+```markdown
+{% apiTable 
+   type="properties"
+   data=[
+     { 
+       property: "variant", 
+       type: "`'primary' | 'secondary' | 'danger'`", 
+       default: "`'primary'`", 
+       description: "Visual style variant of the component" 
+     }
+   ]
+/%}
+```
+
+**Supported Table Types:**
+- `properties` - Component properties/attributes
+- `events` - Custom events with detail payload structure
+- `css` - CSS custom properties for theming
+- `parts` - CSS parts for shadow DOM styling
+
+#### 3. `{% tabs %}` / `{% tab %}` - Tabbed Content
+Organize installation and usage examples:
+
+```markdown
+{% tabs defaultTab="0" %}
+  {% tab title="NPM Installation" icon="📦" %}
+  ```bash
+  npm install sample-design-system
+  ```
+  {% /tab %}
+  
+  {% tab title="Script Tag" icon="🎯" %}
+  ```html
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+  ```
+  {% /tab %}
+{% /tabs %}
+```
+
+#### 4. `{% codeBlock %}` - Enhanced Code Blocks
+Syntax-highlighted code with titles and line numbers:
+
+```markdown
+{% codeBlock 
+   language="javascript" 
+   title="React Integration Example"
+   showLineNumbers=true 
+%}
+import 'sample-design-system/components/sample-button';
+
+function App() {
+  return <sample-button variant="primary">React Button</sample-button>;
+}
+{% /codeBlock %}
+```
+
+#### 5. `{% callout %}` - Information Callouts
+Important notes, tips, warnings:
+
+```markdown
+{% callout type="tip" title="Performance Tip" %}
+Import individual components instead of the entire library for optimal bundle size.
+{% /callout %}
+
+{% callout type="warning" title="Breaking Change" %}
+The `size` property changed in v2.0. Update your implementations.
+{% /callout %}
+```
+
+**Callout Types:** `note`, `tip`, `warning`, `danger`
+
+## 🎨 Responsive Design System
+
+### Layout Components
+
+#### Header Component (`docs/components/Header.js`)
+- **Sticky Navigation** - Remains at top during scroll
+- **Logo & Title** - Design system branding
+- **Main Navigation** - Home, How to Use, Components
+- **GitHub Link** - Repository access
+- **Mobile Responsive** - Collapsible navigation
+
+#### Sidebar Component (`docs/components/ComponentsSidebar.js`)
+- **Component Navigation** - All component links with icons
+- **Active State** - Highlights current page
+- **Mobile Overlay** - Slide-out navigation on mobile
+- **Quick Links** - Additional navigation shortcuts
+- **Status Indicators** - Component status tracking
+
+### Mobile Optimization
+- **Responsive Grid** - Adapts to screen size
+- **Touch-Friendly** - Proper touch targets
+- **Readable Typography** - Optimized font sizes
+- **Sidebar Toggle** - Mobile menu functionality
+
+## 📋 Component Documentation Template
+
+### Required Front Matter
+```yaml
+---
+title: Component Name
+description: Brief description for SEO and navigation
+---
+```
+
+### Mandatory Sections
+
+#### 1. Installation Instructions
+Use tabs for NPM vs Script tag approaches:
+```markdown
+## 📦 Installation
+
+{% tabs defaultTab="0" %}
+  {% tab title="NPM" icon="📦" %}
+  ```bash
+  npm install sample-design-system
+  ```
+  {% /tab %}
+  {% tab title="Script Tag" icon="🎯" %}
+  ```html
+  <script src="..."></script>
+  ```
+  {% /tab %}
+{% /tabs %}
+```
+
+#### 2. Basic Usage Playground
+Always include a basic interactive example:
+```markdown
+## 🎯 Basic Usage
+
+{% playground 
+   component="[name]" 
+   title="Basic Example"
+   code="<sample-[name] variant=\"primary\">Content</sample-[name]>"
+   height="150px" 
+/%}
+```
+
+#### 3. Complete API Documentation
+Document all component APIs:
+```markdown
+## 🎨 Properties
+{% apiTable type="properties" data=[...] /%}
+
+## 🔥 Events  
+{% apiTable type="events" data=[...] /%}
+
+## 🎨 CSS Custom Properties
+{% apiTable type="css" data=[...] /%}
+
+## 🎨 CSS Parts
+{% apiTable type="parts" data=[...] /%}
+```
+
+#### 4. Comprehensive Examples
+Show all variants, sizes, states:
+```markdown
+## 🖼️ Examples
+
+### Variants
+{% playground component="[name]" title="All Variants" code="..." /%}
+
+### Sizes  
+{% playground component="[name]" title="All Sizes" code="..." /%}
+
+### States
+{% playground component="[name]" title="Component States" code="..." /%}
+```
+
+#### 5. Framework Integration
+Examples for all major frameworks:
+```markdown
+## 🔧 Framework Integration
+
+### React
+{% codeBlock language="jsx" title="React Usage" %}
+// React example
+{% /codeBlock %}
+
+### Vue
+{% codeBlock language="vue" title="Vue Usage" %}
+// Vue example  
+{% /codeBlock %}
+
+### Angular
+{% codeBlock language="typescript" title="Angular Usage" %}
+// Angular example
+{% /codeBlock %}
+```
+
+#### 6. Accessibility Guidelines
+Document WCAG compliance:
+```markdown
+## ♿ Accessibility
+
+{% callout type="note" title="WCAG Compliance" %}
+This component follows WCAG 2.1 AA guidelines
+{% /callout %}
+
+- **Keyboard Support**: Tab, Enter, Space, Arrow keys
+- **Screen Reader**: Proper ARIA labels and descriptions
+- **Focus Management**: Visible focus indicators
+- **Color Contrast**: Meets WCAG AA standards
+```
+
+#### 7. Browser Support Table
+Compatibility information:
+```markdown
+## 🌐 Browser Support
+
+| Browser | Version | Native | Polyfill |
+|---------|---------|---------|----------|
+| Chrome | 61+ | ✅ | ✅ |
+| Firefox | 63+ | ✅ | ✅ |
+| Safari | 13+ | ✅ | ✅ |
+| Edge | 79+ | ✅ | ✅ |
+```
+
+## 🚀 Development Workflow
+
+### Starting Documentation Development
+```bash
+cd docs
+npm install
+npm run dev
+```
+
+### File Modification Workflow
+1. **Edit Markdoc files** in `docs/pages/`
+2. **Update navigation** if adding new pages
+3. **Test interactive playgrounds** 
+4. **Verify responsive design**
+5. **Check syntax highlighting**
+
+### Navigation Updates
+
+#### For New Components:
+1. **Add to sidebar** (`docs/components/ComponentsSidebar.js`):
+```javascript
+const components = [
+  // ... existing
+  { name: 'New Component', href: '/components/new-component', icon: '🆕' },
+];
+```
+
+2. **Update components index** (`docs/pages/components/index.md`):
+```markdown
+| [New Component](mdc:components/new-component) | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
+```
+
+## 📊 Quality Assurance
+
+### Documentation Checklist
+- [ ] **All required sections** present and complete
+- [ ] **Interactive playgrounds** work and show events
+- [ ] **API tables** complete with all properties/events/CSS
+- [ ] **Framework examples** tested and functional
+- [ ] **Mobile responsive** design verified
+- [ ] **Navigation updated** in sidebar and index
+- [ ] **No console errors** in browser
+- [ ] **Markdoc syntax** properly formatted
+- [ ] **Links functional** and accessible
+- [ ] **Code highlighting** working correctly
+
+### Content Quality Standards
+- ✅ **Clear descriptions** with proper context
+- ✅ **Comprehensive examples** covering all use cases
+- ✅ **Consistent formatting** following established patterns
+- ✅ **Accurate information** reflecting actual component behavior
+- ✅ **Up-to-date examples** using current API
+- ✅ **Accessibility focus** in all documentation
+
+## 🎯 Performance Considerations
+
+### Bundle Optimization
+- **Component CDN** - Interactive playgrounds load from CDN
+- **Static Generation** - Next.js builds static HTML
+- **Image Optimization** - Next.js automatic image optimization
+- **CSS Optimization** - Tailwind CSS purging unused styles
+
+### Loading Performance
+- **Code Splitting** - Pages load independently
+- **Lazy Loading** - Components load on demand
+- **Caching** - Static assets cached effectively
+- **Responsive Images** - Proper image sizing
+
+## 🚨 CRITICAL Success Factors
+
+### Never Ship Documentation Without:
+1. **Functional interactive playgrounds** for all major features
+2. **Complete API documentation** with examples
+3. **Framework integration** examples tested
+4. **Mobile responsiveness** verified
+5. **Updated navigation** reflecting new content
+6. **Error-free rendering** of all Markdoc tags
+7. **Accessibility compliance** documented
+8. **Performance optimization** maintained
+
+### Documentation Quality Gates:
+- ✅ All playgrounds render components correctly
+- ✅ Event logging works in playground consoles
+- ✅ Code copying functionality works
+- ✅ Responsive design works on mobile/tablet/desktop
+- ✅ All links navigate correctly
+- ✅ Syntax highlighting appears correctly
+- ✅ API tables render with proper formatting
+- ✅ Tabs switch content properly
+- ✅ Callouts display with correct styling
+
+**Remember: The documentation site is the primary discovery mechanism for developers using the Design System. It must be comprehensive, interactive, and flawless.**
+

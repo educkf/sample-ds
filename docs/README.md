@@ -1,162 +1,206 @@
 # Sample Design System Documentation
 
-Welcome to the comprehensive documentation for the Sample Design System - a modern web component library built with Lit Framework.
+This is the comprehensive documentation site for the Sample Design System, built with **Next.js 15.3.4** and **Markdoc** for enhanced interactive documentation.
 
-## 📚 Documentation Structure
+## 🌟 Features
 
-### Getting Started
-- **[Getting Started Guide](./getting-started.md)** - Installation, usage patterns, and framework integration
-- **[Component Overview](#components)** - Available components and their documentation
+- **Interactive Playgrounds** - Live component examples with event logging
+- **Complete API Reference** - Properties, events, CSS variables, and CSS parts
+- **Framework Integration** - Examples for React, Vue, Angular, and Svelte
+- **Responsive Design** - Mobile and desktop optimized layout
+- **Custom Markdoc Tags** - Enhanced documentation components
+- **Syntax Highlighting** - Code blocks with Prism.js
+- **Navigation** - Sidebar navigation with component status tracking
 
-### Components
-- **[Button Component](./components/button.md)** - Interactive button with variants and sizes
-- **[Card Component](./components/card.md)** - Flexible content container with multiple variants
-- **[Alert Component](./components/alert.md)** - Contextual feedback messages with dismissible functionality
-- **[Accordion Component](./components/accordion.md)** - Collapsible content sections for information organization
-- **[Breadcrumb Component](./components/breadcrumb.md)** - Hierarchical navigation with customizable separators
-- **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
-- **[Modal Component](./components/modal.md)** - Dialog overlay with comprehensive accessibility features
+## 🚀 Getting Started
 
-### Advanced Topics
-- **[Theming Guide](./theming.md)** *(Coming Soon)* - Custom CSS properties and theming
-- **[Accessibility](./accessibility.md)** *(Coming Soon)* - WCAG compliance and best practices
-- **[Migration Guide](./migration.md)** *(Coming Soon)* - Upgrading between versions
-
-## 🎯 Quick Navigation
-
-### For Developers
-- 📦 [NPM Package Usage](./getting-started.md#npm-package-installation)
-- 🎯 [Script Tag Usage](./getting-started.md#script-tag-installation)
-- 🔧 [Framework Integration](./getting-started.md#framework-integration)
-
-### For Designers
-- 🎨 [Global Theming](./getting-started.md#global-theming)
-- 🎨 [Component Theming](./components/button.md#custom-theming)
-- 📐 [Design Tokens](./theming.md) *(Coming Soon)*
-
-### For Contributors
-- 🏗️ [Development Setup](./getting-started.md#development-setup)
-- 📝 [Component Guidelines](../.cursor/rules/component-development.mdc)
-- 🚀 [Build System](../.cursor/rules/build-configuration.mdc)
-
-## 🌟 Key Features
-
-### ✅ Dual Usage Patterns
-- **NPM Package** - For modern bundlers with tree-shaking (~15KB)
-- **Script Tags** - For direct HTML usage, self-contained (~21KB)
-
-### ✅ Framework Agnostic
-- Works with React, Vue, Angular, Svelte, and vanilla HTML
-- Native web components with standard APIs
-
-### ✅ Full TypeScript Support
-- Complete type definitions
-- Intelligent autocompletion
-- Type-safe property access
-
-### ✅ Comprehensive Theming
-- CSS custom properties for all styling
-- Global and per-component theming
-- Dark mode support
-
-### ✅ Accessibility First
-- WCAG 2.1 compliant
-- Keyboard navigation
-- Screen reader support
-
-## 🚀 Quick Start
-
-### NPM Installation
+### Development Server
 ```bash
-npm install sample-design-system
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the documentation site.
+
+### Build for Production
+```bash
+npm run build
+npm run start
 ```
 
-```javascript
+### Linting
+```bash
+npm run lint
+```
+
+## 📁 Project Structure
+
+```
+docs/
+├── pages/                    # Next.js pages (Markdoc files)
+│   ├── _app.js              # App layout with Header/Sidebar
+│   ├── _document.js         # HTML document structure
+│   ├── index.md             # Documentation homepage
+│   ├── how-to-use.md        # Installation & usage guide
+│   └── components/          # Component documentation
+│       ├── index.md         # Components overview
+│       ├── button.md        # Button component docs
+│       ├── card.md          # Card component docs
+│       ├── alert.md         # Alert component docs
+│       ├── accordion.md     # Accordion component docs
+│       ├── breadcrumb.md    # Breadcrumb component docs
+│       └── modal.md         # Modal component docs
+├── components/              # React components for docs
+│   ├── Header.js           # Main navigation header
+│   └── ComponentsSidebar.js # Components navigation sidebar
+├── markdoc/                # Markdoc configuration
+│   └── tags.js             # Custom Markdoc tags
+├── public/                 # Static assets
+├── globals.css             # Global Tailwind CSS styles
+├── package.json            # Dependencies and scripts
+└── next.config.ts          # Next.js + Markdoc configuration
+```
+
+## 🏷️ Custom Markdoc Tags
+
+### Interactive Components
+
+#### `{% playground %}`
+Live component playground with interactive examples:
+```markdown
+{% playground 
+   component="button" 
+   title="Button Example"
+   code="<sample-button variant=\"primary\">Click me!</sample-button>"
+   height="200px" 
+/%}
+```
+
+#### `{% apiTable %}`
+API documentation tables:
+```markdown
+{% apiTable 
+   type="properties"
+   data=[
+     { property: "variant", type: "`'primary' | 'secondary'`", default: "`'primary'`", description: "Button style" }
+   ]
+/%}
+```
+
+#### `{% tabs %}` / `{% tab %}`
+Tabbed content organization:
+```markdown
+{% tabs defaultTab="0" %}
+  {% tab title="NPM" icon="📦" %}
+  npm install sample-design-system
+  {% /tab %}
+  {% tab title="Script Tag" icon="🎯" %}
+  <script src="dist/components/sample-button.js"></script>
+  {% /tab %}
+{% /tabs %}
+```
+
+#### `{% codeBlock %}`
+Enhanced code blocks with syntax highlighting:
+```markdown
+{% codeBlock language="javascript" title="React Example" %}
 import 'sample-design-system/components/sample-button';
+{% /codeBlock %}
 ```
 
-```html
-<sample-button variant="primary">Click me!</sample-button>
+#### `{% callout %}`
+Information callouts:
+```markdown
+{% callout type="tip" title="Best Practice" %}
+Always import individual components for optimal bundle size.
+{% /callout %}
 ```
 
-### Script Tag Usage
-```html
-<sample-button variant="primary">Click me!</sample-button>
-<sample-card variant="elevated">
-  <div slot="header">Card Title</div>
-  <p>Card content goes here.</p>
-</sample-card>
-<sample-alert variant="success" title="Success!" dismissible>
-  Your action was completed successfully!
-</sample-alert>
-<sample-accordion allow-multiple>
-  <sample-accordion-item label="First Section" expanded>
-    <p>Collapsible content here</p>
-  </sample-accordion-item>
-</sample-accordion>
-<sample-breadcrumb>
-  <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
-  <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
-  <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
-</sample-breadcrumb>
-<sample-modal id="example-modal">
-  <h3 slot="header">Example Modal</h3>
-  <p>This is a modal dialog with comprehensive accessibility features.</p>
-  <div slot="footer">
-    <button onclick="document.getElementById('example-modal').hide()">Close</button>
-  </div>
-</sample-modal>
-<button onclick="document.getElementById('example-modal').show()">Open Modal</button>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-modal.js"></script>
+## 🎨 Styling
+
+The documentation uses **Tailwind CSS 4.1.11** with:
+- Custom color palette for the design system
+- Responsive design with mobile-first approach
+- Dark mode support (via `next-themes`)
+- Consistent typography and spacing
+
+## 📊 Component Status Tracking
+
+Components are tracked with status indicators:
+- ✅ **Stable** - Production ready
+- 🚧 **Beta** - Feature complete, testing in progress
+- ⏳ **Coming Soon** - In development
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 15.3.4
+- **React**: 19.0.0
+- **Markdown**: Markdoc 0.4.0
+- **Styling**: Tailwind CSS 4.1.11
+- **Syntax Highlighting**: Prism.js 1.29.0
+- **TypeScript**: Full type support
+- **Theme**: next-themes for dark mode
+
+## 📝 Adding New Component Documentation
+
+1. **Create the documentation file**:
+   ```
+   docs/pages/components/[component-name].md
+   ```
+
+2. **Update the sidebar navigation**:
+   ```javascript
+   // docs/components/ComponentsSidebar.js
+   const components = [
+     // ... existing components
+     { name: 'New Component', href: '/components/new-component', icon: '🆕' },
+   ];
+   ```
+
+3. **Update the components index**:
+   ```markdown
+   // docs/pages/components/index.md
+   | [New Component](/components/new-component) | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
+   ```
+
+4. **Follow the documentation template** with required sections:
+   - Installation instructions
+   - Interactive playgrounds
+   - Complete API reference
+   - Framework integration examples
+   - Accessibility guidelines
+   - Browser support information
+
+## 🚀 Deployment
+
+The documentation site can be deployed as a static site:
+
+```bash
+npm run build
 ```
 
-## 📊 Component Status
+The built site will be in the `.next` directory and can be deployed to:
+- Vercel (recommended for Next.js)
+- Netlify
+- GitHub Pages
+- Any static hosting service
 
-| Component | Status | NPM | Script Tag | Docs | Tests |
-|-----------|--------|-----|------------|------|-------|
-| Button | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
-| Card | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
-| Alert | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
-| Accordion | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
-| Breadcrumb | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
-| Modal | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
-| Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
+## 🤝 Contributing
 
-## 🌐 Browser Support
+When contributing to the documentation:
 
-| Browser | Version | Native Support | With Polyfill |
-|---------|---------|----------------|---------------|
-| Chrome | 61+ | ✅ | ✅ |
-| Firefox | 63+ | ✅ | ✅ |
-| Safari | 13+ | ✅ | ✅ |
-| Edge | 79+ | ✅ | ✅ |
-| IE 11 | - | ❌ | ✅ |
+1. **Follow the component template** for consistency
+2. **Test interactive playgrounds** to ensure they work
+3. **Verify responsive design** on mobile and desktop
+4. **Update navigation** when adding new pages
+5. **Use semantic HTML** and proper accessibility attributes
+6. **Test all Markdoc tags** render correctly
 
-## 📈 Bundle Sizes
+## 📚 Learn More
 
-| Usage Pattern | Size | Dependencies | Best For |
-|---------------|------|--------------|----------|
-| Individual Component (NPM) | ~3KB | Lit (external) | Modern bundlers |
-| Complete Library (NPM) | ~15KB | Lit (external) | Bundled projects |
-| Individual Component (Script) | ~21KB | Self-contained | Direct HTML usage |
-| Complete Library (Script) | ~21KB | Self-contained | Script tag usage |
-
-## 🤝 Community
-
-- 💬 [GitHub Discussions](https://github.com/your-org/sample-design-system/discussions)
-- 🐛 [Report Issues](https://github.com/your-org/sample-design-system/issues)
-- 📧 [Email Support](mailto:support@yourorg.com)
-- 🐦 [Follow Updates](https://twitter.com/yourorg)
+- **[Next.js Documentation](https://nextjs.org/docs)** - Learn about Next.js features
+- **[Markdoc Documentation](https://markdoc.dev/)** - Learn about Markdoc syntax
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Sample Design System](http://localhost:3000)** - View the live documentation
 
 ## 📄 License
 
-MIT License - see [LICENSE](../LICENSE) for details.
-
----
-
-**Need help?** Start with the [Getting Started Guide](./getting-started.md) or check out our [Button Component](./components/button.md) documentation. 
+This documentation is part of the Sample Design System project and follows the same MIT license.

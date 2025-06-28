@@ -1,4 +1,9 @@
-# Getting Started with Sample Design System
+---
+title: How to Use Sample Design System
+description: Learn how to install and use the Sample Design System in your projects
+---
+
+# How to Use Sample Design System
 
 A modern web component library built with Lit Framework that works everywhere - from modern bundlers to simple script tags.
 
@@ -56,7 +61,7 @@ document.body.appendChild(button);
 import 'sample-design-system';
 
 // All components are now available
-// <sample-button>, <sample-input>, etc.
+// <sample-button>, <sample-card>, etc.
 ```
 
 **Benefits:**
@@ -250,13 +255,10 @@ All components use CSS custom properties for theming:
 }
 ```
 
-## 🔧 Development Setup
+## 🛠️ Development Setup
 
-### Prerequisites
-- Node.js 16+
-- NPM or Yarn
+If you want to contribute to the Sample Design System or run it locally:
 
-### Local Development
 ```bash
 # Clone the repository
 git clone https://github.com/your-org/sample-design-system
@@ -268,84 +270,32 @@ npm install
 # Start development server
 npm run dev
 
-# Start demo server (for standalone testing)
-npm run demo
-
 # Build for production
 npm run build
+
+# Run tests
+npm test
 ```
 
-### Development URLs
-- **Bundled mode**: `http://localhost:5173/dev/`
-- **Standalone mode**: `http://localhost:5173/demo/`
+## 🎯 Best Practices
 
-## 📚 Available Components
+### Performance
+- Import only the components you need
+- Use tree-shaking with modern bundlers
+- Consider using CDN for script tag usage
 
-| Component | Status | Description |
-|-----------|--------|-------------|
-| `sample-button` | ✅ Available | Interactive button with variants and sizes |
-| `sample-input` | 🚧 Coming Soon | Text input with validation |
-| `sample-card` | 🚧 Coming Soon | Content container with header/footer |
-| `sample-modal` | 🚧 Coming Soon | Overlay dialog component |
+### Accessibility
+- Always provide proper ARIA labels
+- Test with keyboard navigation
+- Ensure sufficient color contrast
 
-## 📖 Component Documentation
+### Theming
+- Use CSS custom properties for consistency
+- Test your themes across all components
+- Consider dark mode compatibility
 
-- [Button Component](./components/button.md)
-- [Input Component](./components/input.md) *(Coming Soon)*
-- [Card Component](./components/card.md) *(Coming Soon)*
+## 🤝 Support
 
-## 🔍 TypeScript Support
-
-Full TypeScript support with intelligent autocompletion:
-
-```typescript
-import { SampleButton } from 'sample-design-system';
-
-// Type-safe property access
-const button: SampleButton = document.querySelector('sample-button')!;
-button.variant = 'secondary';  // ✓ Autocomplete: 'primary' | 'secondary'
-button.size = 'large';         // ✓ Autocomplete: 'small' | 'medium' | 'large'
-button.disabled = true;        // ✓ Type: boolean
-
-// Type-safe event handling
-button.addEventListener('sample-click', (e: CustomEvent) => {
-  console.log(e.detail); // ✓ Type: { variant: string, size: string }
-});
-```
-
-## 🌐 Browser Support
-
-### Modern Browsers (Native Web Components)
-- ✅ Chrome 61+
-- ✅ Firefox 63+
-- ✅ Safari 13+  
-- ✅ Edge 79+
-
-### Legacy Browser Support
-For older browsers, include the web components polyfill:
-
-```html
-<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2/webcomponents-bundle.js"></script>
-<script src="https://unpkg.com/sample-design-system/dist/standalone/index.js"></script>
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md) for details.
-
-### Component Development
-1. Follow the [component development guidelines](.cursor/rules/component-development.mdc)
-2. Test in both bundled and standalone modes
-3. Include comprehensive documentation
-4. Ensure accessibility compliance
-
-## 📄 License
-
-MIT License - see [LICENSE](../LICENSE) for details.
-
-## 🆘 Support
-
-- 📖 [Documentation](./getting-started.md)
-- 🐛 [Issue Tracker](https://github.com/your-org/sample-design-system/issues)
-- 💬 [Discussions](https://github.com/your-org/sample-design-system/discussions)
+- 💬 [GitHub Discussions](https://github.com/your-org/sample-design-system/discussions)
+- 🐛 [Report Issues](https://github.com/your-org/sample-design-system/issues)
 - 📧 [Email Support](mailto:support@yourorg.com) 
