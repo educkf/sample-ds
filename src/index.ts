@@ -2,4 +2,5 @@
 export { SampleButton } from './components/sample-button/sample-button.js';
 export { SampleCard } from './components/sample-card/sample-card.js';
 export { SampleAccordion, SampleAccordionItem } from './components/sample-accordion/sample-accordion.js';
-export { SampleAlert } from './components/sample-alert/sample-alert.js'; 
+export { SampleAlert } from './components/sample-alert/sample-alert.js';
+export { SampleBreadcrumb, SampleBreadcrumbItem } from './components/sample-breadcrumb/sample-breadcrumb.js'; 

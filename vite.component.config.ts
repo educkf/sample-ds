@@ -22,6 +22,10 @@ const componentMap = {
   'sample-accordion': {
     entry: resolve(root, 'src/components/sample-accordion/index.ts'),
     name: 'SampleAccordion'
+  },
+  'sample-breadcrumb': {
+    entry: resolve(root, 'src/components/sample-breadcrumb/index.ts'),
+    name: 'SampleBreadcrumb'
   }
 };
 

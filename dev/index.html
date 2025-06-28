@@ -387,6 +387,118 @@
   </div>
 </div>
 <div class="component-section">
+  <h2>🍞 Breadcrumb Component</h2>
+  <p>A hierarchical navigation component that displays the current page's location within a navigational hierarchy.</p>
+
+  <div class="card-grid">
+    <!-- Variant Examples -->
+    <div>
+      <h4>Default Variant</h4>
+      <sample-breadcrumb variant="default">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <div>
+      <h4>Filled Variant</h4>
+      <sample-breadcrumb variant="filled">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/docs" icon="📚">Documentation</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="🧩">Components</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <div>
+      <h4>Outlined Variant</h4>
+      <sample-breadcrumb variant="outlined">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/admin" icon="⚙️">Admin</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="👥">Users</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <div>
+      <h4>Minimal Variant</h4>
+      <sample-breadcrumb variant="minimal">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/minimal" icon="🎯">Minimal</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="✨">Style</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <!-- Size Examples -->
+    <div>
+      <h4>Compact Size</h4>
+      <sample-breadcrumb size="compact" variant="filled">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/compact" icon="📱">Mobile</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="🔍">Details</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <div>
+      <h4>Spacious Size</h4>
+      <sample-breadcrumb size="spacious" variant="outlined">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/spacious" icon="🚀">Premium</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="⭐">Elite</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <!-- Separator Examples -->
+    <div>
+      <h4>Custom Separators</h4>
+      <sample-breadcrumb separator="→" variant="default">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/arrow" icon="➡️">Arrow</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="🎯">Style</sample-breadcrumb-item>
+      </sample-breadcrumb>
+
+      <br><br>
+
+      <sample-breadcrumb separator="▶" variant="filled">
+        <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/triangle" icon="🔸">Triangle</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="🔥">Style</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+
+    <!-- Advanced Features -->
+    <div>
+      <h4>Real-world Example</h4>
+      <sample-breadcrumb variant="outlined" separator=">">
+        <sample-breadcrumb-item href="/shop" icon="🛍️">Shop</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/shop/electronics" icon="💻">Electronics</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/shop/electronics/laptops" icon="💻">Laptops</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="⭐">MacBook Pro 16"</sample-breadcrumb-item>
+      </sample-breadcrumb>
+
+      <br><br>
+
+      <sample-breadcrumb variant="minimal" separator="|">
+        <sample-breadcrumb-item href="/files" icon="💾">Files</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/files/documents" icon="📁">Documents</sample-breadcrumb-item>
+        <sample-breadcrumb-item href="/files/documents/projects" icon="📁">Projects</sample-breadcrumb-item>
+        <sample-breadcrumb-item current icon="📄">Report.pdf</sample-breadcrumb-item>
+      </sample-breadcrumb>
+    </div>
+  </div>
+
+  <h3>Events</h3>
+  <p>Click breadcrumb items to see navigation events in the console:</p>
+  <div style="margin-top: 20px;">
+    <sample-breadcrumb id="breadcrumb-event-demo" variant="filled">
+      <sample-breadcrumb-item href="/event-test" icon="🏠">Home</sample-breadcrumb-item>
+      <sample-breadcrumb-item href="/event-test/navigate" icon="🧭">Navigation</sample-breadcrumb-item>
+      <sample-breadcrumb-item href="/event-test/navigate/demo" icon="🎯">Demo</sample-breadcrumb-item>
+      <sample-breadcrumb-item current icon="🔬">Event Test</sample-breadcrumb-item>
+    </sample-breadcrumb>
+  </div>
+</div>
+
+<div class="component-section">
   <h2>🪗 Accordion Component</h2>
   <p>A collapsible content component for organizing information in expandable sections.</p>
 
@@ -491,6 +603,7 @@
           import '../src/components/sample-card/sample-card.ts';
             import '../src/components/sample-accordion/sample-accordion.ts';
             import '../src/components/sample-alert/sample-alert.ts';
+                    import '../src/components/sample-breadcrumb/sample-breadcrumb.ts';
 
           // Add event listener to demonstrate button events
     document.getElementById('event-button').addEventListener('sample-click', (event) => {
@@ -579,6 +692,18 @@
 
     accordion.addEventListener('sample-accordion-collapse', (event) => {
       console.log('🔧 Dev: Accordion collapse!', event.detail);
+    });
+  });
+
+  // Add event listeners for breadcrumb events
+  document.querySelectorAll('sample-breadcrumb').forEach(breadcrumb => {
+    breadcrumb.addEventListener('sample-breadcrumb-navigate', (event) => {
+      console.log('🍞 Dev: Breadcrumb navigation!', event.detail);
+
+      // Special handling for demo breadcrumb
+      if (breadcrumb.id === 'breadcrumb-event-demo') {
+        alert(`Breadcrumb navigation!\nHref: ${event.detail.href}\nText: ${event.detail.text}\nTimestamp: ${event.detail.timestamp}`);
+      }
     });
   });
   </script>

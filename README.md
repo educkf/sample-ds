@@ -32,6 +32,7 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
 </body>
 </html>
 ```
@@ -136,6 +137,10 @@ Contextual feedback messages for user actions with multiple variants and dismiss
 ### Accordion (`sample-accordion`)
 
 A collapsible content component for organizing information in expandable sections.
+
+### Breadcrumb (`sample-breadcrumb`)
+
+A hierarchical navigation component that displays the current page's location within a navigational hierarchy.
 
 #### Properties
 
@@ -310,6 +315,7 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 | Button | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/button.md) |
 | Card | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/card.md) |
 | Accordion | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/accordion.md) |
+| Breadcrumb | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/breadcrumb.md) |
 | Input | 🚧 Coming Soon | ⏳ | ⏳ | Coming Soon |
 
 ## 📚 Complete Documentation
@@ -319,6 +325,7 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 - **[Button Component](./docs/components/button.md)** - Comprehensive button component guide
 - **[Card Component](./docs/components/card.md)** - Flexible content container documentation
 - **[Accordion Component](./docs/components/accordion.md)** - Collapsible content sections guide
+- **[Breadcrumb Component](./docs/components/breadcrumb.md)** - Hierarchical navigation component guide
 
 ### Quick Testing
 - **Development**: `npm run dev` - Component development environment (bundled mode)

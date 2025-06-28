@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breadcrumb Component Demo - Standalone</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f8f9fa;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .demo-section h3 {
+      margin: 0 0 16px 0;
+      color: #495057;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-item {
+      margin: 16px 0;
+      padding: 16px;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #dee2e6;
+    }
+
+    .demo-item h4 {
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box {
+      background: #e7f3ff;
+      border: 1px solid #b6d7ff;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .console-output {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      margin-top: 16px;
+      min-height: 120px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #e9ecef;
+      color: #495057;
+    }
+
+    .console-line {
+      margin: 2px 0;
+      padding: 2px 0;
+    }
+
+    .console-event {
+      color: #28a745;
+      font-weight: 500;
+    }
+
+    .console-info {
+      color: #007bff;
+    }
+
+    .theming-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px;
+      border-radius: 12px;
+      margin-top: 24px;
+    }
+
+    .gradient-breadcrumb {
+      --sample-breadcrumb-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --sample-breadcrumb-color: white;
+      --sample-breadcrumb-link-color: rgba(255, 255, 255, 0.9);
+      --sample-breadcrumb-link-hover-color: white;
+      --sample-breadcrumb-separator-color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🍞 Breadcrumb Component</h1>
+      <p>Comprehensive navigation breadcrumb component loaded via single script tag - no build process required!</p>
+
+      <div class="info-box">
+        <strong>How it works:</strong> This page loads the complete component (~25KB)
+        via a single script tag. All dependencies including Lit Framework are bundled.
+      </div>
+    </div>
+
+    <!-- Demo Grid -->
+    <div class="demo-grid">
+      <!-- Variants Demo -->
+      <div class="demo-section">
+        <h3>🎨 Variants</h3>
+
+        <div class="demo-item">
+          <h4>Default Variant</h4>
+          <sample-breadcrumb variant="default">
+            <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+
+        <div class="demo-item">
+          <h4>Filled Variant</h4>
+          <sample-breadcrumb variant="filled">
+            <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/settings" icon="⚙️">Settings</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="👤">Profile</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+
+        <div class="demo-item">
+          <h4>Outlined Variant</h4>
+          <sample-breadcrumb variant="outlined">
+            <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/admin" icon="🔧">Admin</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="👥">Users</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+      </div>
+
+      <!-- Separators Demo -->
+      <div class="demo-section">
+        <h3>🔗 Custom Separators</h3>
+
+        <div class="demo-item">
+          <h4>Arrow Separator (→)</h4>
+          <sample-breadcrumb separator="→">
+            <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/path" icon="📍">Navigation</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="🎯">Current</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+
+        <div class="demo-item">
+          <h4>Chevron Separator (>)</h4>
+          <sample-breadcrumb separator=">" variant="outlined">
+            <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/browse" icon="👁️">Browse</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="📖">View</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+      </div>
+
+      <!-- Interactive Testing -->
+      <div class="demo-section">
+        <h3>🔧 Interactive Testing</h3>
+
+        <div class="demo-item">
+          <h4>Clickable Navigation</h4>
+          <sample-breadcrumb variant="filled">
+            <sample-breadcrumb-item href="/shop" icon="🛍️">Shop</sample-breadcrumb-item>
+            <sample-breadcrumb-item href="/shop/electronics" icon="💻">Electronics</sample-breadcrumb-item>
+            <sample-breadcrumb-item current icon="⭐">MacBook Pro</sample-breadcrumb-item>
+          </sample-breadcrumb>
+        </div>
+
+        <div class="demo-item">
+          <h4>Real-time Event Console</h4>
+          <div class="console-output" id="console-output">
+            <div class="console-line console-info">🎯 Standalone demo loaded successfully</div>
+            <div class="console-line console-info">📦 ~25KB self-contained component bundle</div>
+            <div class="console-line">---</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Theming Showcase -->
+    <div class="theming-section">
+      <h3>🎨 Custom Theming with CSS Variables</h3>
+      <p>Demonstrate the power of CSS custom properties for comprehensive theming</p>
+
+      <div style="margin: 20px 0;">
+        <h4>Gradient Theme</h4>
+        <sample-breadcrumb class="gradient-breadcrumb" variant="filled">
+          <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+          <sample-breadcrumb-item href="/themes" icon="🎨">Themes</sample-breadcrumb-item>
+          <sample-breadcrumb-item current icon="🌈">Gradient</sample-breadcrumb-item>
+        </sample-breadcrumb>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the component -->
+  <script src="../dist/components/sample-breadcrumb.js"></script>
+
+  <!-- Demo functionality -->
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+
+    function addConsoleMessage(message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = `console-line console-${type}`;
+
+      const timestamp = new Date().toLocaleTimeString();
+      div.innerHTML = `[${timestamp}] ${message}`;
+
+      consoleOutput.appendChild(div);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    // Event listeners for breadcrumb navigation
+    document.querySelectorAll('sample-breadcrumb').forEach(breadcrumb => {
+      breadcrumb.addEventListener('sample-breadcrumb-navigate', (event) => {
+        const { href, text } = event.detail;
+
+        addConsoleMessage(`🔗 Navigation: "${text}" → ${href}`, 'event');
+        console.log('Breadcrumb navigation:', event.detail);
+      });
+    });
+
+    window.addEventListener('load', () => {
+      addConsoleMessage('✅ Component loaded and ready', 'info');
+      addConsoleMessage('🚀 All demos interactive', 'info');
+    });
+  </script>
+</body>
+
+</html>

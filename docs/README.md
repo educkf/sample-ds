@@ -13,6 +13,7 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 - **[Card Component](./components/card.md)** - Flexible content container with multiple variants
 - **[Alert Component](./components/alert.md)** - Contextual feedback messages with dismissible functionality
 - **[Accordion Component](./components/accordion.md)** - Collapsible content sections for information organization
+- **[Breadcrumb Component](./components/breadcrumb.md)** - Hierarchical navigation with customizable separators
 - **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
 
 ### Advanced Topics
@@ -92,10 +93,16 @@ import 'sample-design-system/components/sample-button';
     <p>Collapsible content here</p>
   </sample-accordion-item>
 </sample-accordion>
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/" icon="🏠">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/products" icon="📦">Products</sample-breadcrumb-item>
+  <sample-breadcrumb-item current icon="💻">Laptops</sample-breadcrumb-item>
+</sample-breadcrumb>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
+<script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
 ```
 
 ## 📊 Component Status
@@ -106,6 +113,7 @@ import 'sample-design-system/components/sample-button';
 | Card | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Alert | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Accordion | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
+| Breadcrumb | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
 | Modal | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |
 
