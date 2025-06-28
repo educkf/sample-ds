@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 description: Core architecture principles for Lit Framework Design System with dual-usage patterns
@@ -60,6 +60,23 @@ src/components/[name]/
 - CSS custom properties: `--sample-[component]-[property]`
 
 **When working on this project, ALWAYS consider both usage patterns and maintain the dual-build architecture.**
+
+## 🔄 Development Workflow
+
+1. **Component Creation** - Follow dual-usage patterns
+2. **Documentation** - MANDATORY: Create/update docs, demos, dev integration
+3. **Build Testing** - Verify both ES modules and UMD outputs
+4. **Demo Validation** - Test both standalone and development demos
+5. **Quality Assurance** - Test in real frameworks
+
+## 📚 Documentation Requirements
+
+Every component change MUST include:
+- **API Documentation** in `docs/components/[name].md`
+- **Standalone Demo** in `demo/[name].html`
+- **Development Integration** in `dev/index.html`
+- **Index Updates** in `docs/README.md` and main `README.md`
+
 
 
 

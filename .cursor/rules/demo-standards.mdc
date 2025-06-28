@@ -1,0 +1,360 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Demo & Development Integration Standards
+
+## 🚀 Dual Demo Architecture
+
+The Design System maintains two demo environments:
+
+1. **Standalone Demos** (`demo/`) - Script tag usage without build process
+2. **Development Server** (`dev/`) - Bundled usage with hot reload
+
+## 📱 Standalone Demo Requirements
+
+### File: `demo/[component-name].html`
+
+Every component MUST have a comprehensive standalone demo following this structure:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Component] Demo - Standalone</title>
+  <style>
+    /* REQUIRED: Modern responsive styling */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f8f9fa;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e9ecef;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    
+    .demo-section {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .info-box {
+      background: #e7f3ff;
+      border: 1px solid #b6d7ff;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+    
+    .theming-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px;
+      border-radius: 12px;
+      margin-top: 24px;
+    }
+    
+    .console-output {
+      background: rgba(0,0,0,0.1);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      margin-top: 16px;
+      min-height: 60px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- REQUIRED: Header with info -->
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🎯 [Component] Component</h1>
+      <p>Comprehensive demo loaded via single script tag - no build process required!</p>
+      
+      <div class="info-box">
+        <strong>How it works:</strong> This page loads the complete component (~21KB) 
+        via a single script tag. All dependencies including Lit Framework are bundled.
+      </div>
+    </div>
+    
+    <!-- REQUIRED: Complete feature demonstrations -->
+    <div class="demo-grid">
+      <div class="demo-section">
+        <h3>🎨 Variants</h3>
+        <!-- All component variants -->
+      </div>
+      
+      <div class="demo-section">
+        <h3>📏 Sizes</h3>
+        <!-- All component sizes -->
+      </div>
+      
+      <div class="demo-section">
+        <h3>🎭 States</h3>
+        <!-- All component states -->
+      </div>
+      
+      <div class="demo-section">
+        <h3>🔧 Interactive Events</h3>
+        <!-- Event testing components -->
+        <div class="console-output" id="console-output">
+          <div>🎯 Standalone demo loaded</div>
+          <div>📦 ~21KB self-contained component</div>
+          <div>---</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REQUIRED: Theming showcase -->
+    <div class="theming-section">
+      <h3>🎨 Custom Theming with CSS</h3>
+      <!-- Custom themed components -->
+      <div class="code-block">
+        /* CSS custom properties example */
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUIRED: Single script tag -->
+  <script src="../dist/components/sample-[name].js"></script>
+  
+  <!-- REQUIRED: Interactive functionality -->
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+    
+    function addConsoleMessage(message, type = 'info') {
+      const div = document.createElement('div');
+      div.style.color = type === 'event' ? '#90EE90' : '#333';
+      div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+      consoleOutput.appendChild(div);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    // Event listeners for all component instances
+    document.querySelectorAll('sample-[name]').forEach(component => {
+      component.addEventListener('sample-[name]-event', (e) => {
+        addConsoleMessage(`Event fired: ${JSON.stringify(e.detail)}`, 'event');
+        console.log('Standalone demo event:', e.detail);
+      });
+    });
+
+    // Performance logging
+    window.addEventListener('load', () => {
+      addConsoleMessage('✅ Component loaded and ready');
+      addConsoleMessage('🚀 All demos interactive');
+    });
+  </script>
+</body>
+</html>
+```
+
+## 🔧 Development Server Integration
+
+### File: `dev/index.html` Updates
+
+For each new component, MUST add to development server:
+
+```html
+<div class="component-section">
+  <h2>🎯 [Component] Component</h2>
+  
+  <div class="demo-grid">
+    <!-- REQUIRED: All variants -->
+    <div class="demo-group">
+      <h3>Variants</h3>
+      <div class="button-grid">
+        <!-- All component variants -->
+      </div>
+    </div>
+    
+    <!-- REQUIRED: All sizes -->
+    <div class="demo-group">
+      <h3>Sizes</h3>
+      <div class="button-grid">
+        <!-- All component sizes -->
+      </div>
+    </div>
+    
+    <!-- REQUIRED: All states -->
+    <div class="demo-group">
+      <h3>States</h3>
+      <div class="button-grid">
+        <!-- All component states -->
+      </div>
+    </div>
+    
+    <!-- REQUIRED: Interactive testing -->
+    <div class="demo-group">
+      <h3>Event Testing</h3>
+      <div class="button-grid">
+        <!-- Interactive components with IDs -->
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### Required JavaScript Integration:
+
+```javascript
+// Event listeners for new component
+document.querySelectorAll('sample-[name]').forEach(component => {
+  component.addEventListener('sample-[name]-event', (e) => {
+    addConsoleMessage(`${component.constructor.name} event: ${JSON.stringify(e.detail)}`, 'event');
+    console.log('🔧 Dev: Component event:', e.detail);
+  });
+});
+```
+
+## 📊 Demo Requirements Checklist
+
+### Visual Demonstrations:
+- [ ] **All variants** displayed with clear labels
+- [ ] **All sizes** demonstrated side by side
+- [ ] **All states** (normal, disabled, loading, etc.)
+- [ ] **Combination examples** (variant + size, etc.)
+- [ ] **Form integration** if applicable
+- [ ] **Responsive behavior** on different screen sizes
+
+### Interactive Features:
+- [ ] **Event testing** with real-time console output
+- [ ] **Click counters** or interactive demonstrations
+- [ ] **State toggles** if component supports them
+- [ ] **Form submission** testing if applicable
+- [ ] **Keyboard navigation** demonstrations
+
+### Theming Showcase:
+- [ ] **Default styling** demonstration
+- [ ] **Custom CSS properties** examples
+- [ ] **Global theming** examples
+- [ ] **Per-instance theming** examples
+- [ ] **Dark mode** compatibility if supported
+
+### Technical Information:
+- [ ] **Bundle size** information displayed
+- [ ] **Performance metrics** if applicable
+- [ ] **Browser compatibility** notes
+- [ ] **Loading state** demonstrations
+- [ ] **Error handling** examples
+
+## 🎨 Styling Standards
+
+### Required CSS Classes:
+```css
+.container          /* Main demo container */
+.header            /* Demo header section */
+.badge             /* Demo type indicator */
+.demo-grid         /* Main demo grid layout */
+.demo-section      /* Individual demo sections */
+.info-box          /* Information callouts */
+.theming-section   /* Custom theming showcase */
+.console-output    /* Event logging area */
+.button-grid       /* Component arrangement grid */
+.demo-group        /* Grouped component demos */
+```
+
+### Responsive Requirements:
+- ✅ **Mobile-first** design approach
+- ✅ **Grid auto-fit** for different screen sizes
+- ✅ **Touch-friendly** interactive elements
+- ✅ **Readable text** at all sizes
+- ✅ **Accessible colors** meeting WCAG standards
+
+## 🔥 Interactive Requirements
+
+### Event Handling:
+- ✅ **All custom events** must be captured and logged
+- ✅ **Console output** must be visible in demo
+- ✅ **Real-time feedback** for user interactions
+- ✅ **Error states** must be demonstrated
+- ✅ **Performance monitoring** where applicable
+
+### User Experience:
+- ✅ **Clear visual feedback** for all interactions
+- ✅ **Loading states** for async operations
+- ✅ **Error messaging** for failure scenarios
+- ✅ **Success indicators** for completed actions
+- ✅ **Keyboard accessibility** for all features
+
+## 🎯 Demo Update Process
+
+### When Adding New Component:
+1. **Create** `demo/[name].html` with complete standalone demo
+2. **Update** `dev/index.html` with development integration
+3. **Test** both demos work independently
+4. **Verify** all component features are demonstrated
+5. **Check** responsive behavior on mobile/desktop
+6. **Validate** event handling works correctly
+
+### When Updating Existing Component:
+1. **Update** corresponding demo files
+2. **Add** new features to demonstrations
+3. **Update** event handling if events changed
+4. **Verify** theming examples still work
+5. **Test** both demo environments
+6. **Update** any documentation references
+
+## 🚨 Quality Gates
+
+### Before Shipping:
+- [ ] **Standalone demo** works without errors
+- [ ] **Development demo** integrates cleanly
+- [ ] **All features** demonstrated visually
+- [ ] **Events** properly captured and logged
+- [ ] **Responsive design** works on all devices
+- [ ] **Console errors** resolved
+- [ ] **Performance** acceptable in both modes
+- [ ] **Accessibility** features demonstrated
+
+### Demo Validation:
+- [ ] **npm run demo** opens working standalone demo
+- [ ] **npm run dev** shows component in development server
+- [ ] **All links** and interactions work
+- [ ] **Visual styling** consistent with design system
+- [ ] **Error handling** gracefully managed
+- [ ] **Browser compatibility** verified
+
+**Remember: Demos are the primary way users discover and learn components - they must be comprehensive and polished!**
+

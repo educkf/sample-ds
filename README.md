@@ -234,8 +234,41 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 
 ### Bundle Information
 
-- **For bundlers**: `dist/index.es.js` (~15KB) - ES modules with externalized lit
-- **Standalone library**: `dist/standalone/index.js` (~21KB) - All components, self-contained
-- **Individual components**: `dist/components/[name].js` (~21KB) - Single component, self-contained
-- **Dependencies**: Self-contained (Lit Framework is bundled)
-- **Format**: UMD (Universal Module Definition) - works everywhere
+| Usage Pattern | Size | Dependencies | Best For |
+|---------------|------|--------------|----------|
+| Individual Component (NPM) | ~3KB | Lit (external) | Modern bundlers |
+| Complete Library (NPM) | ~15KB | Lit (external) | Bundled projects |
+| Individual Component (Script) | ~21KB | Self-contained | Direct HTML usage |
+| Complete Library (Script) | ~21KB | Self-contained | Script tag usage |
+
+## 📊 Available Components
+
+| Component | Status | NPM | Script Tag | Documentation |
+|-----------|--------|-----|------------|---------------|
+| Button | ✅ Stable | ✅ | ✅ | [View Docs](./docs/components/button.md) |
+| Input | 🚧 Coming Soon | ⏳ | ⏳ | Coming Soon |
+| Card | 📋 Planned | ⏳ | ⏳ | Coming Soon |
+
+## 📚 Complete Documentation
+
+- **[Getting Started Guide](./docs/getting-started.md)** - Installation, usage patterns, and framework integration
+- **[Documentation Overview](./docs/README.md)** - Complete documentation index  
+- **[Button Component](./docs/components/button.md)** - Comprehensive button component guide
+
+### Quick Testing
+- **Development**: `npm run dev` - Component development environment (bundled mode)
+- **Demo**: `npm run demo` - Standalone component demo (script tag mode)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch following our [Component Development Guidelines](./.cursor/rules/component-development.mdc)
+3. Test in both bundled and standalone modes
+4. Add comprehensive documentation
+5. Submit a pull request
+
+See our [Getting Started Guide](./docs/getting-started.md#development-setup) for development setup.
+
+## 📄 License
+
+MIT License - see LICENSE file for details.

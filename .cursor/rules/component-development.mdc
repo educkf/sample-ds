@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 description: Component development guidelines and patterns for the Design System
@@ -66,10 +66,126 @@ Update `src/index.ts` with:
 export { Sample[Name] } from './components/sample-[name]/index.js';
 ```
 
-### 5. Testing Both Modes
-- Add to `dev/index.html` for bundled testing
-- Create demo in `demo/` for standalone testing
-- Verify styling works in both contexts
+## 📚 MANDATORY: Documentation Requirements
+
+### 5. Component Documentation
+**MUST CREATE/UPDATE** `docs/components/[name].md` with:
+
+#### Required Sections:
+- **Installation** - NPM and script tag usage
+- **Basic Usage** - Simple examples
+- **Properties** - Complete API table with types/defaults
+- **Events** - Custom events with detail payload
+- **CSS Custom Properties** - All styling variables
+- **CSS Parts** - Shadow DOM styling access
+- **Examples** - Variants, sizes, states, form usage
+- **Custom Theming** - Global and per-instance examples
+- **Framework Integration** - React, Vue, Angular, Svelte
+- **Accessibility** - WCAG compliance details
+- **Browser Support** - Compatibility information
+- **TypeScript** - Type safety examples
+
+#### Documentation Template:
+```markdown
+# [Name] Component
+
+The `sample-[name]` component provides [description].
+
+## 📦 Installation
+[NPM and script tag examples]
+
+## 🎯 Basic Usage
+[Simple usage examples]
+
+## 🎨 Properties
+[Complete property table]
+
+## 🔥 Events
+[Event documentation with examples]
+
+## 🎨 CSS Custom Properties
+[All CSS variables with descriptions]
+
+## 🎨 CSS Parts
+[CSS parts for styling]
+
+## 🖼️ Examples
+[Comprehensive examples]
+
+## 🎨 Custom Theming
+[Theming examples]
+
+## 🔧 Framework Integration
+[React, Vue, Angular, Svelte examples]
+
+## ♿ Accessibility
+[WCAG compliance information]
+
+## 🌐 Browser Support
+[Compatibility details]
+
+## 📝 TypeScript
+[Type safety examples]
+```
+
+### 6. Update Documentation Index
+**MUST UPDATE** `docs/README.md` component status table:
+```markdown
+| [Name] | ✅ Stable | ✅ | ✅ | [View Docs](mdc:components/[name].md) |
+```
+
+## 🚀 MANDATORY: Demo Requirements
+
+### 7. Standalone Demo
+**MUST CREATE/UPDATE** `demo/[name].html` with:
+
+#### Required Features:
+- Complete standalone demo (script tag usage)
+- All variants, sizes, states demonstrations
+- Interactive event testing
+- Custom theming examples
+- Performance information display
+- Console output for events
+- Comprehensive styling showcase
+- Mobile-responsive design
+
+#### Demo Template Structure:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[Name] Component Demo - Standalone</title>
+  <!-- Enhanced styling -->
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🎯 [Name] Component</h1>
+      <!-- Info box about standalone usage -->
+    </div>
+    
+    <!-- Demo sections for all features -->
+    <!-- Theming examples -->
+    <!-- Interactive testing -->
+  </div>
+  
+  <script src="../dist/components/sample-[name].js"></script>
+  <script>/* Event handling and demos */</script>
+</body>
+</html>
+```
+
+### 8. Development Integration
+**MUST UPDATE** `dev/index.html` with:
+
+#### Required Updates:
+- Add component examples to development server
+- Include all variants, sizes, states
+- Add event testing section
+- Include performance monitoring
+- Add interactive features
+- Ensure responsive design
 
 ## 🎯 Key Requirements
 
@@ -78,9 +194,13 @@ export { Sample[Name] } from './components/sample-[name]/index.js';
 3. **Events** - Use CustomEvent for component communication
 4. **TypeScript** - Full type safety with proper JSDoc
 5. **Accessibility** - ARIA attributes and keyboard navigation
+6. **Documentation** - Complete API reference and examples
+7. **Demos** - Standalone and development demos
+8. **Testing** - Both bundled and standalone modes
 
 ## ✅ Definition of Done
 
+### Component Implementation:
 - [ ] Component works in dev server (bundled mode)
 - [ ] Component works in demo server (standalone mode)  
 - [ ] CSS theming works in both modes
@@ -89,7 +209,36 @@ export { Sample[Name] } from './components/sample-[name]/index.js';
 - [ ] Events properly dispatched
 - [ ] Accessibility features implemented
 
+### Documentation Requirements:
+- [ ] **Component documentation** created/updated in `docs/components/[name].md`
+- [ ] **Documentation index** updated in `docs/README.md`
+- [ ] **API reference** complete with properties, events, CSS variables
+- [ ] **Usage examples** for all frameworks (React, Vue, Angular, Svelte)
+- [ ] **Accessibility guidelines** documented
+- [ ] **Theming examples** provided
 
+### Demo Requirements:
+- [ ] **Standalone demo** created/updated in `demo/[name].html`
+- [ ] **Development demo** updated in `dev/index.html`
+- [ ] **All variants/states** demonstrated
+- [ ] **Interactive examples** with event handling
+- [ ] **Theming showcase** with custom CSS properties
+- [ ] **Performance metrics** displayed
+- [ ] **Mobile responsive** design
 
+### Build & Testing:
+- [ ] **Build passes** for all formats (ES modules, UMD, individual)
+- [ ] **Both servers work** (`npm run dev` and `npm run demo`)
+- [ ] **No console errors** in either mode
+- [ ] **Bundle sizes** documented and reasonable
 
+## 🚨 CRITICAL: Never Ship Without
+
+1. **Complete documentation** with examples
+2. **Working demos** in both modes
+3. **Updated component status** in main docs
+4. **Accessibility compliance** verified
+5. **Framework integration** examples tested
+
+**Remember**: Documentation and demos are NOT optional - they are required deliverables for every component!
 
