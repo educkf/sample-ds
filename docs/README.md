@@ -11,6 +11,7 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 ### Components
 - **[Button Component](./components/button.md)** - Interactive button with variants and sizes
 - **[Card Component](./components/card.md)** - Flexible content container with multiple variants
+- **[Alert Component](./components/alert.md)** - Contextual feedback messages with dismissible functionality
 - **[Accordion Component](./components/accordion.md)** - Collapsible content sections for information organization
 - **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
 
@@ -83,6 +84,9 @@ import 'sample-design-system/components/sample-button';
   <div slot="header">Card Title</div>
   <p>Card content goes here.</p>
 </sample-card>
+<sample-alert variant="success" title="Success!" dismissible>
+  Your action was completed successfully!
+</sample-alert>
 <sample-accordion allow-multiple>
   <sample-accordion-item label="First Section" expanded>
     <p>Collapsible content here</p>
@@ -90,6 +94,7 @@ import 'sample-design-system/components/sample-button';
 </sample-accordion>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
+<script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
 ```
 
@@ -99,6 +104,7 @@ import 'sample-design-system/components/sample-button';
 |-----------|--------|-----|------------|------|-------|
 | Button | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
 | Card | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
+| Alert | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Accordion | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
 | Modal | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |

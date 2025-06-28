@@ -15,6 +15,10 @@ const componentMap = {
     entry: resolve(root, 'src/components/sample-card/index.ts'),
     name: 'SampleCard'
   },
+  'sample-alert': {
+    entry: resolve(root, 'src/components/sample-alert/index.ts'),
+    name: 'SampleAlert'
+  },
   'sample-accordion': {
     entry: resolve(root, 'src/components/sample-accordion/index.ts'),
     name: 'SampleAccordion'

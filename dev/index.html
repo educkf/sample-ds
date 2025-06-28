@@ -176,6 +176,89 @@
       </div>
     </div>
 <div class="component-section">
+  <h2>🚨 Alert Component</h2>
+  <p>Contextual feedback messages for user actions with multiple variants and interactive features.</p>
+  
+  <div class="example-grid">
+    <div class="example-item">
+      <sample-alert variant="success" title="Success!" dismissible>
+        Your changes have been saved successfully.
+      </sample-alert>
+      <p>Success / Dismissible</p>
+    </div>
+  
+    <div class="example-item">
+      <sample-alert variant="warning" title="Warning">
+        This action requires confirmation.
+      </sample-alert>
+      <p>Warning / Standard</p>
+    </div>
+  
+    <div class="example-item">
+      <sample-alert variant="error" title="Error" dismissible>
+        Unable to process your request.
+      </sample-alert>
+      <p>Error / Dismissible</p>
+    </div>
+  
+    <div class="example-item">
+      <sample-alert variant="info" title="Information">
+        Your session will expire soon.
+      </sample-alert>
+      <p>Info / Standard</p>
+    </div>
+  
+    <div class="example-item">
+      <sample-alert variant="neutral" title="Notice">
+        Scheduled maintenance tonight.
+      </sample-alert>
+      <p>Neutral / Standard</p>
+    </div>
+  
+    <div class="example-item">
+      <sample-alert variant="success" size="compact" title="Compact">
+        Reduced padding for dense layouts.
+      </sample-alert>
+      <p>Compact Size</p>
+    </div>
+  </div>
+  
+  <h3>Interactive Features</h3>
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px;">
+    <sample-alert id="action-alert" variant="warning" title="Confirmation Required">
+      <p>Are you sure you want to delete this item?</p>
+      <div slot="actions" style="display: flex; gap: 8px; margin-top: 8px;">
+        <button type="button" data-action="cancel"
+          style="padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer;">Cancel</button>
+        <button type="button" data-action="delete"
+          style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+      </div>
+    </sample-alert>
+  
+    <sample-alert id="programmatic-alert" variant="neutral" title="Programmatic Control">
+      This alert can be controlled via JavaScript methods.
+    </sample-alert>
+  
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button onclick="document.getElementById('programmatic-alert').show()"
+        style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Show
+        Alert</button>
+      <button onclick="document.getElementById('programmatic-alert').hide()"
+        style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Hide
+        Alert</button>
+      <button onclick="document.getElementById('programmatic-alert').toggle()"
+        style="padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Toggle
+        Alert</button>
+      <button onclick="createDevToast()"
+        style="padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Create
+        Toast</button>
+    </div>
+  </div>
+  
+  <h3>Events</h3>
+  <p>Interact with alerts above to see custom events in the console:</p>
+  </div>
+  <div class="component-section">
   <h2>🎯 Card Component</h2>
   <p>A flexible container for organizing and displaying content with multiple variants and interactive behaviors.</p>
 
@@ -406,7 +489,8 @@
   <script type="module">
     import '../src/components/sample-button/sample-button.ts';
           import '../src/components/sample-card/sample-card.ts';
-                    import '../src/components/sample-accordion/sample-accordion.ts';
+            import '../src/components/sample-accordion/sample-accordion.ts';
+            import '../src/components/sample-alert/sample-alert.ts';
 
           // Add event listener to demonstrate button events
     document.getElementById('event-button').addEventListener('sample-click', (event) => {
@@ -425,6 +509,63 @@
       }
     });
   });
+
+      // Add event listeners for alert events
+      document.querySelectorAll('sample-alert').forEach(alert => {
+        alert.addEventListener('sample-alert-dismiss', (event) => {
+          console.log('🚨 Dev: Alert dismissed!', event.detail);
+        });
+
+        alert.addEventListener('sample-alert-action', (event) => {
+          console.log('🚨 Dev: Alert action!', event.detail);
+
+          // Handle specific actions for demo
+          if (event.detail.action === 'delete') {
+            setTimeout(() => {
+              console.log('🗑️ Dev: Delete action simulated');
+              alert('Delete action would be performed here in a real application.');
+            }, 500);
+          } else if (event.detail.action === 'cancel') {
+            console.log('❌ Dev: Cancel action triggered');
+          }
+        });
+      });
+
+      // Toast creation function for development demo
+      function createDevToast() {
+        const toast = document.createElement('sample-alert');
+        toast.variant = 'success';
+        toast.title = 'Development Toast';
+        toast.textContent = 'This is a toast-style notification from the dev environment!';
+        toast.dismissible = true;
+
+        // Position as toast
+        toast.style.position = 'fixed';
+        toast.style.top = '20px';
+        toast.style.right = '20px';
+        toast.style.zIndex = '1000';
+        toast.style.maxWidth = '350px';
+        toast.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
+
+        document.body.appendChild(toast);
+        console.log('🚨 Dev: Toast created and positioned');
+
+        // Auto-dismiss after 5 seconds
+        setTimeout(() => {
+          if (!toast.dismissed) {
+            toast.hide();
+            console.log('🚨 Dev: Toast auto-dismissed');
+          }
+        }, 5000);
+
+        // Remove from DOM after dismissal
+        toast.addEventListener('sample-alert-dismiss', () => {
+          setTimeout(() => toast.remove(), 300);
+        });
+      }
+
+      // Make function globally available
+      window.createDevToast = createDevToast;
 
   // Add event listeners for accordion events
   document.querySelectorAll('sample-accordion').forEach(accordion => {

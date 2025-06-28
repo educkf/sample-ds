@@ -30,6 +30,7 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
   </sample-card>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
 </body>
 </html>
@@ -127,6 +128,10 @@ A versatile button component with multiple variants and sizes.
 ### Card (`sample-card`)
 
 A flexible container for organizing and displaying content in a structured format.
+
+### Alert (`sample-alert`)
+
+Contextual feedback messages for user actions with multiple variants and dismissible functionality.
 
 ### Accordion (`sample-accordion`)
 

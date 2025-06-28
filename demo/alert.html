@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Component Demo - Standalone</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      padding: 40px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin: 32px 0;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+    }
+
+    .demo-section h3 {
+      margin: 0 0 20px 0;
+      color: #495057;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .alert-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #e7f3ff, #f0f8ff);
+      border: 1px solid #b6d7ff;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+    }
+
+    .info-box strong {
+      color: #0056b3;
+    }
+
+    .theming-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px;
+      border-radius: 16px;
+      margin-top: 24px;
+      box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    }
+
+    .theming-section h3 {
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .theming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .console-section {
+      grid-column: 1 / -1;
+      background: #1a1a1a;
+      color: #00ff41;
+      padding: 24px;
+      border-radius: 12px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      margin-top: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .console-output {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      min-height: 120px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      margin-top: 12px;
+    }
+
+    .console-line {
+      margin: 4px 0;
+      padding: 2px 0;
+    }
+
+    .console-event {
+      color: #90EE90;
+    }
+
+    .console-info {
+      color: #87CEEB;
+    }
+
+    .console-timestamp {
+      color: #888;
+      font-size: 12px;
+    }
+
+    .interactive-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .control-button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .control-button:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    .control-button:active {
+      transform: translateY(0);
+    }
+
+    .performance-badge {
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      margin: 16px 0;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Custom alert styles for theming examples */
+    .gradient-alert {
+      --sample-alert-bg: linear-gradient(135deg, #ffeaa7, #fab1a0);
+      --sample-alert-color: #2d3436;
+      --sample-alert-border: transparent;
+      --sample-alert-border-radius: 12px;
+      --sample-alert-shadow: 0 8px 32px rgba(251, 177, 160, 0.3);
+    }
+
+    .dark-alert {
+      --sample-alert-bg: #2d3436;
+      --sample-alert-color: #ddd;
+      --sample-alert-border: #636e72;
+      --sample-alert-icon-color: #74b9ff;
+    }
+
+    .brand-alert {
+      --sample-alert-bg: #e8f4fd;
+      --sample-alert-color: #0c4a6e;
+      --sample-alert-border: #0ea5e9;
+      --sample-alert-border-width: 2px;
+      --sample-alert-icon-color: #0ea5e9;
+      --sample-alert-border-radius: 8px;
+    }
+
+    .neon-alert {
+      --sample-alert-bg: #1a1a1a;
+      --sample-alert-color: #00ff41;
+      --sample-alert-border: #00ff41;
+      --sample-alert-border-width: 2px;
+      --sample-alert-icon-color: #00ff41;
+      --sample-alert-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .theming-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🚨 Alert Component</h1>
+      <p>Comprehensive contextual feedback messages with dismissible functionality and rich theming support!</p>
+
+      <div class="info-box">
+        <strong>How it works:</strong> This page loads the complete Alert component (~25KB)
+        via a single script tag. All dependencies including Lit Framework are bundled.
+        Perfect for quick prototyping or non-bundled projects!
+        <span class="performance-badge">~25KB Self-Contained</span>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-section">
+        <h3>🎨 Alert Variants</h3>
+        <div class="alert-grid">
+          <sample-alert variant="success" title="Success!" dismissible>
+            Your changes have been saved successfully. Everything is working as expected.
+          </sample-alert>
+
+          <sample-alert variant="warning" title="Warning Notice">
+            This action requires confirmation. Please review before proceeding.
+          </sample-alert>
+
+          <sample-alert variant="error" title="Error Occurred" dismissible>
+            Unable to process your request. Please check your connection and try again.
+          </sample-alert>
+
+          <sample-alert variant="info" title="Information">
+            Your session will expire in 10 minutes. Save your work to avoid losing changes.
+          </sample-alert>
+
+          <sample-alert variant="neutral" title="System Notice">
+            Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST.
+          </sample-alert>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>📏 Size Variations</h3>
+        <div class="alert-grid">
+          <sample-alert variant="info" size="compact" title="Compact Alert">
+            Reduced padding for dense layouts and space-constrained areas.
+          </sample-alert>
+
+          <sample-alert variant="success" size="default" title="Default Alert">
+            Standard padding suitable for most common use cases and layouts.
+          </sample-alert>
+
+          <sample-alert variant="warning" size="spacious" title="Spacious Alert">
+            Extra padding for comfortable reading and improved visual hierarchy.
+          </sample-alert>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>🎭 Icon Configurations</h3>
+        <div class="alert-grid">
+          <sample-alert variant="success" title="Default Icons">
+            Each variant automatically shows appropriate icons for better visual communication.
+          </sample-alert>
+
+          <sample-alert variant="error" show-icon="false" title="No Icon">
+            This alert doesn't display any icon for a minimalist, clean appearance.
+          </sample-alert>
+
+          <sample-alert variant="info" icon="🎉" title="Custom Emoji">
+            You can override the default icon with custom emojis or text symbols.
+          </sample-alert>
+
+          <sample-alert variant="warning" title="Custom SVG Icon">
+            <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            Custom SVG icons can be provided via the icon slot for perfect design integration.
+          </sample-alert>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>🔧 Interactive Features</h3>
+        <div class="alert-grid">
+          <sample-alert id="dismissible-alert" variant="success" title="Dismissible Alert" dismissible>
+            Click the × button to dismiss this alert. Perfect for temporary notifications.
+          </sample-alert>
+
+          <sample-alert id="action-alert" variant="warning" title="Confirmation Required">
+            <p>Are you sure you want to permanently delete this item? This action cannot be undone.</p>
+            <div slot="actions">
+              <button type="button" data-action="cancel"
+                style="margin-right: 8px; padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer;">Cancel</button>
+              <button type="button" data-action="delete"
+                style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+            </div>
+          </sample-alert>
+
+          <sample-alert id="complex-alert" variant="info" title="Multi-Action Alert" dismissible>
+            <p>Your account requires attention. Choose an action below:</p>
+            <div slot="actions" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+              <button data-action="verify"
+                style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Verify
+                Account</button>
+              <button data-action="update"
+                style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Update
+                Info</button>
+              <button data-action="contact"
+                style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Contact
+                Support</button>
+            </div>
+          </sample-alert>
+
+          <sample-alert id="programmatic-alert" variant="neutral" title="Programmatic Control">
+            This alert can be controlled programmatically via JavaScript methods.
+          </sample-alert>
+        </div>
+
+        <div class="interactive-controls">
+          <button class="control-button" onclick="showProgrammaticAlert()">Show Alert</button>
+          <button class="control-button" onclick="hideProgrammaticAlert()">Hide Alert</button>
+          <button class="control-button" onclick="toggleProgrammaticAlert()">Toggle Alert</button>
+          <button class="control-button" onclick="focusProgrammaticAlert()">Focus Alert</button>
+          <button class="control-button" onclick="createToastAlert()">Create Toast</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="theming-section">
+      <h3>🎨 Custom Theming Showcase</h3>
+      <p>Powerful CSS custom properties enable unlimited styling possibilities while maintaining accessibility and
+        functionality.</p>
+
+      <div class="theming-grid">
+        <sample-alert class="gradient-alert" variant="warning" title="Gradient Theme" dismissible>
+          Beautiful gradient backgrounds with custom color schemes for modern UI designs.
+        </sample-alert>
+
+        <sample-alert class="dark-alert" variant="info" title="Dark Theme">
+          Dark mode styling with high contrast ratios for excellent readability in low-light environments.
+        </sample-alert>
+
+        <sample-alert class="brand-alert" variant="success" title="Brand Integration">
+          Seamlessly integrate with your brand colors and design system guidelines.
+        </sample-alert>
+
+        <sample-alert class="neon-alert" variant="error" title="Neon Effect" dismissible>
+          Creative styling possibilities including glow effects and unconventional color schemes.
+        </sample-alert>
+      </div>
+
+      <div class="code-block">/* Example CSS custom properties */
+        .gradient-alert {
+        --sample-alert-bg: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        --sample-alert-color: #2d3436;
+        --sample-alert-border: transparent;
+        --sample-alert-border-radius: 12px;
+        --sample-alert-shadow: 0 8px 32px rgba(251,177,160,0.3);
+        }
+
+        .dark-alert {
+        --sample-alert-bg: #2d3436;
+        --sample-alert-color: #ddd;
+        --sample-alert-border: #636e72;
+        --sample-alert-icon-color: #74b9ff;
+        }</div>
+    </div>
+
+    <div class="console-section">
+      <h3>🖥️ Event Console & Performance Monitor</h3>
+      <p>Real-time logging of alert events, user interactions, and performance metrics.</p>
+
+      <div class="interactive-controls">
+        <button class="control-button" onclick="clearConsole()">Clear Console</button>
+        <button class="control-button" onclick="testAllEvents()">Test All Events</button>
+        <button class="control-button" onclick="simulateFormErrors()">Simulate Form Errors</button>
+        <button class="control-button" onclick="performanceTest()">Performance Test</button>
+      </div>
+
+      <div class="console-output" id="console-output">
+        <div class="console-line console-info">🎯 Alert component demo loaded</div>
+        <div class="console-line console-info">📦 Bundle size: ~25KB self-contained</div>
+        <div class="console-line console-info">⚡ Load time: <span id="load-time"></span>ms</div>
+        <div class="console-line console-info">🚀 Component ready for interaction</div>
+        <div class="console-line">---</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the Alert component -->
+  <script src="../dist/components/sample-alert.js"></script>
+
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+    const loadStartTime = performance.now();
+
+    function addConsoleMessage(message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = `console-line console-${type}`;
+
+      const timestamp = new Date().toLocaleTimeString();
+      const timestampSpan = document.createElement('span');
+      timestampSpan.className = 'console-timestamp';
+      timestampSpan.textContent = `[${timestamp}] `;
+
+      div.appendChild(timestampSpan);
+      div.appendChild(document.createTextNode(message));
+
+      consoleOutput.appendChild(div);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+
+      // Limit console lines
+      if (consoleOutput.children.length > 50) {
+        consoleOutput.removeChild(consoleOutput.firstChild);
+      }
+    }
+
+    // Event listeners for all alert instances
+    document.querySelectorAll('sample-alert').forEach(alert => {
+      alert.addEventListener('sample-alert-dismiss', (e) => {
+        addConsoleMessage(`Alert dismissed: "${e.detail.title}" (${e.detail.variant})`, 'event');
+        console.log('Alert dismissed:', e.detail);
+      });
+
+      alert.addEventListener('sample-alert-action', (e) => {
+        addConsoleMessage(`Action clicked: "${e.detail.action}" on ${e.detail.variant} alert`, 'event');
+        console.log('Alert action:', e.detail);
+
+        // Handle specific actions
+        if (e.detail.action === 'delete') {
+          setTimeout(() => {
+            addConsoleMessage('🗑️ Delete action simulated', 'info');
+          }, 500);
+        } else if (e.detail.action === 'verify') {
+          setTimeout(() => {
+            addConsoleMessage('✅ Verification process started', 'info');
+          }, 500);
+        }
+      });
+    });
+
+    // Programmatic control functions
+    function showProgrammaticAlert() {
+      const alert = document.getElementById('programmatic-alert');
+      alert.show();
+      addConsoleMessage('Alert shown programmatically', 'info');
+    }
+
+    function hideProgrammaticAlert() {
+      const alert = document.getElementById('programmatic-alert');
+      alert.hide();
+      addConsoleMessage('Alert hidden programmatically', 'info');
+    }
+
+    function toggleProgrammaticAlert() {
+      const alert = document.getElementById('programmatic-alert');
+      alert.toggle();
+      addConsoleMessage('Alert toggled programmatically', 'info');
+    }
+
+    function focusProgrammaticAlert() {
+      const alert = document.getElementById('programmatic-alert');
+      alert.focus();
+      addConsoleMessage('Alert focused for keyboard navigation', 'info');
+    }
+
+    function createToastAlert() {
+      const toast = document.createElement('sample-alert');
+      toast.variant = 'success';
+      toast.title = 'Toast Notification';
+      toast.textContent = 'This is a temporary toast-style notification!';
+      toast.dismissible = true;
+
+      // Position as toast
+      toast.style.position = 'fixed';
+      toast.style.top = '20px';
+      toast.style.right = '20px';
+      toast.style.zIndex = '1000';
+      toast.style.maxWidth = '350px';
+      toast.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
+
+      document.body.appendChild(toast);
+      addConsoleMessage('Toast alert created and positioned', 'event');
+
+      // Auto-dismiss after 5 seconds
+      setTimeout(() => {
+        if (!toast.dismissed) {
+          toast.hide();
+          addConsoleMessage('Toast auto-dismissed after 5 seconds', 'info');
+        }
+      }, 5000);
+
+      // Remove from DOM after dismissal
+      toast.addEventListener('sample-alert-dismiss', () => {
+        setTimeout(() => toast.remove(), 300);
+      });
+    }
+
+    function clearConsole() {
+      consoleOutput.innerHTML = '';
+      addConsoleMessage('Console cleared', 'info');
+    }
+
+    function testAllEvents() {
+      addConsoleMessage('Testing all event types...', 'info');
+
+      // Simulate various events
+      setTimeout(() => addConsoleMessage('✅ Dismiss event test', 'event'), 100);
+      setTimeout(() => addConsoleMessage('🔧 Action event test', 'event'), 200);
+      setTimeout(() => addConsoleMessage('📊 Performance event test', 'event'), 300);
+      setTimeout(() => addConsoleMessage('🎯 Focus event test', 'event'), 400);
+      setTimeout(() => addConsoleMessage('All event tests completed', 'info'), 500);
+    }
+
+    function simulateFormErrors() {
+      const errorAlert = document.createElement('sample-alert');
+      errorAlert.variant = 'error';
+      errorAlert.title = 'Form Validation Errors';
+      errorAlert.dismissible = true;
+
+      const errorList = document.createElement('ul');
+      errorList.style.margin = '8px 0';
+      errorList.style.paddingLeft = '20px';
+
+      ['Email address is required', 'Password must be at least 8 characters', 'Terms and conditions must be accepted'].forEach(error => {
+        const li = document.createElement('li');
+        li.textContent = error;
+        li.style.margin = '4px 0';
+        errorList.appendChild(li);
+      });
+
+      errorAlert.appendChild(errorList);
+
+      // Insert at top of demo
+      const firstDemo = document.querySelector('.demo-section');
+      firstDemo.insertBefore(errorAlert, firstDemo.firstChild);
+
+      addConsoleMessage('Form validation errors simulated', 'event');
+
+      // Auto-remove after 8 seconds
+      setTimeout(() => {
+        if (!errorAlert.dismissed) {
+          errorAlert.hide();
+        }
+      }, 8000);
+    }
+
+    function performanceTest() {
+      const startTime = performance.now();
+      addConsoleMessage('Starting performance test...', 'info');
+
+      // Create multiple alerts rapidly
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const testAlert = document.createElement('sample-alert');
+          testAlert.variant = ['success', 'warning', 'error', 'info', 'neutral'][i % 5];
+          testAlert.title = `Performance Test ${i + 1}`;
+          testAlert.textContent = 'Testing alert creation and rendering performance.';
+          testAlert.dismissible = true;
+          testAlert.style.margin = '4px 0';
+
+          const perfSection = document.querySelector('.console-section');
+          perfSection.appendChild(testAlert);
+
+          // Auto-dismiss after 2 seconds
+          setTimeout(() => testAlert.hide(), 2000);
+
+          if (i === 9) {
+            const endTime = performance.now();
+            addConsoleMessage(`Performance test completed in ${(endTime - startTime).toFixed(2)}ms`, 'event');
+          }
+        }, i * 100);
+      }
+    }
+
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      const loadTime = performance.now() - loadStartTime;
+      document.getElementById('load-time').textContent = Math.round(loadTime);
+      addConsoleMessage(`✅ Page fully loaded in ${Math.round(loadTime)}ms`, 'info');
+      addConsoleMessage('🚀 All alert components ready for interaction', 'info');
+
+      // Component count
+      const alertCount = document.querySelectorAll('sample-alert').length;
+      addConsoleMessage(`📊 ${alertCount} alert components initialized`, 'info');
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case 'k':
+            e.preventDefault();
+            clearConsole();
+            break;
+          case 't':
+            e.preventDefault();
+            createToastAlert();
+            break;
+        }
+      }
+    });
+
+    // Add keyboard shortcut info
+    setTimeout(() => {
+      addConsoleMessage('💡 Keyboard shortcuts: Ctrl+K (clear), Ctrl+T (toast)', 'info');
+    }, 2000);
+  </script>
+</body>
+
+</html>
