@@ -10,8 +10,8 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 
 ### Components
 - **[Button Component](./components/button.md)** - Interactive button with variants and sizes
+- **[Card Component](./components/card.md)** - Flexible content container with multiple variants
 - **[Input Component](./components/input.md)** *(Coming Soon)* - Text input with validation
-- **[Card Component](./components/card.md)** *(Coming Soon)* - Content container
 
 ### Advanced Topics
 - **[Theming Guide](./theming.md)** *(Coming Soon)* - Custom CSS properties and theming
@@ -78,7 +78,12 @@ import 'sample-design-system/components/sample-button';
 ### Script Tag Usage
 ```html
 <sample-button variant="primary">Click me!</sample-button>
+<sample-card variant="elevated">
+  <div slot="header">Card Title</div>
+  <p>Card content goes here.</p>
+</sample-card>
 <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+<script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
 ```
 
 ## 📊 Component Status
@@ -86,8 +91,8 @@ import 'sample-design-system/components/sample-button';
 | Component | Status | NPM | Script Tag | Docs | Tests |
 |-----------|--------|-----|------------|------|-------|
 | Button | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
+| Card | ✅ Stable | ✅ | ✅ | ✅ | ⏳ |
 | Input | 🚧 In Progress | ⏳ | ⏳ | ⏳ | ⏳ |
-| Card | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |
 | Modal | 📋 Planned | ⏳ | ⏳ | ⏳ | ⏳ |
 
 ## 🌐 Browser Support

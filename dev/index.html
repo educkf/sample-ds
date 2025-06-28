@@ -64,6 +64,68 @@
       --sample-button-radius: 6px;
       --sample-button-focus-ring: rgba(0, 123, 255, 0.25);
     }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card-demo {
+      height: 200px;
+    }
+
+    .demo-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-card-header h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .demo-badge {
+      background: rgba(0,123,255,0.1);
+      color: #007bff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .demo-button {
+      padding: 6px 12px;
+      border: 1px solid #007bff;
+      background: transparent;
+      color: #007bff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .demo-button:hover {
+      background: #007bff;
+      color: white;
+    }
+
+    .demo-button.primary {
+      background: #007bff;
+      color: white;
+    }
+
+    .demo-button.primary:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -113,16 +175,157 @@
         <sample-button id="event-button">Click me!</sample-button>
       </div>
     </div>
+<div class="component-section">
+  <h2>🎯 Card Component</h2>
+  <p>A flexible container for organizing and displaying content with multiple variants and interactive behaviors.</p>
+
+  <div class="card-grid">
+    <!-- Variant Examples -->
+    <sample-card variant="default" class="card-demo">
+      <div slot="header">
+        <div class="demo-card-header">
+          <h4>Default Card</h4>
+          <span class="demo-badge">Standard</span>
+        </div>
+      </div>
+      <p>Standard card with subtle border and shadow. Perfect for most use cases.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button">Learn More</button>
+        </div>
+      </div>
+    </sample-card>
+
+    <sample-card variant="elevated" class="card-demo">
+      <div slot="header">
+        <div class="demo-card-header">
+          <h4>Elevated Card</h4>
+          <span class="demo-badge">Prominent</span>
+        </div>
+      </div>
+      <p>Card with prominent shadow and no border. Great for highlighting content.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button primary">Get Started</button>
+        </div>
+      </div>
+    </sample-card>
+
+    <sample-card variant="outlined" class="card-demo">
+      <div slot="header">
+        <div class="demo-card-header">
+          <h4>Outlined Card</h4>
+          <span class="demo-badge">Defined</span>
+        </div>
+      </div>
+      <p>Card with emphasized border and no shadow. Clean, minimal appearance.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button">View Details</button>
+        </div>
+      </div>
+    </sample-card>
+
+    <sample-card variant="filled" class="card-demo">
+      <div slot="header">
+        <div class="demo-card-header">
+          <h4>Filled Card</h4>
+          <span class="demo-badge">Subtle</span>
+        </div>
+      </div>
+      <p>Card with background fill. Ideal for secondary content areas.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button">Explore</button>
+        </div>
+      </div>
+    </sample-card>
+
+    <!-- Size Examples -->
+    <sample-card size="compact" variant="outlined" class="card-demo">
+      <div slot="header">
+        <h4>Compact Size</h4>
+      </div>
+      <p>Dense layout with reduced padding for space-efficient designs.</p>
+      <div slot="footer">
+        <button class="demo-button">Action</button>
+      </div>
+    </sample-card>
+
+    <sample-card size="spacious" variant="elevated" class="card-demo">
+      <div slot="header">
+        <h4>Spacious Layout</h4>
+      </div>
+      <p>Generous padding for comfortable reading and interaction. Perfect for important content.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button">Maybe Later</button>
+          <button class="demo-button primary">Continue</button>
+        </div>
+      </div>
+    </sample-card>
+
+    <!-- Interactive Examples -->
+    <sample-card clickable id="dev-clickable-card" class="card-demo">
+      <div slot="header">
+        <h4>Clickable Card</h4>
+      </div>
+      <p>Click anywhere on this card to trigger an event. Notice the hover effects.</p>
+      <div slot="footer">
+        <small>💡 Try clicking me!</small>
+      </div>
+    </sample-card>
+
+    <sample-card clickable disabled class="card-demo">
+      <div slot="header">
+        <h4>Disabled Card</h4>
+      </div>
+      <p>This card is disabled and won't respond to clicks or show hover effects.</p>
+      <div slot="footer">
+        <small>❌ Disabled state</small>
+      </div>
+    </sample-card>
+  </div>
+
+  <h3>Events</h3>
+  <p>Click the clickable cards above to see custom events in the console:</p>
+  <div style="margin-top: 20px;">
+    <sample-card clickable variant="outlined" id="card-event-demo">
+      <div slot="header">
+        <h4>Event Demo Card</h4>
+      </div>
+      <p>This card will show alert and console log when clicked.</p>
+      <div slot="footer">
+        <div class="demo-actions">
+          <button class="demo-button primary">Click Card Instead</button>
+        </div>
+      </div>
+    </sample-card>
+  </div>
+</div>
   </div>
 
   <script type="module">
     import '../src/components/sample-button/sample-button.ts';
+          import '../src/components/sample-card/sample-card.ts';
 
-    // Add event listener to demonstrate custom events
+          // Add event listener to demonstrate button events
     document.getElementById('event-button').addEventListener('sample-click', (event) => {
       console.log('Button clicked!', event.detail);
       alert(`Button clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}`);
     });
+
+  // Add event listeners for card events
+  document.querySelectorAll('sample-card[clickable]').forEach(card => {
+    card.addEventListener('sample-card-click', (event) => {
+      console.log('🔧 Dev: Card clicked!', event.detail);
+
+      // Special handling for demo card
+      if (card.id === 'card-event-demo') {
+        alert(`Card clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}, Timestamp: ${event.detail.timestamp}`);
+      }
+    });
+  });
   </script>
 </body>
 </html> 

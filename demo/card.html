@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component Demo - Standalone</title>
+  <style>
+    /* REQUIRED: Modern responsive styling */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f8f9fa;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .demo-section h3 {
+      margin: 0 0 16px 0;
+      color: #495057;
+      font-size: 18px;
+    }
+
+    .info-box {
+      background: #e7f3ff;
+      border: 1px solid #b6d7ff;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+
+    .theming-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px;
+      border-radius: 12px;
+      margin-top: 24px;
+    }
+
+    .console-output {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      margin-top: 16px;
+      min-height: 100px;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .size-demo {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .custom-card {
+      --sample-card-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --sample-card-color: white;
+      --sample-card-border: transparent;
+      --sample-card-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    }
+
+    .dark-card {
+      --sample-card-bg: #2d3748;
+      --sample-card-color: #e2e8f0;
+      --sample-card-border: #4a5568;
+      --sample-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-card {
+      --sample-card-bg: #38a169;
+      --sample-card-color: white;
+      --sample-card-border: #38a169;
+      --sample-card-shadow: 0 4px 16px rgba(56, 161, 105, 0.3);
+    }
+
+    .performance-info {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    /* Demo styling for card content */
+    .demo-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-card-header h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .demo-card-header .badge-small {
+      background: rgba(0, 123, 255, 0.1);
+      color: #007bff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .demo-product {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .demo-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .demo-button {
+      padding: 6px 12px;
+      border: 1px solid #007bff;
+      background: transparent;
+      color: #007bff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .demo-button:hover {
+      background: #007bff;
+      color: white;
+    }
+
+    .demo-button.primary {
+      background: #007bff;
+      color: white;
+    }
+
+    .demo-button.primary:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- REQUIRED: Header with info -->
+    <div class="header">
+      <div class="badge">Standalone Script Tag Demo</div>
+      <h1>🎯 Card Component</h1>
+      <p>Comprehensive demo loaded via single script tag - no build process required!</p>
+
+      <div class="info-box">
+        <strong>How it works:</strong> This page loads the complete Card component (~21KB)
+        via a single script tag. All dependencies including Lit Framework are bundled.
+        Perfect for quick prototyping or CDN usage without any build tools.
+      </div>
+    </div>
+
+    <!-- REQUIRED: Complete feature demonstrations -->
+    <div class="demo-grid">
+      <!-- Variants Demo -->
+      <div class="demo-section">
+        <h3>🎨 Variants</h3>
+        <div class="card-grid">
+          <sample-card variant="default">
+            <div slot="header">
+              <div class="demo-card-header">
+                <h4>Default Card</h4>
+                <span class="badge-small">Standard</span>
+              </div>
+            </div>
+            <p>Standard card with subtle border and shadow. Perfect for most use cases.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">Learn More</button>
+              </div>
+            </div>
+          </sample-card>
+
+          <sample-card variant="elevated">
+            <div slot="header">
+              <div class="demo-card-header">
+                <h4>Elevated Card</h4>
+                <span class="badge-small">Prominent</span>
+              </div>
+            </div>
+            <p>Card with prominent shadow and no border. Great for highlighting content.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button primary">Get Started</button>
+              </div>
+            </div>
+          </sample-card>
+
+          <sample-card variant="outlined">
+            <div slot="header">
+              <div class="demo-card-header">
+                <h4>Outlined Card</h4>
+                <span class="badge-small">Defined</span>
+              </div>
+            </div>
+            <p>Card with emphasized border and no shadow. Clean, minimal appearance.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">View Details</button>
+              </div>
+            </div>
+          </sample-card>
+
+          <sample-card variant="filled">
+            <div slot="header">
+              <div class="demo-card-header">
+                <h4>Filled Card</h4>
+                <span class="badge-small">Subtle</span>
+              </div>
+            </div>
+            <p>Card with background fill. Ideal for secondary content areas.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">Explore</button>
+              </div>
+            </div>
+          </sample-card>
+        </div>
+      </div>
+
+      <!-- Sizes Demo -->
+      <div class="demo-section">
+        <h3>📏 Sizes</h3>
+        <div class="size-demo">
+          <sample-card size="compact" variant="outlined">
+            <div slot="header">
+              <h4>Compact</h4>
+            </div>
+            <p>Dense layout with reduced padding.</p>
+            <div slot="footer">
+              <button class="demo-button">Action</button>
+            </div>
+          </sample-card>
+
+          <sample-card size="default" variant="elevated">
+            <div slot="header">
+              <h4>Default Size</h4>
+            </div>
+            <p>Balanced padding for most use cases. Standard spacing throughout.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">Cancel</button>
+                <button class="demo-button primary">Save</button>
+              </div>
+            </div>
+          </sample-card>
+
+          <sample-card size="spacious" variant="default">
+            <div slot="header">
+              <h4>Spacious Layout</h4>
+            </div>
+            <p>Generous padding for comfortable reading and interaction. Perfect for important content that needs
+              breathing room.</p>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">Maybe Later</button>
+                <button class="demo-button primary">Continue</button>
+              </div>
+            </div>
+          </sample-card>
+        </div>
+      </div>
+
+      <!-- Interactive States Demo -->
+      <div class="demo-section">
+        <h3>🎭 Interactive States</h3>
+        <div class="card-grid">
+          <sample-card clickable id="clickable-card">
+            <div slot="header">
+              <h4>Clickable Card</h4>
+            </div>
+            <p>Click anywhere on this card to trigger an event. Notice the hover effects and cursor change.</p>
+            <div slot="footer">
+              <small>💡 Try clicking me!</small>
+            </div>
+          </sample-card>
+
+          <sample-card clickable disabled>
+            <div slot="header">
+              <h4>Disabled Card</h4>
+            </div>
+            <p>This card is disabled and won't respond to clicks or show hover effects.</p>
+            <div slot="footer">
+              <small>❌ Disabled state</small>
+            </div>
+          </sample-card>
+
+          <sample-card variant="elevated" clickable id="interactive-product">
+            <div slot="header">
+              <h4>Product Card</h4>
+            </div>
+            <div class="demo-product">
+              <div class="demo-avatar">📱</div>
+              <div>
+                <strong>Amazing Product</strong>
+                <div style="font-size: 14px; color: #6c757d;">Premium quality device</div>
+                <strong style="color: #007bff;">$299.99</strong>
+              </div>
+            </div>
+            <div slot="footer">
+              <div class="demo-actions">
+                <button class="demo-button">❤️ Favorite</button>
+                <button class="demo-button primary">Add to Cart</button>
+              </div>
+            </div>
+          </sample-card>
+        </div>
+      </div>
+
+      <!-- Events & Console Demo -->
+      <div class="demo-section">
+        <h3>🔧 Interactive Events</h3>
+        <p>Click on any clickable card above to see events in the console below:</p>
+
+        <sample-card clickable variant="outlined" id="event-demo-card">
+          <div slot="header">
+            <h4>Event Demo Card</h4>
+          </div>
+          <p>This card will log detailed event information when clicked. Perfect for debugging and understanding
+            component behavior.</p>
+          <div slot="footer">
+            <div class="demo-actions">
+              <button class="demo-button" onclick="clearConsole()">Clear Console</button>
+              <button class="demo-button primary">Click Card Instead</button>
+            </div>
+          </div>
+        </sample-card>
+
+        <div class="console-output" id="console-output">🎯 Standalone demo loaded
+          📦 ~21KB self-contained component
+          🚀 All demos interactive
+          ---
+          Click any clickable card to see events here...</div>
+      </div>
+    </div>
+
+    <!-- REQUIRED: Theming showcase -->
+    <div class="theming-section">
+      <h3>🎨 Custom Theming with CSS</h3>
+      <p>Demonstrate powerful CSS custom properties for complete visual customization:</p>
+
+      <div class="card-grid">
+        <sample-card class="custom-card" variant="elevated">
+          <div slot="header">
+            <h4>Gradient Theme</h4>
+          </div>
+          <p>Beautiful gradient background with custom shadow and white text for perfect contrast.</p>
+          <div slot="footer">
+            <button
+              style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px 12px; border-radius: 4px;">Styled
+              Button</button>
+          </div>
+        </sample-card>
+
+        <sample-card class="dark-card">
+          <div slot="header">
+            <h4>Dark Mode</h4>
+          </div>
+          <p>Professional dark theme with appropriate colors and contrast ratios for accessibility.</p>
+          <div slot="footer">
+            <small style="opacity: 0.8;">Perfect for dark interfaces</small>
+          </div>
+        </sample-card>
+
+        <sample-card class="brand-card" clickable>
+          <div slot="header">
+            <h4>Brand Colors</h4>
+          </div>
+          <p>Custom brand styling with consistent color palette and interactive hover effects.</p>
+          <div slot="footer">
+            <button
+              style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px 12px; border-radius: 4px;">Brand
+              Action</button>
+          </div>
+        </sample-card>
+      </div>
+
+      <div class="performance-info">
+        <strong>🎨 CSS Custom Properties Used:</strong>
+        <code style="background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 3px; margin-left: 8px;">
+          --sample-card-bg, --sample-card-color, --sample-card-shadow, --sample-card-border
+        </code>
+        <br><br>
+        <strong>💡 Pro Tip:</strong> All theming works identically in both standalone and bundled modes!
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUIRED: Single script tag -->
+  <script src="../dist/components/sample-card.js"></script>
+
+  <!-- REQUIRED: Interactive functionality -->
+  <script>
+    const consoleOutput = document.getElementById('console-output');
+    let eventCount = 0;
+
+    function addConsoleMessage(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      div.style.color = type === 'event' ? '#90EE90' :
+        type === 'error' ? '#FFB6C1' : '#333';
+      div.textContent = `${timestamp}: ${message}`;
+      consoleOutput.appendChild(div);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    function clearConsole() {
+      consoleOutput.innerHTML = `🎯 Console cleared at ${new Date().toLocaleTimeString()}
+---
+Click any clickable card to see events here...`;
+      eventCount = 0;
+    }
+
+    // Event listeners for all card instances
+    document.querySelectorAll('sample-card[clickable]').forEach((card, index) => {
+      card.addEventListener('sample-card-click', (e) => {
+        eventCount++;
+        const cardInfo = {
+          index: index + 1,
+          variant: e.detail.variant,
+          size: e.detail.size,
+          timestamp: e.detail.timestamp,
+          elementId: card.id || 'unnamed'
+        };
+
+        addConsoleMessage(`🎯 Card #${eventCount} clicked: ${JSON.stringify(cardInfo)}`, 'event');
+        console.log('📱 Standalone demo - Card event:', cardInfo);
+
+        // Special handling for product card
+        if (card.id === 'interactive-product') {
+          addConsoleMessage('🛒 Product card interaction detected!', 'event');
+        }
+      });
+
+      // Keyboard event demonstration
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          addConsoleMessage(`⌨️  Keyboard activation: ${e.key} key pressed`, 'event');
+        }
+      });
+    });
+
+    // Performance and load event tracking
+    window.addEventListener('load', () => {
+      addConsoleMessage('✅ All card components loaded and ready');
+      addConsoleMessage(`📊 ${document.querySelectorAll('sample-card').length} cards rendered`);
+      addConsoleMessage(`🎯 ${document.querySelectorAll('sample-card[clickable]').length} interactive cards available`);
+      addConsoleMessage('🚀 Demo fully interactive - try clicking cards!');
+
+      // Performance timing
+      if (performance && performance.timing) {
+        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+        addConsoleMessage(`⚡ Page loaded in ${loadTime}ms`);
+      }
+    });
+
+    // Component registration validation
+    if (customElements.get('sample-card')) {
+      addConsoleMessage('✅ sample-card component registered successfully');
+    } else {
+      addConsoleMessage('❌ Component registration failed', 'error');
+    }
+
+    // Demonstration of programmatic interaction
+    setTimeout(() => {
+      addConsoleMessage('💡 Tip: Use keyboard (Tab + Enter/Space) for accessibility');
+    }, 2000);
+  </script>
+</body>
+
+</html>

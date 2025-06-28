@@ -23,7 +23,13 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
 <html>
 <body>
   <sample-button variant="primary">Click me!</sample-button>
+  <sample-card variant="elevated" clickable>
+    <div slot="header">Interactive Card</div>
+    <p>This is a flexible card component with multiple variants.</p>
+    <div slot="footer">Perfect for content organization!</div>
+  </sample-card>
   <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+  <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
 </body>
 </html>
 ```
@@ -117,6 +123,10 @@ dist/                   # Built library (generated)
 
 A versatile button component with multiple variants and sizes.
 
+### Card (`sample-card`)
+
+A flexible container for organizing and displaying content in a structured format.
+
 #### Properties
 
 - `variant`: `'primary' | 'secondary'` (default: `'primary'`)
@@ -128,6 +138,17 @@ A versatile button component with multiple variants and sizes.
 
 - `sample-click`: Fired when the button is clicked (custom event)
 
+#### Card Properties
+
+- `variant`: `'default' | 'elevated' | 'outlined' | 'filled'` (default: `'default'`)
+- `size`: `'compact' | 'default' | 'spacious'` (default: `'default'`)
+- `clickable`: `boolean` (default: `false`)
+- `disabled`: `boolean` (default: `false`)
+
+#### Card Events
+
+- `sample-card-click`: Fired when a clickable card is clicked (custom event)
+
 #### CSS Custom Properties
 
 - `--sample-button-bg`: Background color
@@ -137,6 +158,16 @@ A versatile button component with multiple variants and sizes.
 - `--sample-button-padding`: Padding
 - `--sample-button-font-size`: Font size
 - And many more for customization
+
+#### Card CSS Custom Properties
+
+- `--sample-card-bg`: Background color
+- `--sample-card-color`: Text color
+- `--sample-card-border`: Border color
+- `--sample-card-shadow`: Box shadow
+- `--sample-card-padding`: Internal padding
+- `--sample-card-border-radius`: Border radius
+- And many more for complete customization
 
 #### Example Usage
 
