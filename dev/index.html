@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Design System - Development</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #666;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .component-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .example-item {
+      text-align: center;
+    }
+
+    .example-item p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Custom CSS variables for theming */
+    :root {
+      --sample-button-bg: #007bff;
+      --sample-button-color: white;
+      --sample-button-border: #007bff;
+      --sample-button-radius: 6px;
+      --sample-button-focus-ring: rgba(0, 123, 255, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sample Design System</h1>
+    <p>This is the development environment for testing and showcasing components.</p>
+
+    <div class="component-section">
+      <h2>Button Component</h2>
+      <p>A versatile button component with multiple variants and sizes.</p>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <sample-button>Default Button</sample-button>
+          <p>Primary / Medium</p>
+        </div>
+
+        <div class="example-item">
+          <sample-button variant="secondary">Secondary Button</sample-button>
+          <p>Secondary / Medium</p>
+        </div>
+
+        <div class="example-item">
+          <sample-button size="small">Small Button</sample-button>
+          <p>Primary / Small</p>
+        </div>
+
+        <div class="example-item">
+          <sample-button size="large">Large Button</sample-button>
+          <p>Primary / Large</p>
+        </div>
+
+        <div class="example-item">
+          <sample-button disabled>Disabled Button</sample-button>
+          <p>Disabled</p>
+        </div>
+
+        <div class="example-item">
+          <sample-button variant="secondary" size="small">Small Secondary</sample-button>
+          <p>Secondary / Small</p>
+        </div>
+      </div>
+
+      <h3>Events</h3>
+      <p>Click the buttons below to see custom events in the console:</p>
+      <div style="margin-top: 20px;">
+        <sample-button id="event-button">Click me!</sample-button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import '../src/components/sample-button/sample-button.ts';
+
+    // Add event listener to demonstrate custom events
+    document.getElementById('event-button').addEventListener('sample-click', (event) => {
+      console.log('Button clicked!', event.detail);
+      alert(`Button clicked! Variant: ${event.detail.variant}, Size: ${event.detail.size}`);
+    });
+  </script>
+</body>
+</html> 

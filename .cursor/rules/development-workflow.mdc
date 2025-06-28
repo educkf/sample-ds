@@ -1,0 +1,87 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Development workflow and commands for the Design System project
+globs: []
+alwaysApply: false
+---
+
+# Development Workflow
+
+## 🚀 Getting Started
+
+### Development Servers:
+```bash
+npm run dev      # Component development (bundled mode)
+npm run demo     # Standalone testing (script tag mode)
+```
+
+### Build Commands:
+```bash
+npm run build              # Build all formats
+npm run build:main         # ES modules for bundlers
+npm run build:standalone   # UMD for script tags  
+npm run build:components   # Individual components
+npm run build:types        # TypeScript definitions
+npm run clean              # Clean build output
+```
+
+### Quality Assurance:
+```bash
+npm run type-check     # TypeScript validation
+npm run lint           # ESLint validation
+npm run lint:fix       # Auto-fix ESLint issues
+```
+
+## 🎯 Testing Both Usage Patterns
+
+### URLs:
+- **Bundled mode**: `http://localhost:5173/dev/`
+- **Standalone mode**: `http://localhost:5173/demo/`
+- **Test page**: `http://localhost:5173/examples/test-bundled.html`
+
+### Verification Checklist:
+- [ ] Component appears and functions in dev server
+- [ ] Component appears and functions in demo server
+- [ ] Styling is identical in both modes
+- [ ] Events work properly
+- [ ] CSS theming works
+- [ ] TypeScript intellisense works
+
+## 📁 File Organization:
+
+```
+src/components/[name]/     # Component source
+├── index.ts              # Export file
+└── [name].ts            # Implementation
+
+dev/                      # Development testing
+demo/                     # Standalone testing  
+examples/                 # Usage examples
+dist/                     # Build output
+├── index.es.js          # ES modules
+├── standalone/index.js  # Complete UMD
+└── components/*.js      # Individual UMD
+```
+
+## 🔄 Component Development Cycle:
+
+1. **Create** component files in `src/components/`
+2. **Develop** using `npm run dev` 
+3. **Test standalone** using `npm run demo`
+4. **Build** using `npm run build`
+5. **Verify** all formats work correctly
+6. **Update** main exports in `src/index.ts`
+
+## 🎨 VS Code Integration:
+
+- Use **Tasks** (Ctrl+Shift+P > Tasks: Run Task)
+- Use **Debug** configurations for browser debugging
+- Use **Snippets** (`ds-component`, `lit-component`) 
+- File nesting enabled for better organization
+
+
+

@@ -1,0 +1,120 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: CSS theming and styling guidelines for Design System components
+globs:
+  - "**/*.css"
+  - "src/components/**/*.ts"
+alwaysApply: false
+---
+
+# CSS Theming & Styling Guidelines
+
+## 🎨 CSS Custom Properties Strategy
+
+### Naming Convention:
+```css
+--sample-[component]-[property]: value;
+```
+
+### Examples:
+```css
+--sample-button-bg: #007bff;
+--sample-button-color: white;
+--sample-button-padding: 8px 16px;
+--sample-button-radius: 4px;
+--sample-button-font-size: 14px;
+```
+
+### Implementation Pattern:
+```css
+:host {
+  display: inline-block;
+  
+  /* Define custom properties with fallbacks */
+  --sample-button-bg: var(--sample-primary-color, #007bff);
+  --sample-button-color: var(--sample-text-color, white);
+  --sample-button-padding: var(--sample-spacing-md, 8px 16px);
+}
+
+.button {
+  background: var(--sample-button-bg);
+  color: var(--sample-button-color);
+  padding: var(--sample-button-padding);
+}
+```
+
+## 🎯 Theming Requirements
+
+### Global Theme Variables (Optional):
+```css
+:root {
+  --sample-primary-color: #007bff;
+  --sample-secondary-color: #6c757d;
+  --sample-text-color: #212529;
+  --sample-spacing-sm: 4px;
+  --sample-spacing-md: 8px;
+  --sample-spacing-lg: 16px;
+  --sample-border-radius: 4px;
+}
+```
+
+### Component-Specific Variables (Required):
+```css
+/* Always provide component-specific properties */
+--sample-[component]-bg
+--sample-[component]-color
+--sample-[component]-border
+--sample-[component]-padding
+--sample-[component]-radius
+```
+
+## ✅ CSS Parts Support
+
+Expose internal elements for external styling:
+```html
+<button part="button" class="button">
+  <slot></slot>
+</button>
+```
+
+External usage:
+```css
+sample-button::part(button) {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+```
+
+## 🚨 Critical Guidelines:
+
+1. **Always use CSS custom properties** - No hardcoded colors/sizes
+2. **Provide fallback values** - `var(--custom-prop, fallback)`
+3. **Support both themes** - Works in bundled and standalone modes
+4. **Use semantic names** - `--sample-button-bg` not `--blue-500`
+5. **Document properties** - Include in JSDoc comments
+
+## 🎨 Variant System:
+
+```css
+/* Base styles */
+.button {
+  background: var(--sample-button-bg);
+}
+
+/* Variant modifiers */
+.button--primary {
+  --sample-button-bg: var(--sample-primary-color, #007bff);
+}
+
+.button--secondary {
+  --sample-button-bg: var(--sample-secondary-color, #6c757d);
+}
+```
+
+This ensures consistent theming across both usage patterns while maintaining flexibility.
+
+
+

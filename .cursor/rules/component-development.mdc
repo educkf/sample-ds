@@ -1,0 +1,95 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Component development guidelines and patterns for the Design System
+globs: 
+  - "src/components/**/*.ts"
+  - "src/components/**/*.js"
+alwaysApply: false
+---
+
+# Component Development Guidelines
+
+## 🧩 Component Creation Process
+
+### 1. File Structure
+Create components in `src/components/sample-[name]/` with:
+- `index.ts` - Export and registration
+- `sample-[name].ts` - Component implementation
+
+### 2. Component Template
+Use the `ds-component` snippet or follow this pattern:
+
+@component-template.md
+
+```typescript
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
+@customElement('sample-[name]')
+export class Sample[Name] extends LitElement {
+  static styles = css`
+    :host {
+      display: inline-block;
+      --sample-[name]-bg: var(--sample-primary-color, #007bff);
+      --sample-[name]-color: var(--sample-text-color, white);
+    }
+  `;
+
+  @property()
+  variant: 'primary' | 'secondary' = 'primary';
+
+  render() {
+    return html`<div part="[name]"><slot></slot></div>`;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sample-[name]': Sample[Name];
+  }
+}
+```
+
+### 3. CSS Theming Strategy
+- **Always use CSS custom properties** for styling
+- Pattern: `--sample-[component]-[property]`
+- Provide fallback values: `var(--sample-button-bg, #007bff)`
+- Support CSS parts for external styling
+
+### 4. Registration & Exports
+Update `src/index.ts` with:
+```typescript
+export { Sample[Name] } from './components/sample-[name]/index.js';
+```
+
+### 5. Testing Both Modes
+- Add to `dev/index.html` for bundled testing
+- Create demo in `demo/` for standalone testing
+- Verify styling works in both contexts
+
+## 🎯 Key Requirements
+
+1. **Consistent API** - Component works identically in both usage patterns
+2. **CSS Custom Properties** - All styling configurable via CSS variables
+3. **Events** - Use CustomEvent for component communication
+4. **TypeScript** - Full type safety with proper JSDoc
+5. **Accessibility** - ARIA attributes and keyboard navigation
+
+## ✅ Definition of Done
+
+- [ ] Component works in dev server (bundled mode)
+- [ ] Component works in demo server (standalone mode)  
+- [ ] CSS theming works in both modes
+- [ ] TypeScript definitions generated
+- [ ] Proper JSDoc documentation
+- [ ] Events properly dispatched
+- [ ] Accessibility features implemented
+
+
+
+
+

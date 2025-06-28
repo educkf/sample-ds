@@ -1,0 +1,82 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Build system configuration guidelines for dual-usage Design System
+globs:
+  - "vite*.config.ts"
+  - "package.json"
+  - "tsconfig*.json"
+alwaysApply: false
+---
+
+# Build Configuration Guidelines
+
+## 🔧 Build System Architecture
+
+### Three Vite Configurations:
+
+1. **`vite.config.ts`** - ES modules for bundlers
+   - Externalizes Lit dependency
+   - Generates `dist/index.es.js` (~15KB)
+   - For npm package consumption
+
+2. **`vite.standalone.config.ts`** - Complete UMD library
+   - Bundles everything including Lit
+   - Generates `dist/standalone/index.js` (~21KB)
+   - For script tag usage
+
+3. **`vite.component.config.ts`** - Individual components
+   - Self-contained UMD builds
+   - Generates `dist/components/*.js` (~21KB each)
+   - For granular script tag usage
+
+### Package.json Exports Configuration:
+```json
+{
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js"
+    },
+    "./standalone": {
+      "import": "./dist/standalone/index.js"
+    }
+  }
+}
+```
+
+### Build Scripts:
+- `npm run build` - Build all formats
+- `npm run build:main` - ES modules only
+- `npm run build:standalone` - UMD standalone only
+- `npm run build:components` - Individual components
+- `npm run build:types` - TypeScript definitions
+
+## 🚨 Critical Build Requirements:
+
+1. **File Extensions** - Always generate `.js` files (not `.cjs`)
+2. **External Dependencies** - ES modules externalize Lit, UMD bundles everything
+3. **TypeScript Definitions** - Must generate `.d.ts` files for all components
+4. **Bundle Sizes** - Monitor and maintain target sizes (~15KB ES, ~21KB UMD)
+
+## ✅ Build Verification:
+
+After any build configuration changes:
+- [ ] ES modules build successfully (~15KB)
+- [ ] Standalone UMD build successfully (~21KB) 
+- [ ] Individual components build successfully (~21KB each)
+- [ ] TypeScript definitions generated
+- [ ] Both dev and demo servers work
+- [ ] Components function identically in both modes
+
+
+

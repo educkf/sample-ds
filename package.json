@@ -1,0 +1,70 @@
+{
+  "name": "sample-design-system",
+  "version": "1.0.0",
+  "description": "A Design System library built with Lit Framework",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "require": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./standalone": {
+      "import": "./dist/standalone/index.js",
+      "require": "./dist/standalone/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./standalone/components/*": {
+      "import": "./dist/components/*.js",
+      "require": "./dist/components/*.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run clean && npm run build:types && npm run build:main && npm run build:standalone && npm run build:components",
+    "build:main": "vite build",
+    "build:standalone": "vite build --config vite.standalone.config.ts",
+    "build:components": "vite build --config vite.component.config.ts",
+    "build:types": "tsc --project tsconfig.build.json",
+    "preview": "vite preview",
+    "serve": "vite preview",
+    "demo": "vite --open /demo/standalone-button.html",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.js",
+    "lint:fix": "eslint src --ext .ts,.js --fix",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "design-system",
+    "web-components",
+    "lit",
+    "typescript",
+    "ui-library"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.10",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11"
+  }
+} 

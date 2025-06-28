@@ -1,0 +1,65 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Core architecture principles for Lit Framework Design System with dual-usage patterns
+globs: []
+alwaysApply: true
+---
+
+# Lit Framework Design System - Core Architecture
+
+## 🎯 Project Mission
+This is a **Lit Framework Design System** that supports **DUAL USAGE PATTERNS**:
+
+1. **📦 NPM Package for Bundlers** - ES modules (~15KB) with externalized Lit for Vite/Webpack/etc
+2. **🎯 Standalone Script Tags** - Self-contained UMD bundles (~21KB) for direct HTML usage
+
+## 🏗️ Build System Architecture
+
+### Three Build Outputs:
+- `dist/index.es.js` - ES modules for bundlers (Lit externalized)
+- `dist/standalone/index.js` - Complete UMD library (Lit bundled) 
+- `dist/components/*.js` - Individual UMD components (self-contained)
+- `dist/*.d.ts` - TypeScript definitions
+
+### Usage Patterns to Support:
+
+#### Bundled Projects:
+```javascript
+import 'sample-design-system/components/sample-button';
+import { SampleButton } from 'sample-design-system';
+```
+
+#### Script Tags:
+```html
+<sample-button variant="primary">Click me!</sample-button>
+<script src="dist/components/sample-button.js"></script>
+```
+
+## 🚨 Never Break These Principles:
+
+1. **Dual build system** - Both ES modules AND UMD must be maintained
+2. **CSS custom properties** - All styling via `--sample-[component]-[property]` pattern
+3. **Self-contained components** - Standalone versions include all dependencies
+4. **TypeScript support** - Type definitions must be generated
+5. **Framework agnostic** - Components work in any framework or vanilla HTML
+
+## 📁 Component Structure:
+```
+src/components/[name]/
+├── index.ts           # Export and registration
+└── [name].ts         # Component implementation
+```
+
+## 🎨 Naming Conventions:
+- Web component tags: `sample-[name]`
+- Class names: `Sample[Name]`
+- CSS custom properties: `--sample-[component]-[property]`
+
+**When working on this project, ALWAYS consider both usage patterns and maintain the dual-build architecture.**
+
+
+
