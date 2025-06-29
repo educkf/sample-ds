@@ -1,0 +1,309 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# NPM Publishing Guidelines
+
+## 🚀 Publishing Commands
+
+The package.json includes several publishing shortcuts for different scenarios:
+
+### Quick Publishing Commands
+```bash
+# Patch version (1.0.0 → 1.0.1) - Bug fixes
+npm run publish:patch
+
+# Minor version (1.0.0 → 1.1.0) - New features
+npm run publish:minor
+
+# Major version (1.0.0 → 2.0.0) - Breaking changes
+npm run publish:major
+
+# Beta release (1.0.0 → 1.0.1-beta.0) - Pre-release testing
+npm run publish:beta
+
+# Dry run - Test publishing without actually publishing
+npm run publish:dry
+```
+
+### Manual Publishing Process
+```bash
+# 1. Build and validate
+npm run prepublishOnly
+
+# 2. Version bump (choose one)
+npm version patch    # 1.0.0 → 1.0.1
+npm version minor    # 1.0.0 → 1.1.0
+npm version major    # 1.0.0 → 2.0.0
+
+# 3. Publish to NPM
+npm publish
+
+# For beta releases
+npm publish --tag beta
+```
+
+## 📋 Pre-Publishing Checklist
+
+### Automated Checks (via prepublishOnly)
+- ✅ **Linting** - Code quality validation
+- ✅ **Type Checking** - TypeScript validation
+- ✅ **Build** - All dist files generated
+
+### Manual Verification
+- [ ] **Version** - Appropriate semantic version bump
+- [ ] **Changelog** - Updated with new features/fixes
+- [ ] **Documentation** - All components documented
+- [ ] **Tests** - All components tested in both modes
+- [ ] **Demos** - Both dev and demo servers work
+- [ ] **Dependencies** - All dependencies up to date
+- [ ] **README** - Installation instructions current
+- [ ] **License** - MIT license included
+
+## 🏷️ Version Strategy
+
+### Semantic Versioning (SemVer)
+- **PATCH** (1.0.X) - Bug fixes, patches, minor improvements
+- **MINOR** (1.X.0) - New components, new features, backward compatible
+- **MAJOR** (X.0.0) - Breaking changes, API changes, component removal
+
+### Beta Releases
+Use beta releases for:
+- Testing new components before stable release
+- Breaking changes that need community feedback
+- Major refactoring that requires validation
+
+```bash
+npm run publish:beta
+```
+
+Beta releases are published with `@beta` tag:
+```bash
+npm install sample-design-system@beta
+```
+
+## 📦 Package Configuration
+
+### Essential package.json Fields
+```json
+{
+  "name": "sample-design-system",
+  "version": "1.0.0",
+  "description": "A Design System library built with Lit Framework",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
+    }
+  }
+}
+```
+
+### NPM Metadata for Discoverability
+```json
+{
+  "keywords": [
+    "design-system",
+    "web-components", 
+    "lit",
+    "typescript",
+    "ui-library",
+    "components",
+    "frontend",
+    "framework-agnostic"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/sample-design-system.git"
+  },
+  "homepage": "https://github.com/yourusername/sample-design-system#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/sample-design-system/issues"
+  }
+}
+```
+
+## 🔄 Publishing Workflow
+
+### First-Time Setup
+1. **Create NPM Account** - https://npmjs.com
+2. **Login to NPM CLI**:
+   ```bash
+   npm login
+   ```
+3. **Verify Login**:
+   ```bash
+   npm whoami
+   ```
+
+### Regular Publishing
+1. **Develop & Test**:
+   ```bash
+   npm run dev      # Development server
+   npm run demo     # Standalone demos
+   ```
+
+2. **Prepare for Release**:
+   ```bash
+   npm run lint     # Check code quality
+   npm run build    # Generate dist files
+   ```
+
+3. **Choose Release Type**:
+   ```bash
+   npm run publish:patch   # Bug fixes
+   npm run publish:minor   # New features
+   npm run publish:major   # Breaking changes
+   ```
+
+### Emergency Unpublishing
+```bash
+# Unpublish specific version (within 72 hours)
+npm unpublish sample-design-system@1.0.1
+
+# Deprecate version (preferred method)
+npm deprecate sample-design-system@1.0.1 "Use version 1.0.2 instead"
+```
+
+## 📊 Post-Publishing Verification
+
+### Check NPM Registry
+```bash
+# View published package info
+npm view sample-design-system
+
+# Check latest version
+npm view sample-design-system version
+
+# View all versions
+npm view sample-design-system versions --json
+```
+
+### Test Installation
+```bash
+# Test in new directory
+mkdir test-install && cd test-install
+npm init -y
+npm install sample-design-system
+
+# Verify exports work
+node -e "console.log(require('sample-design-system'))"
+```
+
+### CDN Verification
+Check that CDN links work:
+- `https://unpkg.com/sample-design-system/`
+- `https://unpkg.com/sample-design-system/dist/components/sample-button.js`
+- `https://cdn.jsdelivr.net/npm/sample-design-system/`
+
+## 🚨 Common Issues & Solutions
+
+### Build Issues
+```bash
+# Clear build cache
+npm run clean && npm run build
+
+# Check TypeScript compilation
+npm run type-check
+```
+
+### Authentication Issues
+```bash
+# Re-login to NPM
+npm logout && npm login
+
+# Check authentication
+npm whoami
+```
+
+### Version Conflicts
+```bash
+# Reset version if needed
+git checkout package.json
+npm version patch --no-git-tag-version
+```
+
+### Size Optimization
+Monitor bundle sizes:
+```bash
+# Check bundle sizes
+npm run build
+du -sh dist/*
+
+# Analyze with bundlephobia
+npx bundlephobia sample-design-system
+```
+
+## 📈 NPM Best Practices
+
+### Package Maintenance
+- **Regular Updates** - Keep dependencies current
+- **Security Audits** - Run `npm audit` regularly
+- **Bundle Analysis** - Monitor package size
+- **Usage Analytics** - Check npm stats
+
+### Documentation
+- **Clear README** - Installation and usage examples
+- **API Documentation** - Complete property/event reference
+- **Changelog** - Document all changes
+- **Migration Guides** - For breaking changes
+
+### Community
+- **Responsive Issues** - Address GitHub issues promptly
+- **Semantic Versioning** - Follow SemVer strictly
+- **Deprecation Notices** - Warn about breaking changes
+- **Community Guidelines** - Establish contribution rules
+
+## 🔐 Security Considerations
+
+### 2FA Setup
+Enable two-factor authentication:
+```bash
+npm profile enable-2fa auth-and-writes
+```
+
+### Token Management
+Use automation tokens for CI/CD:
+```bash
+npm token create --read-only
+npm token create --cidr=0.0.0.0/0
+```
+
+### Audit Dependencies
+```bash
+npm audit
+npm audit fix
+```
+
+## ✅ Success Metrics
+
+### Publication Success
+- [ ] Package appears on npmjs.com
+- [ ] All exports work correctly
+- [ ] TypeScript definitions available
+- [ ] CDN links functional
+- [ ] Demo installations successful
+
+### Quality Metrics
+- [ ] Bundle size reasonable (<25KB per component)
+- [ ] No security vulnerabilities
+- [ ] High-quality documentation
+- [ ] Positive community feedback
+- [ ] Growing download numbers
+
+**Remember: Publishing to NPM makes your package globally available. Always test thoroughly and follow semantic versioning!**
+

@@ -1,0 +1,33 @@
+# Documentation and development files
+docs/
+demo/ 
+dev/
+src/
+examples/
+
+# Configuration files
+*.config.ts
+*.config.js
+*.config.mjs
+tsconfig*.json
+eslint.config.*
+
+# Development dependencies
+node_modules/
+.next/
+.cursor/
+
+# Git and IDE files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+coverage/
+.nyc_output/
+
+# Only include built files
+!dist/ 

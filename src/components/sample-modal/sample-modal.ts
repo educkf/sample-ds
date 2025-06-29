@@ -401,7 +401,7 @@ export class SampleModal extends LitElement {
     this._restoreFocus();
   }
 
-  updated(changedProperties: Map<string, any>) {
+  updated(changedProperties: Map<string, unknown>) {
     super.updated(changedProperties);
 
     if (changedProperties.has('open')) {
@@ -569,7 +569,7 @@ export class SampleModal extends LitElement {
     }
   }
 
-  private _dispatchEvent(type: string, detail: any = {}) {
+  private _dispatchEvent(type: string, detail: Record<string, unknown> = {}) {
     this.dispatchEvent(new CustomEvent(type, {
       detail,
       bubbles: true,

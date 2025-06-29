@@ -174,7 +174,7 @@ export class SampleCard extends LitElement {
     `;
   }
 
-  private _handleClick(_event: Event) {
+  private _handleClick(_event?: Event) {
     if (!this.clickable || this.disabled) {
       return;
     }

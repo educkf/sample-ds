@@ -1,5 +1,5 @@
 {
-  "name": "sample-design-system",
+  "name": "sample-design-system-educkf",
   "version": "1.0.0",
   "description": "A Design System library built with Lit Framework",
   "type": "module",
@@ -49,17 +49,37 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.js",
     "lint:fix": "eslint src --ext .ts,.js --fix",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run lint && npm run type-check && npm run build",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish",
+    "publish:beta": "npm version prerelease --preid=beta && npm publish --tag beta",
+    "publish:dry": "npm run prepublishOnly && npm publish --dry-run"
   },
   "keywords": [
     "design-system",
     "web-components",
     "lit",
     "typescript",
-    "ui-library"
+    "ui-library",
+    "components",
+    "frontend",
+    "framework-agnostic"
   ],
-  "author": "",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/educkf/sample-ds.git"
+  },
+  "homepage": "https://github.com/educkf/sample-ds#readme",
+  "bugs": {
+    "url": "https://github.com/educkf/sample-ds/issues"
+  },
   "dependencies": {
     "lit": "^3.1.0"
   },
