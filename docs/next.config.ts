@@ -14,7 +14,26 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
   },
 
-  // Custom headers for security
+  // Custom webpack configuration to handle node_modules assets
+  webpack: (config, { isServer }) => {
+    // Add rule to copy design system components
+    if (!isServer) {
+      config.module.rules.push({
+        test: /\.js$/,
+        include: /node_modules\/sample-design-system-educkf/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            publicPath: '/_next/static/ds-components/',
+            outputPath: 'static/ds-components/',
+          },
+        },
+      });
+    }
+    return config;
+  },
+
+  // Custom headers for security and CORS
   async headers() {
     return [
       {
@@ -38,6 +57,33 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/api/ds-components/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/javascript',
+          },
+        ],
+      },
+    ];
+  },
+
+  // Rewrites to serve design system components
+  async rewrites() {
+    return [
+      {
+        source: '/api/ds-components/:component',
+        destination: '/api/ds-components/:component',
+      },
     ];
   },
 
@@ -54,4 +100,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withMarkdoc(/* markdoc options */)(nextConfig);
+export default withMarkdoc({
+  schemaPath: './markdoc'
+})(nextConfig);

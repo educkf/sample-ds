@@ -1,191 +1,246 @@
 ---
-title: "Alert Component"
-description: "Contextual feedback messages with dismissible functionality and multiple severity levels"
+title: 'Alert'
+description: 'Contextual feedback messages for user actions and system notifications'
 ---
 
-# Alert Component
+# Alert
 
-The `sample-alert` component provides contextual feedback messages with support for different severity levels, icons, and dismissible functionality.
+Contextual feedback messages for user actions and system notifications. Provides clear visual communication for information, success, warning, and error states.
+
+## 🎮 Interactive Playground
+
+{% playground component="alert" /%}
+
+## 📋 Example
+
+### Basic Alert Usage
+```html
+<sample-alert type="info">
+  This is an informational alert message.
+</sample-alert>
+
+<sample-alert type="success">
+  Operation completed successfully!
+</sample-alert>
+
+<sample-alert type="warning">
+  Please review your settings before proceeding.
+</sample-alert>
+
+<sample-alert type="error">
+  An error occurred while processing your request.
+</sample-alert>
+```
 
 ## 📦 Installation
 
-### NPM Package
+### NPM Package (Bundled Projects)
 ```bash
 npm install sample-design-system-educkf
 ```
 
 ```javascript
-// Import the component
+// Import individual component (recommended)
 import 'sample-design-system-educkf/components/sample-alert';
 
-// Use in your templates
-<sample-alert variant="success">
-  Operation completed successfully!
-</sample-alert>
+// Or import from main library
+import { SampleAlert } from 'sample-design-system-educkf';
 ```
 
-### Script Tag
+### Script Tag (Standalone)
 ```html
-<sample-alert variant="success">
-  Operation completed successfully!
-</sample-alert>
-
+<!-- Individual component -->
 <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-alert.js"></script>
-```
 
-## 🎯 Basic Usage
-
-### Success Alert
-```html
-<sample-alert variant="success">
-  <strong>Success!</strong> Your changes have been saved.
-</sample-alert>
-```
-
-### Error Alert
-```html
-<sample-alert variant="error">
-  <strong>Error!</strong> Please fix the following issues before continuing.
-</sample-alert>
-```
-
-### Dismissible Alert
-```html
-<sample-alert variant="info" dismissible>
-  <strong>Info:</strong> This is a dismissible information alert.
-</sample-alert>
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
 ```
 
 ## 🎨 Properties
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `variant` | `'success' \| 'error' \| 'warning' \| 'info'` | `'info'` | Alert severity level |
-| `dismissible` | `boolean` | `false` | Whether the alert can be dismissed |
-| `show-icon` | `boolean` | `true` | Whether to show the variant icon |
-| `title` | `string` | `""` | Optional alert title |
-| `auto-dismiss` | `number` | `0` | Auto-dismiss after milliseconds (0 = never) |
+| `type` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Alert type determining color and icon |
+| `dismissible` | boolean | `false` | Whether the alert can be dismissed |
+| `title` | string | `""` | Optional alert title |
+| `icon` | boolean | `true` | Whether to show the type icon |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Alert size variant |
 
-## 🔥 Events
+## 📚 Properties with Code Examples
 
-| Event | Detail | Description |
-|-------|---------|-------------|
-| `sample-alert-dismiss` | `{ variant: string }` | Fired when alert is dismissed |
-| `sample-alert-action` | `{ action: string }` | Fired when action button is clicked |
+### `type` Property
+```html
+<!-- Different alert types -->
+<sample-alert type="info">
+  Information: This is helpful information for the user.
+</sample-alert>
 
-```javascript
-// Listen for alert dismissal
-document.querySelector('sample-alert').addEventListener('sample-alert-dismiss', (e) => {
-  console.log('Alert dismissed:', e.detail.variant);
-});
+<sample-alert type="success">
+  Success: Your action was completed successfully.
+</sample-alert>
+
+<sample-alert type="warning">
+  Warning: Please review this before proceeding.
+</sample-alert>
+
+<sample-alert type="error">
+  Error: Something went wrong with your request.
+</sample-alert>
 ```
 
-## 🎨 CSS Custom Properties
+### `dismissible` Property
+```html
+<!-- Dismissible alerts -->
+<sample-alert type="info" dismissible>
+  This alert can be closed by clicking the × button.
+</sample-alert>
 
+<sample-alert type="warning" dismissible title="Important Notice">
+  This warning can be dismissed after reading.
+</sample-alert>
+```
+
+### `title` Property
+```html
+<!-- Alerts with titles -->
+<sample-alert type="success" title="Success!">
+  Your changes have been saved successfully.
+</sample-alert>
+
+<sample-alert type="error" title="Upload Failed">
+  The file could not be uploaded. Please try again.
+</sample-alert>
+```
+
+### `icon` Property
+```html
+<!-- Alert without icon -->
+<sample-alert type="info" icon="false">
+  This alert displays without an icon.
+</sample-alert>
+
+<!-- Alert with icon (default) -->
+<sample-alert type="success">
+  This alert shows the success icon.
+</sample-alert>
+```
+
+### `size` Property
+```html
+<!-- Different alert sizes -->
+<sample-alert type="info" size="small">
+  Small alert for compact spaces.
+</sample-alert>
+
+<sample-alert type="info" size="medium">
+  Medium alert (default size).
+</sample-alert>
+
+<sample-alert type="info" size="large">
+  Large alert for important messages.
+</sample-alert>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
 ```css
 sample-alert {
-  /* Container styling */
   --sample-alert-border-radius: 8px;
   --sample-alert-padding: 16px;
-  --sample-alert-margin: 16px 0;
-  --sample-alert-border-width: 1px;
   --sample-alert-font-size: 14px;
   --sample-alert-line-height: 1.5;
-  
-  /* Success variant */
-  --sample-alert-success-bg: #f0f9f0;
-  --sample-alert-success-color: #2d5a2d;
-  --sample-alert-success-border: #4ade80;
-  --sample-alert-success-icon: #22c55e;
-  
-  /* Error variant */
-  --sample-alert-error-bg: #fef2f2;
-  --sample-alert-error-color: #7f1d1d;
-  --sample-alert-error-border: #f87171;
-  --sample-alert-error-icon: #ef4444;
-  
-  /* Warning variant */
-  --sample-alert-warning-bg: #fffbeb;
-  --sample-alert-warning-color: #92400e;
-  --sample-alert-warning-border: #fbbf24;
-  --sample-alert-warning-icon: #f59e0b;
-  
-  /* Info variant */
-  --sample-alert-info-bg: #eff6ff;
-  --sample-alert-info-color: #1e3a8a;
-  --sample-alert-info-border: #60a5fa;
-  --sample-alert-info-icon: #3b82f6;
-  
-  /* Dismiss button */
-  --sample-alert-dismiss-size: 20px;
-  --sample-alert-dismiss-color: currentColor;
-  --sample-alert-dismiss-hover: rgba(0,0,0,0.1);
+  --sample-alert-border-width: 1px;
+  --sample-alert-icon-size: 20px;
+}
+
+/* Type-specific colors */
+sample-alert[type="info"] {
+  --sample-alert-bg: #e3f2fd;
+  --sample-alert-color: #1976d2;
+  --sample-alert-border-color: #bbdefb;
+}
+
+sample-alert[type="success"] {
+  --sample-alert-bg: #e8f5e8;
+  --sample-alert-color: #2e7d32;
+  --sample-alert-border-color: #c8e6c9;
+}
+
+sample-alert[type="warning"] {
+  --sample-alert-bg: #fff3cd;
+  --sample-alert-color: #f57c00;
+  --sample-alert-border-color: #ffcc02;
+}
+
+sample-alert[type="error"] {
+  --sample-alert-bg: #f8d7da;
+  --sample-alert-color: #d32f2f;
+  --sample-alert-border-color: #f5c6cb;
 }
 ```
 
-## 🎨 CSS Parts
-
-```css
-/* Style the alert container */
-sample-alert::part(container) {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-/* Style the icon */
-sample-alert::part(icon) {
-  margin-right: 12px;
-}
-
-/* Style the content area */
-sample-alert::part(content) {
-  flex: 1;
-}
-
-/* Style the dismiss button */
-sample-alert::part(dismiss) {
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-sample-alert::part(dismiss):hover {
-  opacity: 1;
-}
-```
-
-## 🖼️ Examples
-
-### Alert Variants
+### Custom Styling Example
 ```html
-<sample-alert variant="success">
-  <strong>Success!</strong> Operation completed successfully.
-</sample-alert>
+<style>
+.premium-alert {
+  --sample-alert-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --sample-alert-color: white;
+  --sample-alert-border-radius: 12px;
+  --sample-alert-padding: 20px;
+  --sample-alert-border-width: 0;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+</style>
 
-<sample-alert variant="error">
-  <strong>Error!</strong> Something went wrong.
-</sample-alert>
-
-<sample-alert variant="warning">
-  <strong>Warning!</strong> Please review your input.
-</sample-alert>
-
-<sample-alert variant="info">
-  <strong>Info:</strong> This is useful information.
+<sample-alert type="info" class="premium-alert" title="Premium Feature">
+  This alert uses custom gradient styling for a premium look.
 </sample-alert>
 ```
 
-### Auto-Dismiss Alert
+## ♿ Accessibility
+
+The alert component includes comprehensive accessibility features:
+
+- **ARIA Roles**: Proper `alert` or `status` roles based on urgency
+- **Screen Reader Support**: 
+  - Immediate announcement for `alert` role (urgent messages)
+  - Polite announcement for `status` role (non-urgent updates)
+- **Keyboard Navigation**: 
+  - Dismissible alerts support `Tab` and `Enter`/`Space` for closing
+- **Color Independence**: Not relying solely on color to convey meaning
+- **High Contrast**: Sufficient color contrast ratios for readability
+- **Focus Management**: Proper focus handling for dismissible alerts
+
+### ARIA Implementation
 ```html
-<sample-alert variant="success" auto-dismiss="3000">
-  This alert will disappear after 3 seconds.
+<!-- The component automatically generates proper ARIA attributes -->
+<sample-alert 
+  type="error" 
+  role="alert" 
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  Critical error message
+</sample-alert>
+
+<sample-alert 
+  type="info" 
+  role="status" 
+  aria-live="polite"
+  aria-atomic="true"
+>
+  Informational update
 </sample-alert>
 ```
 
-### Alert with Title
-```html
-<sample-alert variant="error" title="Validation Error">
-  Please fill in all required fields before submitting.
-</sample-alert>
-```
+### Accessibility Best Practices
+- Use `error` type for critical messages that require immediate attention
+- Use `warning` type for important but not critical information
+- Use `success` type for positive confirmations
+- Use `info` type for general informational messages
+- Provide clear, concise messaging
+- Include actionable instructions when appropriate
 
 ## 🔧 Framework Integration
 
@@ -194,108 +249,111 @@ sample-alert::part(dismiss):hover {
 import 'sample-design-system-educkf/components/sample-alert';
 
 function AlertExample() {
+  const [showAlert, setShowAlert] = useState(true);
+
   const handleDismiss = (e) => {
     console.log('Alert dismissed:', e.detail);
+    setShowAlert(false);
   };
 
   return (
-    <sample-alert 
-      variant="success" 
-      dismissible
-      onSampleAlertDismiss={handleDismiss}
-    >
-      React alert content
-    </sample-alert>
+    <>
+      {showAlert && (
+        <sample-alert 
+          type="success" 
+          dismissible 
+          title="Success!"
+          onSampleAlertDismiss={handleDismiss}
+        >
+          Your operation completed successfully.
+        </sample-alert>
+      )}
+      
+      <sample-alert type="info" icon="false">
+        Welcome to our application!
+      </sample-alert>
+    </>
   );
 }
 ```
 
-### Vue
+### Vue.js
 ```vue
 <template>
-  <sample-alert 
-    variant="success" 
-    :dismissible="true"
-    @sample-alert-dismiss="handleDismiss"
-  >
-    Vue alert content
-  </sample-alert>
+  <div>
+    <sample-alert 
+      v-if="showAlert"
+      type="success" 
+      :dismissible="true" 
+      title="Success!"
+      @sample-alert-dismiss="handleDismiss"
+    >
+      Your operation completed successfully.
+    </sample-alert>
+    
+    <sample-alert type="warning" :size="alertSize">
+      {{ warningMessage }}
+    </sample-alert>
+  </div>
 </template>
 
 <script>
 import 'sample-design-system-educkf/components/sample-alert';
 
 export default {
+  data() {
+    return {
+      showAlert: true,
+      alertSize: 'medium',
+      warningMessage: 'Please review your input.'
+    };
+  },
   methods: {
     handleDismiss(event) {
       console.log('Alert dismissed:', event.detail);
+      this.showAlert = false;
     }
   }
-}
+};
 </script>
 ```
 
-## ♿ Accessibility
-
-### WCAG 2.1 Compliance
-- **Color Contrast**: All variants meet WCAG AA standards
-- **Screen Readers**: Proper ARIA roles and labels
-- **Keyboard Navigation**: Dismiss button is keyboard accessible
-- **Focus Management**: Clear focus indicators
-
-### ARIA Attributes
-```html
-<sample-alert 
-  role="alert"
-  aria-live="polite"
-  aria-label="Success notification"
->
-  Alert content
-</sample-alert>
-```
-
-## 📝 TypeScript
-
+### Angular
 ```typescript
-import { SampleAlert } from 'sample-design-system-educkf';
+import { Component } from '@angular/core';
+import 'sample-design-system-educkf/components/sample-alert';
 
-// Type-safe property access
-const alert = document.querySelector('sample-alert') as SampleAlert;
-alert.variant = 'success';
-alert.dismissible = true;
+@Component({
+  selector: 'app-alert',
+  template: `
+    <sample-alert 
+      *ngIf="showAlert"
+      type="error" 
+      [attr.dismissible]="true"
+      title="Error"
+      (sample-alert-dismiss)="handleDismiss($event)"
+    >
+      {{ errorMessage }}
+    </sample-alert>
+    
+    <sample-alert 
+      type="info" 
+      [attr.icon]="showIcon"
+      [attr.size]="alertSize"
+    >
+      Welcome to our Angular application!
+    </sample-alert>
+  `
+})
+export class AlertComponent {
+  showAlert = true;
+  showIcon = true;
+  alertSize = 'medium';
+  errorMessage = 'An error occurred while processing your request.';
 
-// Event typing
-alert.addEventListener('sample-alert-dismiss', (e: CustomEvent<{variant: string}>) => {
-  console.log('Alert dismissed:', e.detail.variant);
-});
+  handleDismiss(event: CustomEvent) {
+    console.log('Alert dismissed:', event.detail);
+    this.showAlert = false;
+  }
+}
 ```
-
-## 🎯 Interactive Playground
-
-{% playground %}
-<div style="space-y: 16px;">
-  <sample-alert variant="success" dismissible>
-    <strong>Success!</strong> Your operation completed successfully.
-  </sample-alert>
-  
-  <sample-alert variant="error" dismissible>
-    <strong>Error!</strong> Something went wrong with your request.
-  </sample-alert>
-  
-  <sample-alert variant="warning" dismissible>
-    <strong>Warning!</strong> Please review your settings.
-  </sample-alert>
-  
-  <sample-alert variant="info" dismissible>
-    <strong>Info:</strong> Here's some helpful information.
-  </sample-alert>
-</div>
-
-<script>
-document.querySelectorAll('sample-alert').forEach(alert => {
-  alert.addEventListener('sample-alert-dismiss', (e) => {
-    console.log(`${e.detail.variant} alert dismissed`);
-  });
-});
-</script>
-{% /playground %} 

@@ -1,206 +1,183 @@
 # Sample Design System Documentation
 
-This is the comprehensive documentation site for the Sample Design System, built with **Next.js 15.3.4** and **Markdoc** for enhanced interactive documentation.
+A comprehensive documentation site for the Sample Design System, built with Next.js, Markdoc, and Tailwind CSS. This documentation showcases interactive examples of web components from the `sample-design-system-educkf` NPM package.
 
-## 🌟 Features
+## ✨ Features
 
-- **Interactive Playgrounds** - Live component examples with event logging
-- **Complete API Reference** - Properties, events, CSS variables, and CSS parts
-- **Framework Integration** - Examples for React, Vue, Angular, and Svelte
-- **Responsive Design** - Mobile and desktop optimized layout
-- **Custom Markdoc Tags** - Enhanced documentation components
-- **Syntax Highlighting** - Code blocks with Prism.js
-- **Navigation** - Sidebar navigation with component status tracking
+- **Interactive Playground**: Live component examples with real NPM package components
+- **Comprehensive API Documentation**: Properties, events, CSS custom properties, and CSS parts
+- **Framework Integration Examples**: React, Vue.js, and Angular usage examples
+- **Accessibility Guidelines**: WCAG compliance information and best practices
+- **Custom Theming**: CSS custom properties for component customization
+- **Responsive Design**: Mobile-first documentation layout
 
 ## 🚀 Getting Started
 
-### Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view the documentation site.
+### Prerequisites
 
-### Build for Production
-```bash
-npm run build
-npm run start
-```
+- Node.js 18+ 
+- npm 8+
 
-### Linting
-```bash
-npm run lint
-```
+### Installation
 
-## 📁 Project Structure
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📦 NPM Package Integration
+
+This documentation site integrates directly with the `sample-design-system-educkf` NPM package to provide:
+
+- **Live Component Examples**: Real components loaded from the package
+- **Interactive Playgrounds**: Components that respond to user interactions
+- **API Route Serving**: Components served via Next.js API routes for iframe embedding
+
+### Available Components
+
+- **Button**: Interactive buttons with variants and sizes
+- **Card**: Flexible content containers with slots
+- **Alert**: Contextual feedback messages
+- **Accordion**: Collapsible content sections
+- **Breadcrumb**: Navigation breadcrumbs
+- **Modal**: Overlay dialogs and modals
+
+## 🏗️ Architecture
+
+### Technology Stack
+
+- **Next.js 15**: React framework with Pages Router
+- **Markdoc**: Markdown-based documentation system
+- **Tailwind CSS 4**: Utility-first CSS framework
+- **React 19**: UI library for interactive components
+
+### Project Structure
 
 ```
 docs/
-├── pages/                    # Next.js pages (Markdoc files)
-│   ├── _app.js              # App layout with Header/Sidebar
-│   ├── _document.js         # HTML document structure
-│   ├── index.md             # Documentation homepage
-│   ├── how-to-use.md        # Installation & usage guide
-│   └── components/          # Component documentation
-│       ├── index.md         # Components overview
-│       ├── button.md        # Button component docs
-│       ├── card.md          # Card component docs
-│       ├── alert.md         # Alert component docs
-│       ├── accordion.md     # Accordion component docs
-│       ├── breadcrumb.md    # Breadcrumb component docs
-│       └── modal.md         # Modal component docs
-├── components/              # React components for docs
-│   ├── Header.js           # Main navigation header
-│   └── ComponentsSidebar.js # Components navigation sidebar
-├── markdoc/                # Markdoc configuration
-│   └── tags.js             # Custom Markdoc tags
-├── public/                 # Static assets
-├── globals.css             # Global Tailwind CSS styles
-├── package.json            # Dependencies and scripts
-└── next.config.ts          # Next.js + Markdoc configuration
+├── components/           # React components for documentation
+│   ├── ComponentPlayground.js  # Interactive component playground
+│   ├── Header.js        # Site header
+│   └── ComponentsSidebar.js    # Navigation sidebar
+├── markdoc/             # Markdoc configuration
+│   ├── config.js        # Main configuration
+│   ├── tags.js          # Custom Markdoc tags
+│   └── index.js         # Configuration export
+├── pages/               # Next.js pages
+│   ├── api/             # API routes
+│   │   └── ds-components/  # Component serving API
+│   ├── components/      # Component documentation
+│   └── _app.js          # App configuration
+├── public/              # Static assets
+└── globals.css          # Global styles
 ```
 
-## 🏷️ Custom Markdoc Tags
+## 📝 Writing Documentation
 
-### Interactive Components
+### Component Documentation Template
 
-#### `{% playground %}`
-Live component playground with interactive examples:
+Each component documentation follows this structure:
+
 ```markdown
-{% playground 
-   component="button" 
-   title="Button Example"
-   code="<sample-button variant=\"primary\">Click me!</sample-button>"
-   height="200px" 
-/%}
+---
+title: Component Name
+description: Brief component description
+---
+
+# Component Name
+
+Brief description and usage overview.
+
+## 📦 Installation
+## 🎯 Basic Usage
+## 🎮 Interactive Playground
+## 🎨 Properties
+## 🔥 Events
+## 🎨 CSS Custom Properties
+## 🖼️ Examples
+## 🔧 Framework Integration
+## ♿ Accessibility
 ```
 
-#### `{% apiTable %}`
-API documentation tables:
+### Custom Markdoc Tags
+
+#### Playground Tag
 ```markdown
-{% apiTable 
-   type="properties"
-   data=[
-     { property: "variant", type: "`'primary' | 'secondary'`", default: "`'primary'`", description: "Button style" }
-   ]
-/%}
+{% playground component="button" title="Example Title" description="Description" code="<sample-button>Click me</sample-button>" height="150px" /%}
 ```
 
-#### `{% tabs %}` / `{% tab %}`
-Tabbed content organization:
+#### API Table Tag
 ```markdown
-{% tabs defaultTab="0" %}
-  {% tab title="NPM" icon="📦" %}
-  npm install sample-design-system-educkf
-  {% /tab %}
-  {% tab title="Script Tag" icon="🎯" %}
-  <script src="dist/components/sample-button.js"></script>
-  {% /tab %}
-{% /tabs %}
+{% apiTable type="properties" data=[
+  { "Property": "variant", "Type": "string", "Default": "primary", "Description": "Button variant" }
+] /%}
 ```
 
-#### `{% codeBlock %}`
-Enhanced code blocks with syntax highlighting:
+#### Callout Tag
 ```markdown
-{% codeBlock language="javascript" title="React Example" %}
-import 'sample-design-system-educkf/components/sample-button';
-{% /codeBlock %}
-```
-
-#### `{% callout %}`
-Information callouts:
-```markdown
-{% callout type="tip" title="Best Practice" %}
-Always import individual components for optimal bundle size.
+{% callout type="tip" title="Pro Tip" %}
+This is a helpful tip for users.
 {% /callout %}
 ```
 
-## 🎨 Styling
+## 🔧 Development
 
-The documentation uses **Tailwind CSS 4.1.11** with:
-- Custom color palette for the design system
-- Responsive design with mobile-first approach
-- Dark mode support (via `next-themes`)
-- Consistent typography and spacing
+### Adding New Components
 
-## 📊 Component Status Tracking
-
-Components are tracked with status indicators:
-- ✅ **Stable** - Production ready
-- 🚧 **Beta** - Feature complete, testing in progress
-- ⏳ **Coming Soon** - In development
-
-## 🛠️ Technology Stack
-
-- **Framework**: Next.js 15.3.4
-- **React**: 19.0.0
-- **Markdown**: Markdoc 0.4.0
-- **Styling**: Tailwind CSS 4.1.11
-- **Syntax Highlighting**: Prism.js 1.29.0
-- **TypeScript**: Full type support
-- **Theme**: next-themes for dark mode
-
-## 📝 Adding New Component Documentation
-
-1. **Create the documentation file**:
-   ```
-   docs/pages/components/[component-name].md
+1. Install/update the NPM package:
+   ```bash
+   npm update sample-design-system-educkf
    ```
 
-2. **Update the sidebar navigation**:
-   ```javascript
-   // docs/components/ComponentsSidebar.js
-   const components = [
-     // ... existing components
-     { name: 'New Component', href: '/components/new-component', icon: '🆕' },
-   ];
-   ```
+2. Create component documentation in `pages/components/[component-name].md`
 
-3. **Update the components index**:
-   ```markdown
-   // docs/pages/components/index.md
-   | [New Component](/components/new-component) | ✅ Stable | ✅ | ✅ | ✅ | ✅ |
-   ```
+3. Add component to sidebar navigation in `components/ComponentsSidebar.js`
 
-4. **Follow the documentation template** with required sections:
-   - Installation instructions
-   - Interactive playgrounds
-   - Complete API reference
-   - Framework integration examples
-   - Accessibility guidelines
-   - Browser support information
+4. Update API route if needed in `pages/api/ds-components/[component].js`
+
+### Testing Component Integration
+
+The playground system automatically:
+- Loads components via the API route
+- Falls back to unpkg.com if local loading fails
+- Adds event listeners for component interactions
+- Provides interactive examples with source code
 
 ## 🚀 Deployment
 
-The documentation site can be deployed as a static site:
+### Build for Production
 
 ```bash
 npm run build
+npm start
 ```
 
-The built site will be in the `.next` directory and can be deployed to:
-- Vercel (recommended for Next.js)
-- Netlify
-- GitHub Pages
-- Any static hosting service
+### Static Export
+
+```bash
+npm run build
+npm run export
+```
 
 ## 🤝 Contributing
 
-When contributing to the documentation:
-
-1. **Follow the component template** for consistency
-2. **Test interactive playgrounds** to ensure they work
-3. **Verify responsive design** on mobile and desktop
-4. **Update navigation** when adding new pages
-5. **Use semantic HTML** and proper accessibility attributes
-6. **Test all Markdoc tags** render correctly
-
-## 📚 Learn More
-
-- **[Next.js Documentation](https://nextjs.org/docs)** - Learn about Next.js features
-- **[Markdoc Documentation](https://markdoc.dev/)** - Learn about Markdoc syntax
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Sample Design System](http://localhost:3000)** - View the live documentation
+1. Update component documentation as needed
+2. Test interactive examples work correctly
+3. Ensure accessibility guidelines are followed
+4. Update this README if architecture changes
 
 ## 📄 License
 
-This documentation is part of the Sample Design System project and follows the same MIT license.
+MIT License - feel free to use this documentation template for your own design systems.
+
+---
+
+Built with ❤️ using Next.js, Markdoc, and the Sample Design System.
