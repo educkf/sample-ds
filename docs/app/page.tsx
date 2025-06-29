@@ -1,165 +1,256 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        
-        <div className="text-center sm:text-left">
-          <h1 className="text-3xl font-bold mb-4">🧠 Hello World MCP Server</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-            A simple Model Context Protocol (MCP) server with a &quot;Hello World&quot; tool built using Vercel&apos;s MCP adapter.
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <main className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            Sample Design System
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            A modern web component library built with Lit Framework that works everywhere
           </p>
-          <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg mb-6">
-            <h3 className="font-semibold mb-2">🛠️ Available Tools:</h3>
-            <ul className="list-disc list-inside text-sm space-y-1">
-              <li><code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded">hello_world</code> - Returns a friendly greeting</li>
-            </ul>
-          </div>
-          <div className="bg-green-50 dark:bg-green-900 p-4 rounded-lg mb-6">
-            <h3 className="font-semibold mb-2">🔌 MCP Endpoint:</h3>
-            <p className="text-sm font-mono break-all">
-              <code className="bg-black/[.05] dark:bg-white/[.06] px-2 py-1 rounded">
-                http://localhost:3000/mcp
-              </code>
-            </p>
-          </div>
         </div>
 
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>{" "}
-            or create new{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              .mdx
-            </code>{" "}
-            files.
-          </li>
-          <li className="mb-2 tracking-[-.01em]">
-            Check out our example MDX pages below.
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        {/* MDX Pages Section */}
-        <div className="w-full max-w-2xl">
-          <h2 className="text-xl font-semibold mb-4 text-center sm:text-left">
-            📄 Example MDX Pages
+        {/* Key Features */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            🌟 Key Features
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Link
-              href="/about"
-              className="group rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent p-4"
-            >
-              <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                About Page →
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ Dual Usage Patterns
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Learn about our mission and see MDX in action with markdown content and React components.
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li><strong>NPM Package</strong> - For modern bundlers with tree-shaking (~15KB)</li>
+                <li><strong>Script Tags</strong> - For direct HTML usage, self-contained (~21KB)</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ Framework Agnostic
+              </h3>
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li>Works with React, Vue, Angular, Svelte, and vanilla HTML</li>
+                <li>Native web components with standard APIs</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ Full TypeScript Support
+              </h3>
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li>Complete type definitions</li>
+                <li>Intelligent autocompletion</li>
+                <li>Type-safe property access</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ Comprehensive Theming
+              </h3>
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li>CSS custom properties for all styling</li>
+                <li>Global and per-component theming</li>
+                <li>Dark mode support</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ Accessibility First
+              </h3>
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li>WCAG 2.1 compliant</li>
+                <li>Keyboard navigation</li>
+                <li>Screen reader support</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                ✅ AI Integration Ready
+              </h3>
+              <ul className="text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+                <li><strong>Model Context Protocol (MCP) Server</strong> for LLM integration</li>
+                <li>AI assistants can access component information</li>
+                <li>Automatic code generation assistance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Start */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            🚀 Quick Start
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                NPM Installation
+              </h3>
+              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md mb-4">
+                <code className="text-sm text-gray-800 dark:text-gray-200">
+                  npm install sample-design-system-educkf
+                </code>
+              </div>
+              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md">
+                <code className="text-sm text-gray-800 dark:text-gray-200">
+                  {`// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-button';
+
+// Use in your HTML/templates
+// <sample-button variant="primary">Click me!</sample-button>`}
+                </code>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Script Tag Usage
+              </h3>
+              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md">
+                <code className="text-sm text-gray-800 dark:text-gray-200">
+                  {`<sample-button variant="primary">Click me!</sample-button>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>`}
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            📚 Documentation Structure
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link
+              href="/how-to-use"
+              className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                How to Use →
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Installation, usage patterns, and framework integration
               </p>
             </Link>
-            
+
             <Link
-              href="/docs"
-              className="group rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent p-4"
+              href="/components"
+              className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
-              <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                Documentation →
+              <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                Components →
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Comprehensive documentation with code examples, tables, and advanced markdown features.
+              <p className="text-gray-600 dark:text-gray-300">
+                Complete component library with examples
+              </p>
+            </Link>
+
+            <Link
+              href="/mcp-server"
+              className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                MCP Server →
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                AI/LLM integration via Model Context Protocol
               </p>
             </Link>
           </div>
         </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs/app/guides/mdx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            MDX Guide
-          </a>
+        {/* Available Components */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            🎯 Available Components
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { name: 'Button', href: '/components/button', desc: 'Interactive button with variants and sizes' },
+              { name: 'Card', href: '/components/card', desc: 'Flexible content container with multiple variants' },
+              { name: 'Alert', href: '/components/alert', desc: 'Contextual feedback messages with dismissible functionality' },
+              { name: 'Accordion', href: '/components/accordion', desc: 'Collapsible content sections for information organization' },
+              { name: 'Breadcrumb', href: '/components/breadcrumb', desc: 'Hierarchical navigation with customizable separators' },
+              { name: 'Modal', href: '/components/modal', desc: 'Dialog overlay with comprehensive accessibility features' }
+            ].map((component) => (
+              <Link
+                key={component.name}
+                href={component.href}
+                className="group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700"
+              >
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  {component.name} →
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  {component.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Browser Support */}
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            🌐 Browser Support
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Browser</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Version</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Native Support</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">With Polyfill</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-600 dark:text-gray-300">
+                <tr className="border-b border-gray-100 dark:border-gray-700">
+                  <td className="p-3">Chrome</td>
+                  <td className="p-3">61+</td>
+                  <td className="p-3">✅</td>
+                  <td className="p-3">✅</td>
+                </tr>
+                <tr className="border-b border-gray-100 dark:border-gray-700">
+                  <td className="p-3">Firefox</td>
+                  <td className="p-3">63+</td>
+                  <td className="p-3">✅</td>
+                  <td className="p-3">✅</td>
+                </tr>
+                <tr className="border-b border-gray-100 dark:border-gray-700">
+                  <td className="p-3">Safari</td>
+                  <td className="p-3">13+</td>
+                  <td className="p-3">✅</td>
+                  <td className="p-3">✅</td>
+                </tr>
+                <tr className="border-b border-gray-100 dark:border-gray-700">
+                  <td className="p-3">Edge</td>
+                  <td className="p-3">79+</td>
+                  <td className="p-3">✅</td>
+                  <td className="p-3">✅</td>
+                </tr>
+                <tr>
+                  <td className="p-3">IE 11</td>
+                  <td className="p-3">-</td>
+                  <td className="p-3">❌</td>
+                  <td className="p-3">✅</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

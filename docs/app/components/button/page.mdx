@@ -1,0 +1,238 @@
+# Button
+
+Interactive button component with multiple variants, sizes, and comprehensive theming options. Supports various use cases from primary actions to form submissions.
+
+## 📋 Example
+
+### Basic Button Usage
+```html
+<sample-button>Click me!</sample-button>
+<sample-button variant="secondary">Secondary</sample-button>
+<sample-button size="large" disabled>Disabled</sample-button>
+```
+
+## 📦 Installation
+
+### NPM Package (Bundled Projects)
+```bash
+npm install sample-design-system-educkf
+```
+
+```javascript
+// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-button';
+
+// Or import from main library
+import { SampleButton } from 'sample-design-system-educkf';
+```
+
+### Script Tag (Standalone)
+```html
+<!-- Individual component -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
+
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
+```
+
+## 🎨 Properties
+
+<div className="overflow-x-auto">
+  <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 mb-6">
+    <thead>
+      <tr className="bg-gray-50 dark:bg-gray-800">
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Property</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Type</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Default</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`variant`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'primary' | 'secondary' | 'outline' | 'ghost'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'primary'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Visual style variant</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`size`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'small' | 'medium' | 'large'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'medium'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Button size</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`disabled`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`false`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether button is disabled</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`type`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'button' | 'submit' | 'reset'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'button'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">HTML button type</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`loading`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`false`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Show loading state with spinner</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`icon`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`""`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Icon to display (icon name)</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`iconPosition`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'left' | 'right'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'left'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Position of the icon</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## 📚 Properties with Code Examples
+
+### `variant` Property
+```html
+<!-- Different button variants -->
+<sample-button variant="primary">Primary Button</sample-button>
+<sample-button variant="secondary">Secondary Button</sample-button>
+<sample-button variant="outline">Outline Button</sample-button>
+<sample-button variant="ghost">Ghost Button</sample-button>
+```
+
+### `size` Property
+```html
+<!-- Different button sizes -->
+<sample-button size="small">Small Button</sample-button>
+<sample-button size="medium">Medium Button</sample-button>
+<sample-button size="large">Large Button</sample-button>
+```
+
+### `disabled` Property
+```html
+<!-- Disabled buttons -->
+<sample-button disabled>Disabled Primary</sample-button>
+<sample-button variant="secondary" disabled>Disabled Secondary</sample-button>
+<sample-button variant="outline" disabled>Disabled Outline</sample-button>
+```
+
+### `type` Property
+```html
+<!-- Form buttons with different types -->
+<form>
+  <sample-button type="submit">Submit Form</sample-button>
+  <sample-button type="reset" variant="secondary">Reset Form</sample-button>
+  <sample-button type="button" variant="outline">Cancel</sample-button>
+</form>
+```
+
+### `loading` Property
+```html
+<!-- Loading state buttons -->
+<sample-button loading>Loading...</sample-button>
+<sample-button variant="secondary" loading>Processing</sample-button>
+<sample-button variant="outline" loading disabled>Submitting</sample-button>
+```
+
+### `icon` and `iconPosition` Properties
+```html
+<!-- Buttons with icons -->
+<sample-button icon="download">Download</sample-button>
+<sample-button icon="save" iconPosition="right">Save Changes</sample-button>
+<sample-button variant="outline" icon="edit">Edit</sample-button>
+<sample-button variant="ghost" icon="trash" size="small">Delete</sample-button>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
+```css
+sample-button {
+  --sample-button-font-size: 14px;
+  --sample-button-font-weight: 500;
+  --sample-button-line-height: 1.5;
+  --sample-button-border-radius: 6px;
+  --sample-button-border-width: 1px;
+  --sample-button-padding-x: 16px;
+  --sample-button-padding-y: 8px;
+  --sample-button-transition: all 0.2s ease;
+}
+
+/* Primary variant */
+sample-button[variant="primary"] {
+  --sample-button-bg: #3b82f6;
+  --sample-button-color: #ffffff;
+  --sample-button-border-color: #3b82f6;
+  --sample-button-bg-hover: #2563eb;
+  --sample-button-border-color-hover: #2563eb;
+}
+
+/* Secondary variant */
+sample-button[variant="secondary"] {
+  --sample-button-bg: #f3f4f6;
+  --sample-button-color: #374151;
+  --sample-button-border-color: #d1d5db;
+  --sample-button-bg-hover: #e5e7eb;
+  --sample-button-border-color-hover: #9ca3af;
+}
+
+/* Size variations */
+sample-button[size="small"] {
+  --sample-button-font-size: 12px;
+  --sample-button-padding-x: 12px;
+  --sample-button-padding-y: 6px;
+}
+
+sample-button[size="large"] {
+  --sample-button-font-size: 16px;
+  --sample-button-padding-x: 24px;
+  --sample-button-padding-y: 12px;
+}
+```
+
+### Custom Styling Example
+```html
+<style>
+.hero-button {
+  --sample-button-bg: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  --sample-button-color: white;
+  --sample-button-padding-x: 32px;
+  --sample-button-padding-y: 16px;
+  --sample-button-font-size: 18px;
+  --sample-button-border-radius: 25px;
+  --sample-button-border-width: 0;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+</style>
+
+<sample-button class="hero-button">Get Started</sample-button>
+```
+
+## ♿ Accessibility
+
+The button component includes comprehensive accessibility features:
+
+- **Semantic HTML**: Uses proper `<button>` element
+- **Keyboard Navigation**: 
+  - `Tab` to focus
+  - `Enter` and `Space` to activate
+  - Focus visible indicators
+- **ARIA Support**: 
+  - `aria-disabled` for disabled state
+  - `aria-pressed` for toggle buttons
+  - `aria-label` support for icon-only buttons
+- **Screen Reader Support**: 
+  - Loading state announcements
+  - State change notifications 

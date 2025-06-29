@@ -1,0 +1,245 @@
+# Modal
+
+Dialog overlay component with comprehensive accessibility features, smooth animations, and flexible content support. Perfect for confirmations, forms, and displaying additional content without navigation.
+
+## 📋 Example
+
+### Basic Modal Usage
+```html
+<sample-button onclick="document.getElementById('simple-modal').open = true">
+  Open Modal
+</sample-button>
+
+<sample-modal id="simple-modal">
+  <h2>Welcome!</h2>
+  <p>This is a simple modal dialog.</p>
+  <sample-button onclick="document.getElementById('simple-modal').open = false">
+    Close
+  </sample-button>
+</sample-modal>
+
+<!-- Modal with slots -->
+<sample-modal id="structured-modal">
+  <div slot="header">
+    <h3>Modal Title</h3>
+  </div>
+  <p>Modal content goes in the body.</p>
+  <div slot="footer">
+    <sample-button>Cancel</sample-button>
+    <sample-button>Confirm</sample-button>
+  </div>
+</sample-modal>
+```
+
+## 📦 Installation
+
+### NPM Package (Bundled Projects)
+```bash
+npm install sample-design-system-educkf
+```
+
+```javascript
+// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-modal';
+
+// Or import from main library
+import { SampleModal } from 'sample-design-system-educkf';
+```
+
+### Script Tag (Standalone)
+```html
+<!-- Individual component -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-modal.js"></script>
+
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
+```
+
+## 🎨 Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `open` | boolean | `false` | Whether the modal is open |
+| `size` | `'small' \| 'medium' \| 'large' \| 'fullscreen'` | `'medium'` | Modal size variant |
+| `closable` | boolean | `true` | Whether modal can be closed by user |
+| `closeOnOverlay` | boolean | `true` | Close modal when clicking overlay |
+| `closeOnEscape` | boolean | `true` | Close modal when pressing Escape |
+| `autoFocus` | boolean | `true` | Auto-focus first interactive element |
+| `persistent` | boolean | `false` | Prevent closing until action is taken |
+| `animation` | `'fade' \| 'slide' \| 'scale'` | `'fade'` | Animation type |
+
+## 📚 Properties with Code Examples
+
+### `open` Property
+```html
+<!-- Programmatically control modal -->
+<sample-button onclick="toggleModal()">Toggle Modal</sample-button>
+
+<sample-modal id="controlled-modal">
+  <h3>Controlled Modal</h3>
+  <p>This modal is controlled programmatically.</p>
+</sample-modal>
+
+<script>
+function toggleModal() {
+  const modal = document.getElementById('controlled-modal');
+  modal.open = !modal.open;
+}
+</script>
+```
+
+### `size` Property
+```html
+<!-- Different modal sizes -->
+<sample-modal size="small">
+  <h3>Small Modal</h3>
+  <p>Compact modal for simple messages.</p>
+</sample-modal>
+
+<sample-modal size="large">
+  <h3>Large Modal</h3>
+  <p>Spacious modal for complex content.</p>
+</sample-modal>
+
+<sample-modal size="fullscreen">
+  <h3>Fullscreen Modal</h3>
+  <p>Takes up the entire viewport.</p>
+</sample-modal>
+```
+
+### `closable` Property
+```html
+<!-- Non-closable modal -->
+<sample-modal closable="false" id="persistent-modal">
+  <h3>Important Notice</h3>
+  <p>This modal cannot be closed with the X button.</p>
+  <sample-button onclick="document.getElementById('persistent-modal').open = false">
+    Acknowledge
+  </sample-button>
+</sample-modal>
+```
+
+### `animation` Property
+```html
+<!-- Different animation types -->
+<sample-modal animation="slide">
+  <h3>Slide Animation</h3>
+  <p>This modal slides in from the top.</p>
+</sample-modal>
+
+<sample-modal animation="scale">
+  <h3>Scale Animation</h3>
+  <p>This modal scales in from the center.</p>
+</sample-modal>
+```
+
+### Modal with Slots
+```html
+<!-- Structured modal with header and footer -->
+<sample-modal id="form-modal">
+  <div slot="header">
+    <h3>User Registration</h3>
+    <p>Please fill out the form below</p>
+  </div>
+  
+  <form>
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+    </div>
+  </form>
+  
+  <div slot="footer">
+    <sample-button onclick="document.getElementById('form-modal').open = false">
+      Cancel
+    </sample-button>
+    <sample-button type="submit">
+      Register
+    </sample-button>
+  </div>
+</sample-modal>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
+```css
+sample-modal {
+  /* Overlay styling */
+  --sample-modal-overlay-bg: rgba(0, 0, 0, 0.5);
+  --sample-modal-overlay-backdrop-filter: blur(4px);
+  
+  /* Modal container */
+  --sample-modal-bg: #ffffff;
+  --sample-modal-border-radius: 12px;
+  --sample-modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --sample-modal-border: 1px solid #e5e7eb;
+  --sample-modal-padding: 24px;
+  --sample-modal-max-width: 500px;
+  --sample-modal-max-height: 90vh;
+  
+  /* Header styling */
+  --sample-modal-header-padding-bottom: 16px;
+  --sample-modal-header-border-bottom: 1px solid #e5e7eb;
+  
+  /* Footer styling */
+  --sample-modal-footer-padding-top: 16px;
+  --sample-modal-footer-border-top: 1px solid #e5e7eb;
+  --sample-modal-footer-gap: 12px;
+  
+  /* Close button */
+  --sample-modal-close-size: 32px;
+  --sample-modal-close-color: #6b7280;
+  --sample-modal-close-color-hover: #374151;
+  
+  /* Animations */
+  --sample-modal-animation-duration: 0.3s;
+  --sample-modal-animation-easing: ease-in-out;
+}
+```
+
+### Custom Styling Example
+```html
+<style>
+.premium-modal {
+  --sample-modal-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --sample-modal-color: white;
+  --sample-modal-border-radius: 16px;
+  --sample-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --sample-modal-header-border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  --sample-modal-footer-border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+</style>
+
+<sample-modal class="premium-modal">
+  <div slot="header">
+    <h3>Premium Modal</h3>
+  </div>
+  <p>This modal has a beautiful gradient background.</p>
+  <div slot="footer">
+    <sample-button>Close</sample-button>
+  </div>
+</sample-modal>
+```
+
+## ♿ Accessibility
+
+The modal component includes comprehensive accessibility features:
+
+- **ARIA Support**: Proper `aria-modal`, `aria-labelledby`, and `aria-describedby` attributes
+- **Keyboard Navigation**: 
+  - `Escape` to close modal
+  - `Tab` to navigate within modal
+  - Focus trapping within modal
+- **Screen Reader Support**: 
+  - Modal announcements
+  - Proper focus management
+  - Content descriptions
+- **Focus Management**: 
+  - Auto-focus on open
+  - Focus restoration on close
+  - Visible focus indicators 

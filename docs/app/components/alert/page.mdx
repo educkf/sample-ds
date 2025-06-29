@@ -1,0 +1,227 @@
+# Alert
+
+Contextual feedback messages for user actions and system notifications. Provides clear visual communication for information, success, warning, and error states.
+
+## 📋 Example
+
+### Basic Alert Usage
+```html
+<sample-alert type="info">
+  This is an informational alert message.
+</sample-alert>
+
+<sample-alert type="success">
+  Operation completed successfully!
+</sample-alert>
+
+<sample-alert type="warning">
+  Please review your settings before proceeding.
+</sample-alert>
+
+<sample-alert type="error">
+  An error occurred while processing your request.
+</sample-alert>
+```
+
+## 📦 Installation
+
+### NPM Package (Bundled Projects)
+```bash
+npm install sample-design-system-educkf
+```
+
+```javascript
+// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-alert';
+
+// Or import from main library
+import { SampleAlert } from 'sample-design-system-educkf';
+```
+
+### Script Tag (Standalone)
+```html
+<!-- Individual component -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-alert.js"></script>
+
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
+```
+
+## 🎨 Properties
+
+<div className="overflow-x-auto">
+  <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 mb-6">
+    <thead>
+      <tr className="bg-gray-50 dark:bg-gray-800">
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Property</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Type</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Default</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`type`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'info' | 'success' | 'warning' | 'error'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'info'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Alert type determining color and icon</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`dismissible`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`false`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether the alert can be dismissed</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`title`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`""`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Optional alert title</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`icon`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`true`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether to show the type icon</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`size`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'small' | 'medium' | 'large'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`'medium'`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Alert size variant</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## 📚 Properties with Code Examples
+
+### `type` Property
+```html
+<!-- Different alert types -->
+<sample-alert type="info">
+  Information: This is helpful information for the user.
+</sample-alert>
+
+<sample-alert type="success">
+  Success: Your action was completed successfully.
+</sample-alert>
+
+<sample-alert type="warning">
+  Warning: Please review this before proceeding.
+</sample-alert>
+
+<sample-alert type="error">
+  Error: Something went wrong with your request.
+</sample-alert>
+```
+
+### `dismissible` Property
+```html
+<!-- Dismissible alerts -->
+<sample-alert type="info" dismissible>
+  This alert can be closed by clicking the × button.
+</sample-alert>
+
+<sample-alert type="warning" dismissible title="Important Notice">
+  This warning can be dismissed after reading.
+</sample-alert>
+```
+
+### `title` Property
+```html
+<!-- Alerts with titles -->
+<sample-alert type="success" title="Success!">
+  Your changes have been saved successfully.
+</sample-alert>
+
+<sample-alert type="error" title="Upload Failed">
+  The file could not be uploaded. Please try again.
+</sample-alert>
+```
+
+### `icon` Property
+```html
+<!-- Alert without icon -->
+<sample-alert type="info" icon="false">
+  This alert displays without an icon.
+</sample-alert>
+
+<!-- Alert with icon (default) -->
+<sample-alert type="success">
+  This alert shows the success icon.
+</sample-alert>
+```
+
+### `size` Property
+```html
+<!-- Different alert sizes -->
+<sample-alert type="info" size="small">
+  Small alert for compact spaces.
+</sample-alert>
+
+<sample-alert type="info" size="medium">
+  Medium alert (default size).
+</sample-alert>
+
+<sample-alert type="info" size="large">
+  Large alert for important messages.
+</sample-alert>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
+```css
+sample-alert {
+  --sample-alert-border-radius: 8px;
+  --sample-alert-padding: 16px;
+  --sample-alert-font-size: 14px;
+  --sample-alert-line-height: 1.5;
+  --sample-alert-border-width: 1px;
+  --sample-alert-icon-size: 20px;
+}
+
+/* Type-specific colors */
+sample-alert[type="info"] {
+  --sample-alert-bg: #e3f2fd;
+  --sample-alert-color: #1976d2;
+  --sample-alert-border-color: #bbdefb;
+}
+
+sample-alert[type="success"] {
+  --sample-alert-bg: #e8f5e8;
+  --sample-alert-color: #2e7d32;
+  --sample-alert-border-color: #c8e6c9;
+}
+
+sample-alert[type="warning"] {
+  --sample-alert-bg: #fff3cd;
+  --sample-alert-color: #f57c00;
+  --sample-alert-border-color: #ffcc02;
+}
+
+sample-alert[type="error"] {
+  --sample-alert-bg: #f8d7da;
+  --sample-alert-color: #d32f2f;
+  --sample-alert-border-color: #f5c6cb;
+}
+```
+
+### Custom Styling Example
+```html
+<style>
+.premium-alert {
+  --sample-alert-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --sample-alert-color: white;
+  --sample-alert-border-radius: 12px;
+  --sample-alert-padding: 20px;
+  --sample-alert-border-width: 0;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+</style>
+
+<sample-alert type="info" class="premium-alert" title="Premium Feature">
+  This alert uses custom gradient styling for a premium look.
+</sample-alert>
+``` 

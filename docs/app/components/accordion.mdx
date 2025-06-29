@@ -1,0 +1,164 @@
+# Accordion
+
+A collapsible content container that allows users to toggle the visibility of sections. Perfect for organizing content in an interactive and space-efficient way.
+
+## 📋 Example
+
+### Basic Accordion
+```html
+<sample-accordion>
+  <sample-accordion-item title="Section 1">
+    Content for section 1
+  </sample-accordion-item>
+  <sample-accordion-item title="Section 2" open>
+    Content for section 2 (initially open)
+  </sample-accordion-item>
+  <sample-accordion-item title="Section 3">
+    Content for section 3
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+## 📦 Installation
+
+### NPM Package (Bundled Projects)
+```bash
+npm install sample-design-system-educkf
+```
+
+```javascript
+// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-accordion';
+
+// Or import from main library
+import { SampleAccordion } from 'sample-design-system-educkf';
+```
+
+### Script Tag (Standalone)
+```html
+<!-- Individual component -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-accordion.js"></script>
+
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
+```
+
+## 🎨 Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `allowMultiple` | boolean | `false` | Allow multiple sections to be open simultaneously |
+| `disabled` | boolean | `false` | Disable the entire accordion |
+
+### Accordion Item Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `title` | string | `""` | The header text for the accordion section |
+| `open` | boolean | `false` | Whether the section is initially open |
+| `disabled` | boolean | `false` | Whether the section is disabled |
+| `icon` | string | `"chevron"` | Icon type for the toggle indicator |
+
+## 📚 Properties with Code Examples
+
+### `allowMultiple` Property
+```html
+<!-- Allow multiple sections to be open at once -->
+<sample-accordion allowMultiple>
+  <sample-accordion-item title="First Section" open>
+    This section can stay open...
+  </sample-accordion-item>
+  <sample-accordion-item title="Second Section" open>
+    ...while this one is also open!
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+### `disabled` Property
+```html
+<!-- Disabled accordion -->
+<sample-accordion disabled>
+  <sample-accordion-item title="Disabled Section">
+    This accordion is completely disabled
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+### `open` Property
+```html
+<!-- Item open by default -->
+<sample-accordion>
+  <sample-accordion-item title="Initially Open" open>
+    This section starts expanded
+  </sample-accordion-item>
+  <sample-accordion-item title="Initially Closed">
+    This section starts collapsed
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+### `icon` Property
+```html
+<!-- Different icon styles -->
+<sample-accordion>
+  <sample-accordion-item title="Chevron Icon" icon="chevron">
+    Uses chevron icon (default)
+  </sample-accordion-item>
+  <sample-accordion-item title="Plus Icon" icon="plus">
+    Uses plus/minus icon
+  </sample-accordion-item>
+  <sample-accordion-item title="Arrow Icon" icon="arrow">
+    Uses arrow icon
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
+```css
+sample-accordion {
+  --sample-accordion-border: 1px solid #e2e8f0;
+  --sample-accordion-border-radius: 8px;
+  --sample-accordion-background: #ffffff;
+}
+
+sample-accordion-item {
+  --sample-accordion-item-header-bg: #f8fafc;
+  --sample-accordion-item-header-bg-hover: #f1f5f9;
+  --sample-accordion-item-header-color: #1e293b;
+  --sample-accordion-item-content-bg: #ffffff;
+  --sample-accordion-item-content-padding: 16px;
+  --sample-accordion-item-border: 1px solid #e2e8f0;
+}
+```
+
+### Custom Styling Example
+```html
+<style>
+.custom-accordion {
+  --sample-accordion-border-radius: 12px;
+  --sample-accordion-item-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --sample-accordion-item-header-color: white;
+}
+</style>
+
+<sample-accordion class="custom-accordion">
+  <sample-accordion-item title="Custom Styled Section">
+    This accordion has custom gradient headers
+  </sample-accordion-item>
+</sample-accordion>
+```
+
+## ♿ Accessibility
+
+The accordion component includes comprehensive accessibility features:
+
+- **ARIA Support**: Proper `aria-expanded`, `aria-controls`, and `aria-labelledby` attributes
+- **Keyboard Navigation**: 
+  - `Enter` or `Space` to toggle sections
+  - `Tab` to navigate between sections
+  - `Arrow Keys` for section navigation when focused
+- **Screen Reader Support**: Announces state changes and section content
+- **Focus Management**: Maintains logical tab order and visible focus indicators
+- **Semantic HTML**: Uses proper heading hierarchy and button elements 

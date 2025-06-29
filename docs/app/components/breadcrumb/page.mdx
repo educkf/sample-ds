@@ -1,0 +1,289 @@
+# Breadcrumb
+
+Hierarchical navigation component that shows users their location within a website or application. Provides clear navigation paths with customizable separators, icons, and accessibility features.
+
+## 📋 Example
+
+### Basic Breadcrumb Usage
+```html
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/products">Products</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
+</sample-breadcrumb>
+
+<!-- With icons -->
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/" icon="home">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/category" icon="package">Category</sample-breadcrumb-item>
+  <sample-breadcrumb-item icon="tag">Current Item</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+## 📦 Installation
+
+### NPM Package (Bundled Projects)
+```bash
+npm install sample-design-system-educkf
+```
+
+```javascript
+// Import individual component (recommended)
+import 'sample-design-system-educkf/components/sample-breadcrumb';
+
+// Or import from main library
+import { SampleBreadcrumb } from 'sample-design-system-educkf';
+```
+
+### Script Tag (Standalone)
+```html
+<!-- Individual component -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-breadcrumb.js"></script>
+
+<!-- Or complete library -->
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
+```
+
+## 🎨 Properties
+
+### Breadcrumb Properties
+<div className="overflow-x-auto">
+  <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 mb-6">
+    <thead>
+      <tr className="bg-gray-50 dark:bg-gray-800">
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Property</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Type</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Default</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`separator`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`"/"`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Separator between breadcrumb items</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`maxItems`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">number</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`0`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Maximum items to show (0 = no limit)</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`collapseOnMobile`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`true`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether to collapse on mobile devices</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`showRoot`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`true`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether to always show the root item</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Breadcrumb Item Properties
+<div className="overflow-x-auto">
+  <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 mb-6">
+    <thead>
+      <tr className="bg-gray-50 dark:bg-gray-800">
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Property</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Type</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Default</th>
+        <th className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`href`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`""`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">URL for the breadcrumb link</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`icon`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`""`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Icon name to display</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`disabled`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`false`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether the item is disabled</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`current`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">boolean</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`false`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Whether this is the current page</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`target`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">string</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-mono text-sm">`""`</td>
+        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2">Link target attribute</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## 📚 Properties with Code Examples
+
+### `separator` Property
+```html
+<!-- Different separators -->
+<sample-breadcrumb separator="/">
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/docs">Docs</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Components</sample-breadcrumb-item>
+</sample-breadcrumb>
+
+<sample-breadcrumb separator="→">
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/docs">Documentation</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Components</sample-breadcrumb-item>
+</sample-breadcrumb>
+
+<sample-breadcrumb separator="•">
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/blog">Blog</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Article Title</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+### `maxItems` Property
+```html
+<!-- Limit displayed items -->
+<sample-breadcrumb maxItems="3">
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/level1">Level 1</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/level2">Level 2</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/level3">Level 3</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/level4">Level 4</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+### `icon` Property
+```html
+<!-- Breadcrumb items with icons -->
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/" icon="home">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/electronics" icon="cpu">Electronics</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/laptops" icon="laptop">Laptops</sample-breadcrumb-item>
+  <sample-breadcrumb-item icon="tag">Gaming Laptops</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+### `current` Property
+```html
+<!-- Mark current page -->
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/products">Products</sample-breadcrumb-item>
+  <sample-breadcrumb-item current>Current Page</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+### `disabled` Property
+```html
+<!-- Disabled breadcrumb items -->
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item disabled>Restricted Area</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+### `target` Property
+```html
+<!-- External links -->
+<sample-breadcrumb>
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="https://external-site.com" target="_blank">External Site</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+## 🎨 Customization
+
+### CSS Custom Properties
+```css
+sample-breadcrumb {
+  /* Container styling */
+  --sample-breadcrumb-padding: 12px 0;
+  --sample-breadcrumb-font-size: 14px;
+  --sample-breadcrumb-line-height: 1.5;
+  --sample-breadcrumb-gap: 8px;
+  --sample-breadcrumb-background: transparent;
+  --sample-breadcrumb-border-radius: 0;
+  
+  /* Separator styling */
+  --sample-breadcrumb-separator-color: #64748b;
+  --sample-breadcrumb-separator-margin: 0 8px;
+  --sample-breadcrumb-separator-font-size: 14px;
+  --sample-breadcrumb-separator-opacity: 0.7;
+}
+
+sample-breadcrumb-item {
+  /* Link styling */
+  --sample-breadcrumb-item-color: #3b82f6;
+  --sample-breadcrumb-item-color-hover: #1d4ed8;
+  --sample-breadcrumb-item-color-current: #1e293b;
+  --sample-breadcrumb-item-color-disabled: #9ca3af;
+  
+  /* Text decoration */
+  --sample-breadcrumb-item-text-decoration: none;
+  --sample-breadcrumb-item-text-decoration-hover: underline;
+  --sample-breadcrumb-item-font-weight: 400;
+  --sample-breadcrumb-item-font-weight-current: 600;
+  
+  /* Icon styling */
+  --sample-breadcrumb-item-icon-size: 16px;
+  --sample-breadcrumb-item-icon-margin: 0 4px 0 0;
+  --sample-breadcrumb-item-icon-color: currentColor;
+  
+  /* Interactive states */
+  --sample-breadcrumb-item-padding: 4px 8px;
+  --sample-breadcrumb-item-border-radius: 4px;
+  --sample-breadcrumb-item-background-hover: rgba(59, 130, 246, 0.1);
+}
+```
+
+### Custom Styling Example
+```html
+<style>
+.custom-breadcrumb {
+  --sample-breadcrumb-separator-color: #f59e0b;
+  --sample-breadcrumb-item-color: #7c3aed;
+  --sample-breadcrumb-item-color-hover: #5b21b6;
+  --sample-breadcrumb-item-background-hover: rgba(124, 58, 237, 0.1);
+}
+</style>
+
+<sample-breadcrumb class="custom-breadcrumb">
+  <sample-breadcrumb-item href="/">Home</sample-breadcrumb-item>
+  <sample-breadcrumb-item href="/docs">Docs</sample-breadcrumb-item>
+  <sample-breadcrumb-item>Custom Breadcrumb</sample-breadcrumb-item>
+</sample-breadcrumb>
+```
+
+## ♿ Accessibility
+
+The breadcrumb component includes comprehensive accessibility features:
+
+- **ARIA Support**: Proper `aria-label`, `aria-current`, and navigation landmarks
+- **Keyboard Navigation**: 
+  - `Tab` to navigate between links
+  - `Enter` to activate links
+  - Focus visible indicators
+- **Screen Reader Support**: 
+  - Navigation landmark identification
+  - Current page announcements
+  - Proper link descriptions
+- **Semantic HTML**: Uses proper `<nav>` and `<ol>` structure for hierarchical navigation 

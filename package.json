@@ -31,7 +31,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run dev --prefix docs",
+    "vite": "vite",
     "build": "npm run clean && npm run build:types && npm run build:main && npm run build:standalone && npm run build:components",
     "build:main": "vite build",
     "build:standalone": "vite build --config vite.standalone.config.ts",
