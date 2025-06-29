@@ -1,0 +1,78 @@
+# Cursor Rules - Sample Design System Documentation
+
+## Project Overview
+This is a Next.js documentation site for the `sample-design-system-educkf` NPM package, featuring interactive component playgrounds and comprehensive API documentation using Markdoc.
+
+## Pre-Deployment Validation Steps
+
+### 1. Build Validation
+**CRITICAL**: Always run the build process before deploying
+```bash
+npm run build
+```
+Expected output: ✓ Compiled successfully with no errors
+
+### 2. Code Quality Checks
+- ESLint must pass without errors
+- No binary files in API routes
+- All markdown files must have valid Markdoc syntax
+
+### 3. Component Integration Validation
+- Verify `sample-design-system-educkf` package is installed
+- Test component playground functionality
+- Ensure API routes return proper responses:
+  ```bash
+  # Test component API
+  curl http://localhost:3000/api/ds-components/sample-button
+  ```
+
+### 4. File Structure Requirements
+- Keep existing pages router structure (not app router)
+- Maintain Markdoc configuration in `markdoc/` directory
+- Ensure all component documentation files exist in `pages/components/`
+
+### 5. Clean Build Environment
+- Remove test files from `pages/api/` that aren't needed
+- Delete temporary files or scripts not used in production
+- Ensure no binary files are committed
+
+## Key Dependencies
+```json
+{
+  "sample-design-system-educkf": "^1.1.0",
+  "@markdoc/markdoc": "^0.4.0",
+  "next": "15.3.4",
+  "react": "^18.2.0"
+}
+```
+
+## API Routes Structure
+- `/api/ds-components/[component].js` - Serves components from node_modules
+- `/api/mcp/[transport].js` - Model Context Protocol server (keep)
+- `/api/playground/[component].js` - Component playground examples
+
+## Common Issues and Solutions
+
+### Build Failures
+- **Binary file errors**: Remove or fix files causing parsing issues
+- **ESLint errors**: Fix linting issues or disable specific rules if necessary
+- **Markdoc syntax**: Validate all .md files have proper tag syntax
+
+### Component Loading Issues
+- Verify NPM package is correctly installed
+- Check API routes return 200 status codes
+- Ensure component files exist in node_modules
+
+### Development vs Production
+- Components load from local API in development
+- Fallback to unpkg.com CDN if local loading fails
+- Ensure both paths work for component examples
+
+## Deployment Checklist
+- [ ] `npm run build` passes without errors
+- [ ] All component playgrounds load correctly
+- [ ] API routes respond with proper status codes
+- [ ] No test or temporary files in production build
+- [ ] ESLint validation passes
+- [ ] Component documentation renders properly
+- [ ] Interactive examples work in playground 
