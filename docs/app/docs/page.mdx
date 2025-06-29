@@ -1,0 +1,126 @@
+export const metadata = {
+  title: 'Documentation',
+  description: 'Complete guide to using our application',
+}
+
+# Documentation
+
+This is our comprehensive documentation written in MDX. You can include all standard Markdown features plus React components.
+
+## Getting Started
+
+Follow these steps to get up and running:
+
+### Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js 18+ installed
+- A code editor (VS Code recommended)
+- Basic knowledge of React and Next.js
+
+### Installation
+
+```bash
+npm install
+npm run dev
+```
+
+## Features
+
+Our application includes several powerful features:
+
+### Core Features
+
+- **🚀 Fast Performance** - Built with Next.js 15
+- **📱 Responsive Design** - Works on all devices  
+- **🎨 Modern UI** - Beautiful and intuitive interface
+- **🔒 Secure** - Industry-standard security practices
+
+### Advanced Features
+
+1. **MDX Support**
+   - Write content in Markdown
+   - Embed React components
+   - Custom styling and layouts
+
+2. **TypeScript Integration**
+   - Type-safe development
+   - Better developer experience
+   - Fewer runtime errors
+
+3. **Tailwind CSS**
+   - Utility-first CSS framework
+   - Responsive design system
+   - Dark mode support
+
+## Configuration
+
+Here's how to configure the application:
+
+```typescript
+// next.config.ts
+import createMDX from '@next/mdx';
+
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+};
+
+export default createMDX()(nextConfig);
+```
+
+## API Reference
+
+### Components
+
+Available components you can use:
+
+| Component | Description | Usage |
+|-----------|-------------|-------|
+| `Button` | Interactive button | `<Button>Click me</Button>` |
+| `Card` | Content container | `<Card>Content here</Card>` |
+| `Modal` | Overlay dialog | `<Modal>Modal content</Modal>` |
+
+### Hooks
+
+Custom hooks for common functionality:
+
+- `useLocalStorage` - Persist data locally
+- `useApi` - Fetch data from APIs
+- `useTheme` - Manage dark/light theme
+
+## Best Practices
+
+When working with MDX, keep these tips in mind:
+
+> **Pro Tip**: Always test your MDX content in both development and production environments.
+
+- Use semantic HTML elements
+- Optimize images and media
+- Keep components reusable
+- Write accessible content
+
+## Troubleshooting
+
+Common issues and solutions:
+
+### Build Errors
+
+If you encounter build errors:
+
+1. Check your MDX syntax
+2. Verify import statements
+3. Ensure all dependencies are installed
+
+### Performance Issues
+
+To improve performance:
+
+- Optimize images
+- Use dynamic imports
+- Implement code splitting
+- Enable caching
+
+---
+
+Need more help? Check our [GitHub repository](https://github.com) or [contact support](mailto:support@example.com). 

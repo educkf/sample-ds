@@ -1,183 +1,145 @@
-# Sample Design System Documentation
+# Next.js with MDX
 
-A comprehensive documentation site for the Sample Design System, built with Next.js, Markdoc, and Tailwind CSS. This documentation showcases interactive examples of web components from the `sample-design-system-educkf` NPM package.
+This is a [Next.js](https://nextjs.org) project configured to use MDX for creating rich, interactive content pages.
 
-## ✨ Features
+## What's Been Set Up
 
-- **Interactive Playground**: Live component examples with real NPM package components
-- **Comprehensive API Documentation**: Properties, events, CSS custom properties, and CSS parts
-- **Framework Integration Examples**: React, Vue.js, and Angular usage examples
-- **Accessibility Guidelines**: WCAG compliance information and best practices
-- **Custom Theming**: CSS custom properties for component customization
-- **Responsive Design**: Mobile-first documentation layout
+✅ **MDX Configuration**: Complete setup with `@next/mdx` for writing JSX in Markdown  
+✅ **Custom Components**: Global MDX component overrides with beautiful Tailwind styling  
+✅ **Typography Plugin**: Tailwind Typography for beautiful prose styling  
+✅ **Example Pages**: Sample MDX pages at `/about` and `/docs`  
+✅ **Shared Layout**: Consistent navigation and styling across MDX pages  
+✅ **TypeScript Support**: Full TypeScript integration with MDX
 
-## 🚀 Getting Started
+## Getting Started
 
-### Prerequisites
-
-- Node.js 18+ 
-- npm 8+
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## 📦 NPM Package Integration
-
-This documentation site integrates directly with the `sample-design-system-educkf` NPM package to provide:
-
-- **Live Component Examples**: Real components loaded from the package
-- **Interactive Playgrounds**: Components that respond to user interactions
-- **API Route Serving**: Components served via Next.js API routes for iframe embedding
-
-### Available Components
-
-- **Button**: Interactive buttons with variants and sizes
-- **Card**: Flexible content containers with slots
-- **Alert**: Contextual feedback messages
-- **Accordion**: Collapsible content sections
-- **Breadcrumb**: Navigation breadcrumbs
-- **Modal**: Overlay dialogs and modals
-
-## 🏗️ Architecture
-
-### Technology Stack
-
-- **Next.js 15**: React framework with Pages Router
-- **Markdoc**: Markdown-based documentation system
-- **Tailwind CSS 4**: Utility-first CSS framework
-- **React 19**: UI library for interactive components
-
-### Project Structure
-
-```
-docs/
-├── components/           # React components for documentation
-│   ├── ComponentPlayground.js  # Interactive component playground
-│   ├── Header.js        # Site header
-│   └── ComponentsSidebar.js    # Navigation sidebar
-├── markdoc/             # Markdoc configuration
-│   ├── config.js        # Main configuration
-│   ├── tags.js          # Custom Markdoc tags
-│   └── index.js         # Configuration export
-├── pages/               # Next.js pages
-│   ├── api/             # API routes
-│   │   └── ds-components/  # Component serving API
-│   ├── components/      # Component documentation
-│   └── _app.js          # App configuration
-├── public/              # Static assets
-└── globals.css          # Global styles
-```
-
-## 📝 Writing Documentation
-
-### Component Documentation Template
-
-Each component documentation follows this structure:
-
-```markdown
----
-title: Component Name
-description: Brief component description
----
-
-# Component Name
-
-Brief description and usage overview.
-
-## 📦 Installation
-## 🎯 Basic Usage
-## 🎮 Interactive Playground
-## 🎨 Properties
-## 🔥 Events
-## 🎨 CSS Custom Properties
-## 🖼️ Examples
-## 🔧 Framework Integration
-## ♿ Accessibility
-```
-
-### Custom Markdoc Tags
-
-#### Playground Tag
-```markdown
-{% playground component="button" title="Example Title" description="Description" code="<sample-button>Click me</sample-button>" height="150px" /%}
-```
-
-#### API Table Tag
-```markdown
-{% apiTable type="properties" data=[
-  { "Property": "variant", "Type": "string", "Default": "primary", "Description": "Button variant" }
-] /%}
-```
-
-#### Callout Tag
-```markdown
-{% callout type="tip" title="Pro Tip" %}
-This is a helpful tip for users.
-{% /callout %}
-```
-
-## 🔧 Development
-
-### Adding New Components
-
-1. Install/update the NPM package:
-   ```bash
-   npm update sample-design-system-educkf
-   ```
-
-2. Create component documentation in `pages/components/[component-name].md`
-
-3. Add component to sidebar navigation in `components/ComponentsSidebar.js`
-
-4. Update API route if needed in `pages/api/ds-components/[component].js`
-
-### Testing Component Integration
-
-The playground system automatically:
-- Loads components via the API route
-- Falls back to unpkg.com if local loading fails
-- Adds event listeners for component interactions
-- Provides interactive examples with source code
-
-## 🚀 Deployment
-
-### Build for Production
+First, run the development server:
 
 ```bash
-npm run build
-npm start
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Static Export
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-npm run build
-npm run export
+## Creating MDX Pages
+
+### 1. Create a new MDX file
+
+Create a new file in the `app` directory with the `.mdx` extension:
+
+```mdx
+// app/my-page/page.mdx
+export const metadata = {
+  title: 'My Page',
+  description: 'This is my awesome MDX page',
+}
+
+# Welcome to My Page
+
+This is **markdown** content with JSX support!
+
+## Features
+
+- Write in Markdown
+- Use React components
+- Add metadata
+- Custom styling
+
+```typescript
+// You can even add code blocks!
+function hello() {
+  return "Hello from MDX!";
+}
 ```
 
-## 🤝 Contributing
+Check out this [link](https://nextjs.org/docs/app/guides/mdx) for more info.
+```
 
-1. Update component documentation as needed
-2. Test interactive examples work correctly
-3. Ensure accessibility guidelines are followed
-4. Update this README if architecture changes
+### 2. Add a layout (optional)
 
-## 📄 License
+Create a `layout.tsx` file in the same directory:
 
-MIT License - feel free to use this documentation template for your own design systems.
+```tsx
+// app/my-page/layout.tsx
+import MdxLayout from '../mdx-layout';
 
----
+export default function MyPageLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <MdxLayout>{children}</MdxLayout>;
+}
+```
 
-Built with ❤️ using Next.js, Markdoc, and the Sample Design System.
+## File Structure
+
+```
+app/
+├── about/
+│   ├── page.mdx          # About page content
+│   └── layout.tsx        # About page layout
+├── docs/
+│   ├── page.mdx          # Documentation content
+│   └── layout.tsx        # Docs page layout
+├── mdx-layout.tsx        # Shared MDX layout component
+├── page.tsx              # Homepage
+└── layout.tsx            # Root layout
+
+mdx-components.tsx        # Global MDX component overrides
+next.config.ts           # Next.js config with MDX support
+tailwind.config.ts       # Tailwind config with typography
+```
+
+## MDX Features
+
+### Custom Components
+
+All MDX content uses custom styled components defined in `mdx-components.tsx`:
+
+- **Headings**: Styled with proper hierarchy and spacing
+- **Paragraphs**: Optimized line height and spacing
+- **Lists**: Clean bullet points and numbering
+- **Links**: Blue accent color with hover effects
+- **Code blocks**: Syntax highlighting with dark theme support
+- **Blockquotes**: Left border with italic styling
+
+### Metadata
+
+Export metadata from your MDX files for SEO:
+
+```mdx
+export const metadata = {
+  title: 'Page Title',
+  description: 'Page description for SEO',
+}
+```
+
+### Tailwind Typography
+
+All MDX content is wrapped with Tailwind's `prose` classes for beautiful typography:
+
+- Responsive text sizing
+- Optimal line spacing
+- Dark mode support
+- Consistent vertical rhythm
+
+## Learn More
+
+To learn more about the technologies used:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
+- [MDX Documentation](https://mdxjs.com/) - learn about MDX syntax and features
+- [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin) - learn about the typography plugin
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
