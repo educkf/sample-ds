@@ -1,8 +1,9 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 // Test component - simple div with styled content
 export function PlaygroundComponent(props) {
-  const { component, title, description } = props;
+  const { component, description } = props;
   
   return React.createElement('div', {
     style: {
@@ -120,6 +121,32 @@ export function ApiTable({ type, data }) {
   );
 }
 
+// Current URL component  
+export function CurrentUrl({ path = '/api/mcp/http' }) {
+  const router = useRouter();
+  const [currentUrl, setCurrentUrl] = React.useState('');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const protocol = window.location.protocol;
+      const host = window.location.host;
+      const fullUrl = `${protocol}//${host}${path}`;
+      setCurrentUrl(fullUrl);
+    }
+  }, [router, path]);
+
+  // Server-side fallback
+  if (!currentUrl) {
+    return React.createElement('code', {
+      className: "bg-gray-100 px-2 py-1 rounded text-sm font-mono"
+    }, `{your-domain}${path}`);
+  }
+
+  return React.createElement('code', {
+    className: "bg-gray-100 px-2 py-1 rounded text-sm font-mono text-blue-600"
+  }, currentUrl);
+}
+
 // Callout component
 export function Callout({ children, type = 'note', title }) {
   const styles = {
@@ -215,6 +242,18 @@ export const callout = {
     title: {
       type: String,
       description: 'Callout title'
+    }
+  }
+};
+
+export const currentUrl = {
+  render: CurrentUrl,
+  description: 'Display the current URL dynamically',
+  attributes: {
+    path: {
+      type: String,
+      description: 'Path to append to the current URL',
+      default: '/api/mcp/http'
     }
   }
 }; 

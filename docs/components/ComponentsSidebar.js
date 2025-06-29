@@ -70,6 +70,13 @@ const ComponentsSidebar = () => {
               How to Use
             </Link>
             <Link 
+              href="/mcp-server" 
+              className="flex items-center text-sm text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg transition-colors hover:bg-gray-50"
+            >
+              <span className="mr-3">🤖</span>
+              MCP Server
+            </Link>
+            <Link 
               href="/" 
               className="flex items-center text-sm text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg transition-colors hover:bg-gray-50"
             >

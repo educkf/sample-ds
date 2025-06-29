@@ -1,0 +1,280 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Model Context Protocol (MCP) Server Integration
+
+## 🤖 MCP Server Overview
+
+The Sample Design System includes a **Model Context Protocol (MCP) server** that provides LLMs with comprehensive information about components, implementation guides, and system architecture.
+
+### 🌐 Server Endpoint
+- **HTTP Transport**: `/api/mcp/http`
+- **Protocol Version**: `2025-06-18` (Latest MCP specification)
+- **JSON-RPC**: `2.0` compliant
+- **Location**: `docs/pages/api/mcp/[transport].js`
+
+## 📊 MCP Server Capabilities
+
+### Available Tools
+
+#### 1. `list_components`
+Lists all available design system components with basic information.
+- **Parameters**: None
+- **Returns**: Component names, descriptions, features, and use cases
+
+#### 2. `get_component_info`
+Get detailed information about a specific component.
+- **Parameters**: `component` (string) - Component name
+- **Returns**: Complete documentation, usage examples, properties, CDN URLs
+
+#### 3. `get_implementation_guide`
+Get framework-specific implementation guides.
+- **Parameters**: `framework` (string) - Target framework
+- **Returns**: Step-by-step integration guides with code examples
+
+#### 4. `get_system_architecture`
+Get technical architecture and system information.
+- **Parameters**: None
+- **Returns**: Technical details, browser support, file structure
+
+#### 5. `search_components`
+Search components by feature, use case, or keyword.
+- **Parameters**: `query` (string) - Search term
+- **Returns**: Matching components with relevance details
+
+## 🔧 Component Data Structure
+
+### Required Component Entry
+When adding a new component, MUST update the `COMPONENTS` object in `docs/pages/api/mcp/[transport].js`:
+
+```javascript
+const COMPONENTS = {
+  '[component-name]': {
+    name: '[Component Display Name]',
+    description: '[Brief, LLM-friendly description explaining what the component does]',
+    usage: `<sample-[name] variant="primary">[Sample Content]</sample-[name]>`,
+    props: {
+      'variant': 'String - "primary" | "secondary" | "outline" - Visual style variant',
+      'size': 'String - "small" | "medium" | "large" - Component size',
+      'disabled': 'Boolean - Disables the component interaction',
+      'onClick': 'Function - Click event handler'
+    },
+    features: [
+      'Multiple visual variants',
+      'Configurable sizing options', 
+      'Accessibility support',
+      'Keyboard navigation',
+      'Custom theming via CSS properties'
+    ],
+    examples: [
+      'Form submission buttons',
+      'Call-to-action elements',
+      'Navigation actions',
+      'Interactive UI controls'
+    ]
+  }
+};
+```
+
+### Data Requirements
+
+#### Component Description
+- **Clear and Concise** - Explain component purpose in 1-2 sentences
+- **LLM-Friendly** - Use terminology that helps LLMs understand usage
+- **Functional Focus** - Describe what the component does, not just what it is
+
+#### Usage Examples
+- **Complete HTML** - Full working example that can be copy-pasted
+- **Common Variant** - Use the most typical configuration
+- **Self-Contained** - Should work without additional setup
+
+#### Properties Documentation
+- **Type Information** - Always include data types
+- **Possible Values** - List available options for enums
+- **Clear Descriptions** - Explain what each property controls
+- **Default Behavior** - Indicate default values when relevant
+
+#### Features List
+- **User-Facing Benefits** - Focus on what users get from the component
+- **Technical Capabilities** - Include important technical features
+- **Accessibility** - Always mention accessibility features
+- **Customization** - Highlight theming and customization options
+
+#### Example Use Cases
+- **Practical Applications** - Real-world usage scenarios
+- **Diverse Contexts** - Show variety of appropriate uses
+- **Pattern Recognition** - Help LLMs identify when to suggest this component
+
+## 🚀 Implementation Guide Data
+
+### Framework Integration
+The MCP server provides framework-specific implementation guides. Update `executeGetImplementationGuide()` function for new patterns:
+
+```javascript
+const frameworkGuides = {
+  'react': {
+    title: 'React Integration',
+    steps: [
+      'Install the package: npm install sample-design-system-educkf',
+      'Import components in your React application',
+      'Use components as JSX elements with proper event handling'
+    ],
+    example: `import 'sample-design-system-educkf/components/sample-button';
+
+function App() {
+  return (
+    <sample-button 
+      variant="primary"
+      onSample-button-click={(e) => console.log('Clicked:', e.detail)}
+    >
+      React Button
+    </sample-button>
+  );}`
+  }
+};
+```
+
+## 🔍 Search Functionality
+
+### Component Search Implementation
+The `search_components` tool enables LLMs to find relevant components by:
+
+#### Search Categories
+- **UI Patterns** - "navigation", "forms", "feedback", "layout"
+- **Interaction Types** - "click", "input", "display", "overlay"
+- **Use Cases** - "submit", "cancel", "show content", "navigation"
+- **Features** - "accessibility", "theming", "responsive"
+
+#### Search Logic
+```javascript
+function searchComponents(query) {
+  const results = [];
+  const searchTerm = query.toLowerCase();
+  
+  for (const [key, component] of Object.entries(COMPONENTS)) {
+    let relevance = 0;
+    
+    // Search in description
+    if (component.description.toLowerCase().includes(searchTerm)) {
+      relevance += 3;
+    }
+    
+    // Search in features
+    component.features.forEach(feature => {
+      if (feature.toLowerCase().includes(searchTerm)) {
+        relevance += 2;
+      }
+    });
+    
+    // Search in examples/use cases
+    component.examples.forEach(example => {
+      if (example.toLowerCase().includes(searchTerm)) {
+        relevance += 1;
+      }
+    });
+    
+    if (relevance > 0) {
+      results.push({ component: key, ...component, relevance });
+    }
+  }
+  
+  return results.sort((a, b) => b.relevance - a.relevance);
+}
+```
+
+## 🧪 Testing MCP Server
+
+### Test Script Usage
+Run comprehensive MCP server tests:
+
+```bash
+# Test MCP server functionality
+node docs/scripts/test-mcp-proper.mjs https://your-domain.com
+
+# Test locally during development
+node docs/scripts/test-mcp-proper.mjs http://localhost:3000
+```
+
+### Test Coverage
+The test script validates:
+- **Connection Lifecycle** - Initialize → Initialized → Ready
+- **Tool Listing** - All 5 tools available and properly described
+- **Tool Execution** - Each tool works with valid parameters
+- **Error Handling** - Proper JSON-RPC error responses
+- **Parameter Validation** - Invalid inputs handled gracefully
+
+### Required Test Results
+All tests MUST pass before shipping:
+- ✅ **MCP Connection** - Server initializes properly
+- ✅ **Tool Discovery** - All tools listed correctly
+- ✅ **Component Listing** - Returns all available components
+- ✅ **Component Details** - Detailed info for each component
+- ✅ **Framework Guides** - Implementation guides work
+- ✅ **Architecture Info** - System details accessible
+- ✅ **Component Search** - Search functionality works
+- ✅ **Error Handling** - Invalid requests handled properly
+
+## 📋 Development Workflow
+
+### When Adding New Components
+1. **Update Component Data** - Add to `COMPONENTS` object
+2. **Update Framework Guides** - Add framework-specific examples if needed
+3. **Test Search Terms** - Ensure component is discoverable
+4. **Validate MCP Response** - Run test script to verify
+5. **Update Documentation** - Ensure MCP server docs are current
+
+### When Modifying Existing Components
+1. **Update Properties** - Reflect API changes in MCP data
+2. **Update Usage Examples** - Keep examples current
+3. **Update Features List** - Add/remove features as appropriate
+4. **Update Use Cases** - Reflect new usage patterns
+5. **Test Backwards Compatibility** - Ensure existing LLM integrations work
+
+### Error Handling Requirements
+All MCP endpoints MUST handle:
+- **Invalid Component Names** - Return helpful error messages
+- **Missing Parameters** - Validate required parameters
+- **Malformed Requests** - Proper JSON-RPC error responses
+- **Server Errors** - Graceful error handling with logging
+
+## 🎯 LLM Integration Benefits
+
+### For AI Assistants
+The MCP server enables LLMs to:
+- **Discover Components** - Find appropriate components for user needs
+- **Generate Code** - Create accurate implementation examples
+- **Provide Integration Help** - Offer framework-specific guidance
+- **Understand Architecture** - Explain technical implementation details
+- **Search by Features** - Find components by capabilities or use cases
+
+### For Developers
+- **Consistent Information** - Single source of truth for component data
+- **Framework Agnostic** - Works with any LLM or AI assistant
+- **Real-Time Updates** - Always reflects current component state
+- **Comprehensive Coverage** - All component aspects documented
+- **Standardized Access** - Following MCP specification ensures compatibility
+
+## 🚨 Critical Requirements
+
+### Data Quality
+- **Accuracy** - All component information must be current and correct
+- **Completeness** - Include all properties, events, and capabilities
+- **Clarity** - Use clear, unambiguous language
+- **Consistency** - Follow consistent patterns across all components
+
+### Protocol Compliance
+- **MCP 2025-06-18** - Full compliance with latest specification
+- **JSON-RPC 2.0** - Proper message format and error handling
+- **Tool Metadata** - Complete tool descriptions and parameter schemas
+- **Lifecycle Management** - Proper initialization and state handling
+
+### Performance
+- **Fast Response** - Quick tool execution times
+- **Efficient Data** - Optimal payload sizes
+- **Caching** - Static data caching for performance
+- **Error Recovery** - Graceful handling of failures
+
+**Remember**: The MCP server is a critical integration point for AI assistants - it must be reliable, accurate, and always up-to-date with the component library!
+

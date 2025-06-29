@@ -66,88 +66,225 @@ Update `src/index.ts` with:
 export { Sample[Name] } from './components/sample-[name]/index.js';
 ```
 
-## 📚 MANDATORY: Documentation Requirements
+## 📚 MANDATORY: Next.js Documentation Requirements
 
-### 5. Component Documentation
-**MUST CREATE/UPDATE** `docs/components/[name].md` with:
+### 5. Next.js Markdoc Documentation
+**MUST CREATE/UPDATE** `docs/pages/components/[name].md` with:
 
-#### Required Sections:
-- **Installation** - NPM and script tag usage
-- **Basic Usage** - Simple examples
-- **Properties** - Complete API table with types/defaults
-- **Events** - Custom events with detail payload
-- **CSS Custom Properties** - All styling variables
-- **CSS Parts** - Shadow DOM styling access
-- **Examples** - Variants, sizes, states, form usage
-- **Custom Theming** - Global and per-instance examples
-- **Framework Integration** - React, Vue, Angular, Svelte
-- **Accessibility** - WCAG compliance details
-- **Browser Support** - Compatibility information
-- **TypeScript** - Type safety examples
-
-#### Documentation Template:
-```markdown
-# [Name] Component
-
-The `sample-[name]` component provides [description].
-
-## 📦 Installation
-[NPM and script tag examples]
-
-## 🎯 Basic Usage
-[Simple usage examples]
-
-## 🎨 Properties
-[Complete property table]
-
-## 🔥 Events
-[Event documentation with examples]
-
-## 🎨 CSS Custom Properties
-[All CSS variables with descriptions]
-
-## 🎨 CSS Parts
-[CSS parts for styling]
-
-## 🖼️ Examples
-[Comprehensive examples]
-
-## 🎨 Custom Theming
-[Theming examples]
-
-## 🔧 Framework Integration
-[React, Vue, Angular, Svelte examples]
-
-## ♿ Accessibility
-[WCAG compliance information]
-
-## 🌐 Browser Support
-[Compatibility details]
-
-## 📝 TypeScript
-[Type safety examples]
+#### Required Front Matter:
+```yaml
+---
+title: [Component Name]
+description: [Brief component description for SEO]
+---
 ```
 
-### 6. Next.js Markdoc Documentation
-**MUST CREATE/UPDATE** `docs/pages/components/[name].md` using the Markdoc template:
+#### Required Sections with Markdoc Tags:
 
-#### Required Next.js Markdoc Features:
-- **Interactive Playgrounds** - Live component examples with {% playground %} tags
-- **API Documentation Tables** - Properties, events, CSS variables, and parts using {% apiTable %}
-- **Framework Integration** - Code examples for React, Vue, Angular, Svelte
-- **Tabbed Content** - Installation and usage examples using {% tabs %}
-- **Enhanced Code Blocks** - Syntax highlighting with {% codeBlock %}
-- **Callouts** - Important notes and tips using {% callout %}
+##### Installation with Tabs:
+```markdown
+## 📦 Installation
 
-#### Update Navigation:
+{% tabs defaultTab="0" %}
+  {% tab title="NPM" icon="📦" %}
+  ```bash
+  npm install sample-design-system-educkf
+  ```
+  
+  ```javascript
+  import 'sample-design-system-educkf/components/sample-[name]';
+  ```
+  {% /tab %}
+  
+  {% tab title="Script Tag" icon="🎯" %}
+  ```html
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-[name].js"></script>
+  ```
+  {% /tab %}
+{% /tabs %}
+```
+
+##### Interactive Playground:
+```markdown
+## 🎯 Basic Usage
+
+{% playground 
+   component="[name]" 
+   title="Basic [Name] Example"
+   description="Interactive [name] component with event handling"
+   code="<sample-[name] variant=\"primary\">[Name] Content</sample-[name]>"
+   height="200px" 
+/%}
+```
+
+##### API Documentation Tables:
+```markdown
+## 🎨 Properties
+
+{% apiTable 
+   type="properties"
+   data=[
+     { property: "variant", type: "`'primary' | 'secondary'`", default: "`'primary'`", description: "Visual style variant" },
+     { property: "size", type: "`'small' | 'medium' | 'large'`", default: "`'medium'`", description: "Component size" },
+     { property: "disabled", type: "`boolean`", default: "`false`", description: "Disabled state" }
+   ]
+/%}
+
+## 🔥 Events
+
+{% apiTable 
+   type="events"
+   data=[
+     { event: "sample-[name]-click", detail: "`{ target: HTMLElement }`", description: "Fired when component is clicked" },
+     { event: "sample-[name]-change", detail: "`{ value: string }`", description: "Fired when component value changes" }
+   ]
+/%}
+
+## 🎨 CSS Custom Properties
+
+{% apiTable 
+   type="css"
+   data=[
+     { property: "--sample-[name]-bg", default: "`var(--sample-primary-color, #007bff)`", description: "Background color" },
+     { property: "--sample-[name]-color", default: "`var(--sample-text-color, white)`", description: "Text color" },
+     { property: "--sample-[name]-border", default: "`1px solid transparent`", description: "Border styling" }
+   ]
+/%}
+
+## 🎨 CSS Parts
+
+{% apiTable 
+   type="parts"
+   data=[
+     { part: "[name]", description: "Main component container" },
+     { part: "[name]-content", description: "Content area" }
+   ]
+/%}
+```
+
+##### Framework Integration Examples:
+```markdown
+## 🔧 Framework Integration
+
+{% tabs defaultTab="0" %}
+  {% tab title="React" icon="⚛️" %}
+  {% codeBlock language="jsx" title="React Example" %}
+  import 'sample-design-system-educkf/components/sample-[name]';
+  
+  function App() {
+    return (
+      <sample-[name] 
+        variant="primary"
+        onSample-[name]-click={(e) => console.log('Clicked:', e.detail)}
+      >
+        React [Name]
+      </sample-[name]>
+    );
+  }
+  {% /codeBlock %}
+  {% /tab %}
+  
+  {% tab title="Vue" icon="💚" %}
+  {% codeBlock language="vue" title="Vue Example" %}
+  <template>
+    <sample-[name] 
+      variant="primary" 
+      @sample-[name]-click="handleClick"
+    >
+      Vue [Name]
+    </sample-[name]>
+  </template>
+  
+  <script setup>
+  import 'sample-design-system-educkf/components/sample-[name]';
+  
+  const handleClick = (event) => {
+    console.log('Clicked:', event.detail);
+  };
+  </script>
+  {% /codeBlock %}
+  {% /tab %}
+{% /tabs %}
+```
+
+##### Advanced Examples:
+```markdown
+## 🖼️ Examples
+
+### All Variants
+{% playground 
+   component="[name]" 
+   title="All Variants"
+   code="<sample-[name] variant=\"primary\">Primary</sample-[name]>
+<sample-[name] variant=\"secondary\">Secondary</sample-[name]>
+<sample-[name] variant=\"outline\">Outline</sample-[name]>"
+   height="150px" 
+/%}
+
+### Custom Theming
+{% playground 
+   component="[name]" 
+   title="Custom Theming"
+   code="<sample-[name] class=\"custom-theme\">Custom Theme</sample-[name]>"
+   css="
+.custom-theme {
+  --sample-[name]-bg: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  --sample-[name]-color: white;
+  --sample-[name]-border-radius: 20px;
+}
+"
+   height="100px" 
+/%}
+```
+
+##### Important Notes with Callouts:
+```markdown
+## 💡 Best Practices
+
+{% callout type="tip" title="Performance Tip" %}
+Import individual components instead of the entire library for optimal bundle size.
+{% /callout %}
+
+{% callout type="warning" title="Framework Integration" %}
+When using with React, make sure to handle events using the `onEvent-name` pattern for proper event binding.
+{% /callout %}
+```
+
+### 6. Navigation Updates
 **MUST UPDATE** these files:
-- `docs/components/ComponentsSidebar.js` - Add component to navigation
+- `docs/components/ComponentsSidebar.js` - Add component to navigation:
+```javascript
+const components = [
+  // ... existing components
+  { name: '[Name]', href: '/components/[name]', icon: '🎯' },
+];
+```
+
 - `docs/pages/components/index.md` - Update component status table
-- Verify responsive design and mobile compatibility
+
+### 7. MCP Server Integration
+**MUST UPDATE** `docs/pages/api/mcp/[transport].js` - Add component data:
+```javascript
+const COMPONENTS = {
+  // ... existing components
+  '[name]': {
+    name: '[Component Name]',
+    description: '[Brief description for LLM usage]',
+    usage: `<sample-[name] variant="primary">[Name] Content</sample-[name]>`,
+    props: {
+      'variant': 'String - "primary" | "secondary" - Visual style variant',
+      'size': 'String - "small" | "medium" | "large" - Component size',
+      'disabled': 'Boolean - Disables the component'
+    },
+    features: ['Feature 1', 'Feature 2', 'Feature 3'],
+    examples: ['Use case 1', 'Use case 2', 'Use case 3']
+  }
+};
+```
 
 ## 🚀 MANDATORY: Demo Requirements
 
-### 7. Standalone Demo
+### 8. Standalone Demo
 **MUST CREATE/UPDATE** `demo/[name].html` with:
 
 #### Required Features:
@@ -160,34 +297,7 @@ The `sample-[name]` component provides [description].
 - Comprehensive styling showcase
 - Mobile-responsive design
 
-#### Demo Template Structure:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>[Name] Component Demo - Standalone</title>
-  <!-- Enhanced styling -->
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <div class="badge">Standalone Script Tag Demo</div>
-      <h1>🎯 [Name] Component</h1>
-      <!-- Info box about standalone usage -->
-    </div>
-    
-    <!-- Demo sections for all features -->
-    <!-- Theming examples -->
-    <!-- Interactive testing -->
-  </div>
-  
-  <script src="../dist/components/sample-[name].js"></script>
-  <script>/* Event handling and demos */</script>
-</body>
-</html>
-```
-
-### 8. Development Integration
+### 9. Development Integration
 **MUST UPDATE** `dev/index.html` with:
 
 #### Required Updates:
@@ -200,14 +310,14 @@ The `sample-[name]` component provides [description].
 
 ## 🎯 Key Requirements
 
-1. **Consistent API** - Component works identically in both usage patterns
+1. **Consistent API** - Component works identically in all usage patterns
 2. **CSS Custom Properties** - All styling configurable via CSS variables
 3. **Events** - Use CustomEvent for component communication
 4. **TypeScript** - Full type safety with proper JSDoc
 5. **Accessibility** - ARIA attributes and keyboard navigation
-6. **Documentation** - Complete API reference and examples
-7. **Demos** - Standalone and development demos
-8. **Testing** - Both bundled and standalone modes
+6. **Interactive Documentation** - Live playgrounds with real component instances
+7. **MCP Server Integration** - Component data accessible to LLMs
+8. **Framework Examples** - Working examples for React, Vue, Angular, Svelte
 
 ## ✅ Definition of Done
 
@@ -220,16 +330,22 @@ The `sample-[name]` component provides [description].
 - [ ] Events properly dispatched
 - [ ] Accessibility features implemented
 
-### Documentation Requirements:
-- [ ] **Next.js Markdoc documentation** created/updated in `docs/pages/components/[name].md`
-- [ ] **Interactive playgrounds** with live component examples
-- [ ] **API documentation tables** complete with properties, events, CSS variables, parts
-- [ ] **Framework integration examples** for React, Vue, Angular, Svelte
+### Next.js Documentation Requirements:
+- [ ] **Markdoc documentation** created/updated in `docs/pages/components/[name].md`
+- [ ] **Interactive playgrounds** with live component examples using `{% playground %}`
+- [ ] **API documentation tables** complete using `{% apiTable %}` for properties, events, CSS variables, parts
+- [ ] **Framework integration examples** for React, Vue, Angular, Svelte using `{% tabs %}`
+- [ ] **Installation instructions** with NPM and script tag examples
+- [ ] **Custom theming examples** with interactive playgrounds
+- [ ] **Best practices callouts** using `{% callout %}` tags
 - [ ] **Component navigation** updated in `docs/components/ComponentsSidebar.js`
 - [ ] **Components index** updated in `docs/pages/components/index.md`
-- [ ] **Accessibility guidelines** documented with callouts
-- [ ] **Theming examples** with interactive playgrounds
-- [ ] **Responsive design** verified on mobile and desktop
+
+### MCP Server Integration:
+- [ ] **Component data** added to MCP server API
+- [ ] **LLM-friendly descriptions** and usage examples
+- [ ] **Feature list** for component search functionality
+- [ ] **Use cases** documented for discovery
 
 ### Demo Requirements:
 - [ ] **Standalone demo** created/updated in `demo/[name].html`
@@ -242,17 +358,21 @@ The `sample-[name]` component provides [description].
 
 ### Build & Testing:
 - [ ] **Build passes** for all formats (ES modules, UMD, individual)
-- [ ] **Both servers work** (`npm run dev` and `npm run demo`)
+- [ ] **Documentation site builds** without errors (`npm run build` in docs/)
+- [ ] **Playground functionality** works in documentation
+- [ ] **MCP server** returns component information correctly
 - [ ] **No console errors** in either mode
 - [ ] **Bundle sizes** documented and reasonable
 
 ## 🚨 CRITICAL: Never Ship Without
 
-1. **Complete documentation** with examples
-2. **Working demos** in both modes
-3. **Updated component status** in main docs
-4. **Accessibility compliance** verified
+1. **Complete Next.js documentation** with interactive examples
+2. **Working playgrounds** in documentation site
+3. **MCP server integration** for LLM accessibility
+4. **Updated component navigation** in sidebar
 5. **Framework integration** examples tested
+6. **Accessibility compliance** verified
+7. **All demos functional** in both modes
 
-**Remember**: Documentation and demos are NOT optional - they are required deliverables for every component!
+**Remember**: Interactive documentation with live playgrounds and MCP server integration are NOT optional - they are required deliverables for every component!
 

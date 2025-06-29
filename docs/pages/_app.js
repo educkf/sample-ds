@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react'
 import { useRouter } from 'next/router';
 import Header from '../components/Header';
@@ -78,10 +79,40 @@ export default function App({ Component, pageProps }) {
 
         <footer className="border-t border-gray-100 bg-white mt-16">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
-            <div className="text-center text-gray-600">
-              <p className="font-medium text-gray-900">Sample Design System</p>
-              <p className="mt-2 text-sm">Built with Lit Framework • Documentation powered by Next.js & Markdoc</p>
-              <p className="mt-1 text-xs">Interactive components from NPM package: sample-design-system-educkf</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Brand */}
+              <div className="text-center md:text-left">
+                <p className="font-medium text-gray-900">Sample Design System</p>
+                <p className="mt-2 text-sm text-gray-600">Built with Lit Framework</p>
+                <p className="text-sm text-gray-600">Documentation powered by Next.js & Markdoc</p>
+                <p className="mt-1 text-xs text-gray-500">NPM: sample-design-system-educkf</p>
+              </div>
+              
+              {/* Documentation Links */}
+              <div className="text-center md:text-left">
+                <h4 className="font-medium text-gray-900 mb-3">Documentation</h4>
+                <div className="space-y-2 text-sm">
+                  <div><Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</Link></div>
+                  <div><Link href="/how-to-use" className="text-gray-600 hover:text-gray-900 transition-colors">How to Use</Link></div>
+                  <div><Link href="/components" className="text-gray-600 hover:text-gray-900 transition-colors">Components</Link></div>
+                  <div><Link href="/mcp-server" className="text-gray-600 hover:text-gray-900 transition-colors">MCP Server</Link></div>
+                </div>
+              </div>
+              
+              {/* Resources Links */}
+              <div className="text-center md:text-left">
+                <h4 className="font-medium text-gray-900 mb-3">Resources</h4>
+                <div className="space-y-2 text-sm">
+                  <div><a href="https://www.npmjs.com/package/sample-design-system-educkf" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">NPM Package</a></div>
+                  <div><a href="https://unpkg.com/sample-design-system-educkf@1.1.0/dist/components/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">CDN Access</a></div>
+                  <div><Link href="/api/mcp/http" className="text-gray-600 hover:text-gray-900 transition-colors">MCP API</Link></div>
+                  <div><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">About MCP</a></div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-8 pt-8 border-t border-gray-100 text-center text-xs text-gray-500">
+              <p>© 2024 Sample Design System. Available under MIT License.</p>
             </div>
           </div>
         </footer>

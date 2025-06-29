@@ -32,6 +32,11 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 - Keyboard navigation
 - Screen reader support
 
+### ✅ AI Integration Ready
+- **Model Context Protocol (MCP) Server** for LLM integration
+- AI assistants can access component information and implementation guides
+- Automatic code generation assistance for multiple frameworks
+
 ## 🚀 Quick Start
 
 ### NPM Installation
@@ -57,6 +62,7 @@ import 'sample-design-system-educkf/components/sample-button';
 
 - **[How to Use](/how-to-use)** - Installation, usage patterns, and framework integration
 - **[Components](/components)** - Complete component library with examples
+- **[MCP Server](/mcp-server)** - AI/LLM integration via Model Context Protocol
 
 ## 🎯 Available Components
 
@@ -66,6 +72,21 @@ import 'sample-design-system-educkf/components/sample-button';
 - **[Accordion](/components/accordion)** - Collapsible content sections for information organization
 - **[Breadcrumb](/components/breadcrumb)** - Hierarchical navigation with customizable separators
 - **[Modal](/components/modal)** - Dialog overlay with comprehensive accessibility features
+
+## 🤖 MCP Server Integration
+
+This documentation includes a **Model Context Protocol (MCP) server** that enables AI assistants and LLMs to access comprehensive design system information.
+
+### Available Tools
+- **Component Discovery** - List and search all available components
+- **Implementation Guides** - Framework-specific integration instructions
+- **Architecture Details** - Technical specifications and browser support
+- **Real-time Information** - Always up-to-date component documentation
+
+### Supported Frameworks
+React • Vue.js • Angular • Svelte • Vanilla JavaScript
+
+**→ [Learn more about MCP integration](/mcp-server)**
 
 ## 🌐 Browser Support
 

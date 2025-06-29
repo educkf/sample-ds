@@ -7,7 +7,7 @@ alwaysApply: false
 
 ## 🎯 System Overview
 
-The Sample Design System uses a **sophisticated Next.js documentation application** with Markdoc for comprehensive, interactive component documentation.
+The Sample Design System uses a **sophisticated Next.js documentation application** with Markdoc for comprehensive, interactive component documentation and includes an integrated MCP server for LLM accessibility.
 
 ### 🏗️ Architecture
 - **Framework**: Next.js 15.3.4 with React 19
@@ -16,6 +16,8 @@ The Sample Design System uses a **sophisticated Next.js documentation applicatio
 - **Syntax Highlighting**: Prism.js 1.29.0
 - **Theme Support**: next-themes 0.4.4 for dark mode
 - **Build Target**: Static site generation
+- **MCP Server**: Model Context Protocol server for LLM integration
+- **API Routes**: Interactive playgrounds and component data endpoints
 
 ## 📁 Directory Structure
 
@@ -23,7 +25,7 @@ The Sample Design System uses a **sophisticated Next.js documentation applicatio
 docs/
 ├── 📄 Configuration
 │   ├── next.config.ts          # Next.js + Markdoc configuration
-│   ├── package.json            # Dependencies & scripts
+│   ├── package.json            # Dependencies & scripts (45 lines)
 │   ├── tsconfig.json           # TypeScript configuration
 │   ├── eslint.config.mjs       # ESLint configuration
 │   └── postcss.config.mjs      # PostCSS configuration
@@ -36,21 +38,35 @@ docs/
 │   ├── _document.js            # HTML document structure
 │   ├── index.md                # Documentation homepage
 │   ├── how-to-use.md           # Installation & usage guide
+│   ├── mcp-server.md           # MCP Server documentation (185 lines)
 │   └── components/
 │       ├── index.md            # Components overview & status
-│       ├── button.md           # Button component (107KB - comprehensive)
+│       ├── button.md           # Button component documentation
 │       ├── card.md             # Card component documentation
 │       ├── alert.md            # Alert component documentation
 │       ├── accordion.md        # Accordion component documentation
 │       ├── breadcrumb.md       # Breadcrumb component documentation
 │       └── modal.md            # Modal component documentation
 │
+├── 🤖 API Routes
+│   └── api/
+│       ├── mcp/
+│       │   └── [transport].js  # MCP Server implementation (639 lines)
+│       ├── ds-components/
+│       │   └── [component].js  # Component API endpoints
+│       └── playground/
+│           └── [component].js  # Interactive playground API
+│
 ├── ⚛️ React Components
 │   ├── Header.js               # Main navigation header
-│   └── ComponentsSidebar.js    # Components navigation sidebar
+│   └── ComponentsSidebar.js    # Components navigation sidebar (101 lines)
 │
 ├── 🏷️ Markdoc Configuration
-│   └── tags.js                 # Custom Markdoc tags (340 lines)
+│   └── tags.js                 # Custom Markdoc tags (259 lines)
+│
+├── 🧪 Testing Scripts
+│   └── scripts/
+│       └── test-mcp-proper.mjs # MCP server testing script
 │
 └── 🖼️ Static Assets
     └── public/                 # SVG icons and static files
@@ -155,6 +171,65 @@ The `size` property changed in v2.0. Update your implementations.
 ```
 
 **Callout Types:** `note`, `tip`, `warning`, `danger`
+
+## 🤖 MCP Server Integration
+
+### Model Context Protocol Server
+The documentation site includes a fully compliant **MCP Server** at `/api/mcp/http` that provides LLMs with comprehensive design system information.
+
+#### Server Capabilities
+- **Protocol Version**: MCP 2025-06-18 specification compliant
+- **Transport**: HTTP JSON-RPC 2.0
+- **Tools Available**: 5 comprehensive tools for component discovery and integration
+- **Real-Time Data**: Always up-to-date component information
+
+#### Available MCP Tools
+
+##### 1. `list_components`
+- **Purpose**: Discover all available design system components
+- **Parameters**: None
+- **Returns**: Component names, descriptions, features, and use cases
+- **Use Case**: Help LLMs understand what components are available
+
+##### 2. `get_component_info`
+- **Purpose**: Get detailed information about a specific component
+- **Parameters**: `component` (string) - Component name
+- **Returns**: Complete API documentation, usage examples, properties, CDN URLs
+- **Use Case**: Generate accurate component implementation code
+
+##### 3. `get_implementation_guide`
+- **Purpose**: Get framework-specific integration guidance
+- **Parameters**: `framework` (string) - Target framework (react, vue, angular, svelte, vanilla)
+- **Returns**: Step-by-step implementation guides with code examples
+- **Use Case**: Help with framework-specific integration challenges
+
+##### 4. `get_system_architecture`
+- **Purpose**: Understand the technical architecture and capabilities
+- **Parameters**: None
+- **Returns**: Technical details, browser support, build system, file structure
+- **Use Case**: Architecture decisions and technical implementation guidance
+
+##### 5. `search_components`
+- **Purpose**: Find components by features, use cases, or keywords
+- **Parameters**: `query` (string) - Search term
+- **Returns**: Matching components with relevance scoring
+- **Use Case**: Discover appropriate components for specific needs
+
+#### MCP Server Benefits
+- **LLM Accessibility** - AI assistants can access complete component information
+- **Accurate Code Generation** - Up-to-date usage examples and API documentation
+- **Framework Guidance** - Specific integration help for popular frameworks
+- **Component Discovery** - Search and find appropriate components
+- **Architecture Understanding** - Technical implementation details
+
+#### Testing MCP Server
+```bash
+# Test MCP server functionality
+node docs/scripts/test-mcp-proper.mjs https://your-domain.com
+
+# Local development testing
+node docs/scripts/test-mcp-proper.mjs http://localhost:3000
+```
 
 ## 🎨 Responsive Design System
 

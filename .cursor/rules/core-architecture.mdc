@@ -12,10 +12,11 @@ alwaysApply: true
 # Lit Framework Design System - Core Architecture
 
 ## 🎯 Project Mission
-This is a **Lit Framework Design System** that supports **DUAL USAGE PATTERNS**:
+This is a **Lit Framework Design System** that supports **DUAL USAGE PATTERNS** with comprehensive documentation:
 
 1. **📦 NPM Package for Bundlers** - ES modules (~15KB) with externalized Lit for Vite/Webpack/etc
 2. **🎯 Standalone Script Tags** - Self-contained UMD bundles (~21KB) for direct HTML usage
+3. **📚 Next.js Documentation Site** - Interactive documentation with live playgrounds and MCP server
 
 ## 🏗️ Build System Architecture
 
@@ -24,6 +25,12 @@ This is a **Lit Framework Design System** that supports **DUAL USAGE PATTERNS**:
 - `dist/standalone/index.js` - Complete UMD library (Lit bundled) 
 - `dist/components/*.js` - Individual UMD components (self-contained)
 - `dist/*.d.ts` - TypeScript definitions
+
+### Documentation Architecture:
+- **Next.js Application** (`docs/`) - Interactive documentation site
+- **Markdoc Integration** - Custom tags for component playgrounds
+- **MCP Server** - Model Context Protocol server for LLM integration
+- **Live Playgrounds** - Interactive component examples with real-time events
 
 ### Usage Patterns to Support:
 
@@ -39,6 +46,16 @@ import { SampleButton } from 'sample-design-system';
 <script src="dist/components/sample-button.js"></script>
 ```
 
+## 🤖 MCP Server Integration
+
+The documentation site includes a **Model Context Protocol (MCP) server** at `/api/mcp/http` that provides:
+
+- **Component Information** - Complete API documentation
+- **Implementation Guides** - Framework-specific integration examples
+- **System Architecture** - Technical details and browser support
+- **Component Search** - Find components by features or use cases
+- **Live Documentation** - Always up-to-date component information
+
 ## 🚨 Never Break These Principles:
 
 1. **Dual build system** - Both ES modules AND UMD must be maintained
@@ -46,38 +63,70 @@ import { SampleButton } from 'sample-design-system';
 3. **Self-contained components** - Standalone versions include all dependencies
 4. **TypeScript support** - Type definitions must be generated
 5. **Framework agnostic** - Components work in any framework or vanilla HTML
+6. **Interactive documentation** - All components must have live playgrounds
+7. **MCP server compatibility** - Component data must be accessible via MCP API
 
 ## 📁 Component Structure:
 ```
 src/components/[name]/
 ├── index.ts           # Export and registration
 └── [name].ts         # Component implementation
+
+docs/pages/components/
+└── [name].md         # Next.js Markdoc documentation
 ```
 
 ## 🎨 Naming Conventions:
 - Web component tags: `sample-[name]`
 - Class names: `Sample[Name]`
 - CSS custom properties: `--sample-[component]-[property]`
+- Documentation files: `docs/pages/components/[name].md`
 
-**When working on this project, ALWAYS consider both usage patterns and maintain the dual-build architecture.**
+**When working on this project, ALWAYS consider both usage patterns, documentation requirements, and MCP server integration.**
 
 ## 🔄 Development Workflow
 
 1. **Component Creation** - Follow dual-usage patterns
-2. **Documentation** - MANDATORY: Create/update docs, demos, dev integration
-3. **Build Testing** - Verify both ES modules and UMD outputs
-4. **Demo Validation** - Test both standalone and development demos
-5. **Quality Assurance** - Test in real frameworks
+2. **Next.js Documentation** - MANDATORY: Create interactive Markdoc docs
+3. **MCP Server Update** - Update component data for LLM integration
+4. **Demo Creation** - Standalone and development demos
+5. **Build Testing** - Verify both ES modules and UMD outputs
+6. **Quality Assurance** - Test in real frameworks and documentation site
 
 ## 📚 Documentation Requirements
 
 Every component change MUST include:
 - **Next.js Markdoc Documentation** in `docs/pages/components/[name].md`
-- **Interactive Playgrounds** with live component examples
+- **Interactive Playgrounds** with live component examples using `{% playground %}` tag
+- **API Documentation Tables** using `{% apiTable %}` tag
 - **Standalone Demo** in `demo/[name].html`
 - **Development Integration** in `dev/index.html`
-- **Navigation Updates** in sidebar and component index pages
-- **README Updates** to reflect documentation changes
+- **Navigation Updates** in `docs/components/ComponentsSidebar.js`
+- **MCP Server Data** - Update component information for LLM access
+
+## 🚀 Documentation System Features
+
+- **Live Component Playgrounds** - Real-time component interaction
+- **Event Console Logging** - See component events in real-time
+- **Code Copy Functionality** - One-click code copying
+- **Responsive Design** - Mobile-first documentation
+- **Framework Examples** - React, Vue, Angular, Svelte integration
+- **MCP Server Integration** - LLM-accessible component information
+- **Interactive API Tables** - Properties, events, CSS variables, parts
+- **Tabbed Content** - Installation and usage examples
+- **Custom Callouts** - Important notes and tips
+
+## 🎯 Quality Gates
+
+Before shipping any component:
+- [ ] **Dual usage patterns** work (bundled + standalone)
+- [ ] **Next.js documentation** complete with playgrounds
+- [ ] **MCP server data** updated and accessible
+- [ ] **All demos** functional (standalone + development)
+- [ ] **API documentation** complete with examples
+- [ ] **Navigation** updated in sidebar
+- [ ] **Build system** generates all required outputs
+- [ ] **TypeScript definitions** generated and valid
 
 
 

@@ -3,17 +3,19 @@ description:
 globs: 
 alwaysApply: false
 ---
-# Next.js Markdoc Documentation System
+# Next.js Markdoc Documentation System with MCP Server
 
 ## 🎯 Documentation Architecture
 
-The Design System uses a **Next.js application with Markdoc** for comprehensive documentation:
+The Design System uses a **Next.js application with Markdoc** for comprehensive documentation and includes an integrated MCP server:
 
 - **Location**: `docs/` folder
 - **Framework**: Next.js 15.3.4 with React 19
-- **Markdown Engine**: Markdoc with custom tags
+- **Markdown Engine**: Markdoc 0.4.0 with custom tags
 - **Styling**: Tailwind CSS 4.1.11
 - **Build**: Static site generation with responsive design
+- **MCP Server**: Model Context Protocol server for LLM integration
+- **Dependencies**: @modelcontextprotocol/sdk 1.13.2, sample-design-system-educkf 1.1.0
 
 ## 📁 Documentation Structure
 
@@ -24,6 +26,14 @@ docs/
 │   ├── _document.js         # HTML document structure
 │   ├── index.md             # Homepage
 │   ├── how-to-use.md        # Installation & usage guide
+│   ├── mcp-server.md        # MCP Server documentation
+│   ├── api/                 # Next.js API routes
+│   │   ├── mcp/
+│   │   │   └── [transport].js # MCP Server implementation
+│   │   ├── ds-components/
+│   │   │   └── [component].js # Component API endpoints
+│   │   └── playground/
+│   │       └── [component].js # Interactive playground API
 │   └── components/          # Component documentation
 │       ├── index.md         # Components overview
 │       ├── button.md        # Button component docs
@@ -34,6 +44,8 @@ docs/
 │   └── ComponentsSidebar.js # Components navigation sidebar
 ├── markdoc/                # Markdoc configuration
 │   └── tags.js             # Custom Markdoc tags
+├── scripts/                # Testing scripts
+│   └── test-mcp-proper.mjs # MCP server testing
 ├── public/                 # Static assets
 ├── globals.css             # Global styles
 ├── package.json            # Dependencies
@@ -123,7 +135,7 @@ Always import individual components for optimal bundle size.
 
 ## 📋 Component Documentation Template
 
-Each component MUST have documentation in `docs/pages/components/[name].md`:
+Each component MUST have documentation in `docs/pages/components/[name].md` AND corresponding MCP server data:
 
 ```markdown
 ---
@@ -336,6 +348,87 @@ const [name]: Sample[Name] = document.querySelector('sample-[name]');
 {% /codeBlock %}
 ```
 
+## 🤖 MCP Server Data Requirements
+
+### Component Data Entry
+Each component MUST have corresponding data in the MCP server at `docs/pages/api/mcp/[transport].js`:
+
+```javascript
+const COMPONENTS = {
+  '[component-name]': {
+    name: '[Component Display Name]',
+    description: '[Clear, LLM-friendly description of component purpose]',
+    usage: `<sample-[name] variant="primary">[Typical Content]</sample-[name]>`,
+    props: {
+      'variant': 'String - "primary" | "secondary" | "outline" - Visual style variant',
+      'size': 'String - "small" | "medium" | "large" - Component size',
+      'disabled': 'Boolean - Disables component interaction'
+    },
+    features: [
+      'Multiple visual variants',
+      'Accessibility support', 
+      'Keyboard navigation',
+      'Custom theming via CSS properties',
+      'Responsive design'
+    ],
+    examples: [
+      'Form submission actions',
+      'Call-to-action elements',
+      'User interface controls',
+      'Interactive navigation'
+    ]
+  }
+};
+```
+
+### MCP Data Quality Standards
+
+#### Description Requirements:
+- **Clear Purpose** - Explain what the component does in 1-2 sentences
+- **LLM-Friendly** - Use terminology that helps AI assistants understand usage
+- **Functional Focus** - Describe functionality, not just appearance
+
+#### Usage Examples:
+- **Complete HTML** - Full working example that can be copy-pasted
+- **Common Configuration** - Use the most typical variant/settings
+- **Self-Contained** - Should work without additional setup
+
+#### Properties Documentation:
+- **Type Information** - Always include data types (String, Boolean, Number)
+- **Possible Values** - List all available options for enums
+- **Clear Descriptions** - Explain what each property controls
+- **Consistent Format** - Follow the established pattern
+
+#### Features List:
+- **User Benefits** - Focus on what users get from the component
+- **Technical Capabilities** - Include important technical features
+- **Accessibility** - Always mention accessibility support
+- **Customization** - Highlight theming and styling options
+
+#### Examples/Use Cases:
+- **Real-World Applications** - Practical usage scenarios
+- **Diverse Contexts** - Show variety of appropriate uses
+- **Search Keywords** - Include terms that help with component discovery
+
+### MCP Server Testing
+Test MCP server data after updates:
+
+```bash
+# Test MCP server functionality
+cd docs
+node scripts/test-mcp-proper.mjs http://localhost:3000
+
+# Or test deployed version
+node scripts/test-mcp-proper.mjs https://your-domain.com
+```
+
+Required test results:
+- ✅ Component listed in `list_components` response
+- ✅ Component details returned by `get_component_info`
+- ✅ Component discoverable via `search_components`
+- ✅ All properties and features documented
+- ✅ No errors in MCP server responses
+
 ## 🚀 Documentation Commands
 
 ### Development Server
@@ -365,15 +458,19 @@ Runs ESLint on documentation files
 1. **Create** `docs/pages/components/[name].md` using template above
 2. **Update** `docs/components/ComponentsSidebar.js` with new component
 3. **Update** `docs/pages/components/index.md` status table
-4. **Test** all interactive playgrounds work
-5. **Verify** responsive design on mobile/desktop
+4. **Add** component data to MCP server (`docs/pages/api/mcp/[transport].js`)
+5. **Test** all interactive playgrounds work
+6. **Test** MCP server returns component data correctly
+7. **Verify** responsive design on mobile/desktop
 
 ### For Component Updates:
 1. **Update** API tables with new properties/events
 2. **Add** new examples in playgrounds
 3. **Update** framework integration examples if needed
-4. **Test** all existing playgrounds still work
-5. **Update** accessibility information if changed
+4. **Update** MCP server component data to match changes
+5. **Test** all existing playgrounds still work
+6. **Test** MCP server returns updated data correctly
+7. **Update** accessibility information if changed
 
 ## 📊 Quality Checklist
 
@@ -386,6 +483,8 @@ Runs ESLint on documentation files
 - [ ] Responsive design tested
 - [ ] All Markdoc tags render correctly
 - [ ] Navigation updated (sidebar, index page)
+- [ ] MCP server component data added and tested
+- [ ] Component discoverable via MCP search
 
 ### Content Quality:
 - [ ] Clear, concise descriptions
@@ -400,9 +499,10 @@ Runs ESLint on documentation files
 1. **Complete documentation** with all required sections
 2. **Working interactive playgrounds** for all major features
 3. **Updated navigation** in sidebar and index
-4. **Mobile-responsive** design verified
-5. **All Markdoc tags** properly formatted and functional
+4. **MCP server integration** with component data and testing
+5. **Mobile-responsive** design verified
+6. **All Markdoc tags** properly formatted and functional
 
-**The documentation is the primary way users discover and learn components - it must be comprehensive, accurate, and interactive!**
+**The documentation is the primary way users discover and learn components - it must be comprehensive, accurate, interactive, and accessible to AI assistants via the MCP server!**
 
 
