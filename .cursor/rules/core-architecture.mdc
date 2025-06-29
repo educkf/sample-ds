@@ -29,7 +29,7 @@ This is a **Lit Framework Design System** that supports **DUAL USAGE PATTERNS**:
 
 #### Bundled Projects:
 ```javascript
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 import { SampleButton } from 'sample-design-system';
 ```
 

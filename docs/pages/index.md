@@ -36,12 +36,12 @@ Welcome to the comprehensive documentation for the Sample Design System - a mode
 
 ### NPM Installation
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import individual component (recommended)
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Use in your HTML/templates
 // <sample-button variant="primary">Click me!</sample-button>
@@ -50,7 +50,7 @@ import 'sample-design-system/components/sample-button';
 ### Script Tag Usage
 ```html
 <sample-button variant="primary">Click me!</sample-button>
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
 ```
 
 ## 📚 Documentation Structure

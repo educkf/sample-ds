@@ -18,7 +18,7 @@ Our Design System supports **dual usage patterns** to fit any project:
 
 ### Install the Package
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ### Usage Options
@@ -26,7 +26,7 @@ npm install sample-design-system
 #### Option 1: Import Individual Components (Recommended)
 ```javascript
 // Import and auto-register specific components
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Now use in your HTML/templates
 // <sample-button variant="primary">Click me!</sample-button>
@@ -40,7 +40,7 @@ import 'sample-design-system/components/sample-button';
 #### Option 2: Import Component Classes
 ```javascript
 // Import component classes for manual control
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Register with custom tag name
 customElements.define('my-button', SampleButton);
@@ -58,7 +58,7 @@ document.body.appendChild(button);
 #### Option 3: Import Everything
 ```javascript
 // Import and register all components
-import 'sample-design-system';
+import 'sample-design-system-educkf';
 
 // All components are now available
 // <sample-button>, <sample-card>, etc.
@@ -85,7 +85,7 @@ import 'sample-design-system';
   <sample-button variant="primary">Click me!</sample-button>
   
   <!-- Load only the component you need (~21KB) -->
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
 </body>
 </html>
 ```
@@ -99,7 +99,7 @@ import 'sample-design-system';
   <sample-button variant="secondary">Secondary</sample-button>
   
   <!-- Load complete library (~21KB) -->
-  <script src="https://unpkg.com/sample-design-system/dist/standalone/index.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
 </body>
 </html>
 ```
@@ -120,7 +120,7 @@ import 'sample-design-system';
 ### React
 ```jsx
 import React from 'react';
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 function App() {
   const handleClick = (e) => {
@@ -158,7 +158,7 @@ export default App;
 </template>
 
 <script setup>
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 const handleClick = (event) => {
   console.log('Button clicked:', event.detail);
@@ -170,7 +170,7 @@ const handleClick = (event) => {
 ```typescript
 // app.module.ts
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -191,7 +191,7 @@ export class AppModule { }
 ### Svelte
 ```svelte
 <script>
-  import 'sample-design-system/components/sample-button';
+  import 'sample-design-system-educkf/components/sample-button';
   
   function handleClick(event) {
     console.log('Button clicked:', event.detail);
@@ -296,6 +296,6 @@ npm test
 
 ## 🤝 Support
 
-- 💬 [GitHub Discussions](https://github.com/your-org/sample-design-system/discussions)
-- 🐛 [Report Issues](https://github.com/your-org/sample-design-system/issues)
+- 💬 [GitHub Discussions](https://github.com/educkf/sample-ds/discussions)
+- 🐛 [Report Issues](https://github.com/educkf/sample-ds/issues)
 - 📧 [Email Support](mailto:support@yourorg.com) 

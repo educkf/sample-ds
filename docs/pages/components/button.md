@@ -11,24 +11,24 @@ The `sample-button` component provides a flexible, themeable button for user int
 
 ### NPM Package (Bundled Projects)
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import individual component (recommended)
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Or import from main library
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 ```
 
 ### Script Tag (Standalone)
 ```html
 <!-- Individual component -->
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
 
 <!-- Or complete library -->
-<script src="https://unpkg.com/sample-design-system/dist/standalone/index.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
 ```
 
 ## 🎯 Basic Usage
@@ -193,7 +193,7 @@ sample-button::part(button) {
 
 ### React
 ```jsx
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 function App() {
   const handleClick = (e) => {
@@ -224,7 +224,7 @@ function App() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 export default {
   methods: {
@@ -240,7 +240,7 @@ export default {
 ```typescript
 // app.module.ts
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -286,7 +286,7 @@ The button component includes:
 Full TypeScript support with proper type definitions:
 
 ```typescript
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Type-safe property access
 const button = new SampleButton();

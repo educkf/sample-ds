@@ -129,28 +129,28 @@ export { SampleNewComponent } from './components/sample-newcomponent/index.js';
 ### NPM Package Usage
 
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Individual component (recommended)
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Component class for manual registration
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Everything at once
-import 'sample-design-system';
+import 'sample-design-system-educkf';
 ```
 
 ### Script Tag Usage
 
 ```html
 <!-- Individual component -->
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
 
 <!-- Complete library -->
-<script src="https://unpkg.com/sample-design-system/dist/standalone/index.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
 ```
 
 ## 🔍 Quality Assurance

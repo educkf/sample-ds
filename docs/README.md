@@ -90,7 +90,7 @@ Tabbed content organization:
 ```markdown
 {% tabs defaultTab="0" %}
   {% tab title="NPM" icon="📦" %}
-  npm install sample-design-system
+  npm install sample-design-system-educkf
   {% /tab %}
   {% tab title="Script Tag" icon="🎯" %}
   <script src="dist/components/sample-button.js"></script>
@@ -102,7 +102,7 @@ Tabbed content organization:
 Enhanced code blocks with syntax highlighting:
 ```markdown
 {% codeBlock language="javascript" title="React Example" %}
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 {% /codeBlock %}
 ```
 

@@ -80,7 +80,7 @@ npm run publish:beta
 
 Beta releases are published with `@beta` tag:
 ```bash
-npm install sample-design-system@beta
+npm install sample-design-system-educkf@beta
 ```
 
 ## 📦 Package Configuration
@@ -132,7 +132,7 @@ npm install sample-design-system@beta
   },
   "homepage": "https://github.com/yourusername/sample-design-system#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/sample-design-system/issues"
+    "url": "https://github.com/educkf/sample-ds/issues"
   }
 }
 ```
@@ -206,9 +206,9 @@ node -e "console.log(require('sample-design-system'))"
 
 ### CDN Verification
 Check that CDN links work:
-- `https://unpkg.com/sample-design-system/`
-- `https://unpkg.com/sample-design-system/dist/components/sample-button.js`
-- `https://cdn.jsdelivr.net/npm/sample-design-system/`
+- `https://unpkg.com/sample-design-system-educkf/`
+- `https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js`
+- `https://cdn.jsdelivr.net/npm/sample-design-system-educkf/`
 
 ## 🚨 Common Issues & Solutions
 
@@ -306,4 +306,5 @@ npm audit fix
 - [ ] Growing download numbers
 
 **Remember: Publishing to NPM makes your package globally available. Always test thoroughly and follow semantic versioning!**
+
 

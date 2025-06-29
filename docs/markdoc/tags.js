@@ -178,7 +178,7 @@ export const components = {
                   </head>
                   <body>
                     ${code}
-                    <script src="https://unpkg.com/sample-design-system/dist/components/sample-${component}.js"></script>
+                    <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-${component}.js"></script>
                     <script>
                       // Add event listeners for interactivity
                       document.addEventListener('DOMContentLoaded', function() {

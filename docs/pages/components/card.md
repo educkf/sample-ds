@@ -11,12 +11,12 @@ The `sample-card` component provides a flexible content container with support f
 
 ### NPM Package
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import the component
-import 'sample-design-system/components/sample-card';
+import 'sample-design-system-educkf/components/sample-card';
 
 // Use in your templates
 <sample-card>
@@ -32,7 +32,7 @@ import 'sample-design-system/components/sample-card';
   <p>Card content goes here.</p>
 </sample-card>
 
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-card.js"></script>
 ```
 
 ## 🎯 Basic Usage
@@ -289,7 +289,7 @@ sample-card::part(loading)::after {
 
 ### React
 ```jsx
-import 'sample-design-system/components/sample-card';
+import 'sample-design-system-educkf/components/sample-card';
 
 function CardExample() {
   const handleCardClick = (e) => {
@@ -335,7 +335,7 @@ function CardExample() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-card';
+import 'sample-design-system-educkf/components/sample-card';
 
 export default {
   methods: {
@@ -370,7 +370,7 @@ export default {
 ## 📝 TypeScript
 
 ```typescript
-import { SampleCard } from 'sample-design-system';
+import { SampleCard } from 'sample-design-system-educkf';
 
 // Type-safe property access
 const card = document.querySelector('sample-card') as SampleCard;

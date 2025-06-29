@@ -11,12 +11,12 @@ The `sample-alert` component provides contextual feedback messages with support 
 
 ### NPM Package
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import the component
-import 'sample-design-system/components/sample-alert';
+import 'sample-design-system-educkf/components/sample-alert';
 
 // Use in your templates
 <sample-alert variant="success">
@@ -30,7 +30,7 @@ import 'sample-design-system/components/sample-alert';
   Operation completed successfully!
 </sample-alert>
 
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-alert.js"></script>
 ```
 
 ## 🎯 Basic Usage
@@ -191,7 +191,7 @@ sample-alert::part(dismiss):hover {
 
 ### React
 ```jsx
-import 'sample-design-system/components/sample-alert';
+import 'sample-design-system-educkf/components/sample-alert';
 
 function AlertExample() {
   const handleDismiss = (e) => {
@@ -223,7 +223,7 @@ function AlertExample() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-alert';
+import 'sample-design-system-educkf/components/sample-alert';
 
 export default {
   methods: {
@@ -257,7 +257,7 @@ export default {
 ## 📝 TypeScript
 
 ```typescript
-import { SampleAlert } from 'sample-design-system';
+import { SampleAlert } from 'sample-design-system-educkf';
 
 // Type-safe property access
 const alert = document.querySelector('sample-alert') as SampleAlert;

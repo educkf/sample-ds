@@ -11,12 +11,12 @@ The `sample-accordion` component provides collapsible content sections for infor
 
 ### NPM Package
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import the component
-import 'sample-design-system/components/sample-accordion';
+import 'sample-design-system-educkf/components/sample-accordion';
 
 // Use in your templates
 <sample-accordion>
@@ -34,7 +34,7 @@ import 'sample-design-system/components/sample-accordion';
   </sample-accordion-item>
 </sample-accordion>
 
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-accordion.js"></script>
 ```
 
 ## 🎯 Basic Usage
@@ -232,7 +232,7 @@ sample-accordion-item::part(icon) {
 
 ### React
 ```jsx
-import 'sample-design-system/components/sample-accordion';
+import 'sample-design-system-educkf/components/sample-accordion';
 
 function AccordionExample() {
   return (
@@ -262,7 +262,7 @@ function AccordionExample() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-accordion';
+import 'sample-design-system-educkf/components/sample-accordion';
 
 export default {
   methods: {
@@ -278,7 +278,7 @@ export default {
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
-import 'sample-design-system/components/sample-accordion';
+import 'sample-design-system-educkf/components/sample-accordion';
 
 @Component({
   selector: 'app-root',
@@ -303,7 +303,7 @@ export class AppComponent {
 ### Svelte
 ```svelte
 <script>
-  import 'sample-design-system/components/sample-accordion';
+  import 'sample-design-system-educkf/components/sample-accordion';
   
   function handleAccordionChange(event) {
     console.log('Accordion changed:', event.detail);
@@ -368,7 +368,7 @@ export class AppComponent {
 ## 📝 TypeScript
 
 ```typescript
-import { SampleAccordion, SampleAccordionItem } from 'sample-design-system';
+import { SampleAccordion, SampleAccordionItem } from 'sample-design-system-educkf';
 
 // Type-safe property access
 const accordion = document.querySelector('sample-accordion') as SampleAccordion;

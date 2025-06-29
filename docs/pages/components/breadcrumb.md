@@ -11,12 +11,12 @@ The `sample-breadcrumb` component provides hierarchical navigation breadcrumbs w
 
 ### NPM Package
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import the component
-import 'sample-design-system/components/sample-breadcrumb';
+import 'sample-design-system-educkf/components/sample-breadcrumb';
 
 // Use in your templates
 <sample-breadcrumb>
@@ -34,7 +34,7 @@ import 'sample-design-system/components/sample-breadcrumb';
   <sample-breadcrumb-item>Current Page</sample-breadcrumb-item>
 </sample-breadcrumb>
 
-<script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-breadcrumb.js"></script>
 ```
 
 ## 🎯 Basic Usage
@@ -257,7 +257,7 @@ sample-breadcrumb::part(separator) {
 
 ### React
 ```jsx
-import 'sample-design-system/components/sample-breadcrumb';
+import 'sample-design-system-educkf/components/sample-breadcrumb';
 
 function BreadcrumbExample() {
   const handleBreadcrumbClick = (e) => {
@@ -285,7 +285,7 @@ function BreadcrumbExample() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-breadcrumb';
+import 'sample-design-system-educkf/components/sample-breadcrumb';
 
 export default {
   methods: {
@@ -325,7 +325,7 @@ export default {
 ## 📝 TypeScript
 
 ```typescript
-import { SampleBreadcrumb, SampleBreadcrumbItem } from 'sample-design-system';
+import { SampleBreadcrumb, SampleBreadcrumbItem } from 'sample-design-system-educkf';
 
 // Type-safe property access
 const breadcrumb = document.querySelector('sample-breadcrumb') as SampleBreadcrumb;

@@ -150,7 +150,7 @@ description: [Brief component description]
   
   {% tab title="Script Tag" icon="🎯" %}
   ```html
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-[name].js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-[name].js"></script>
   ```
   {% /tab %}
 {% /tabs %}
@@ -404,4 +404,5 @@ Runs ESLint on documentation files
 5. **All Markdoc tags** properly formatted and functional
 
 **The documentation is the primary way users discover and learn components - it must be comprehensive, accurate, and interactive!**
+
 

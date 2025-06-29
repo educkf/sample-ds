@@ -2,6 +2,9 @@
 
 A modern Design System library built with [Lit Framework](https://lit.dev/) and TypeScript.
 
+[![NPM Version](https://img.shields.io/npm/v/sample-design-system-educkf)](https://www.npmjs.com/package/sample-design-system-educkf)
+[![NPM Downloads](https://img.shields.io/npm/dm/sample-design-system-educkf)](https://www.npmjs.com/package/sample-design-system-educkf)
+
 ## Features
 
 - 🚀 Built with Lit Framework for high-performance web components
@@ -28,11 +31,11 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
     <p>This is a flexible card component with multiple variants.</p>
     <div slot="footer">Perfect for content organization!</div>
   </sample-card>
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-card.js"></script>
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-alert.js"></script>
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-accordion.js"></script>
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-breadcrumb.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-card.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-alert.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-accordion.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-breadcrumb.js"></script>
 </body>
 </html>
 ```
@@ -40,13 +43,13 @@ A modern Design System library built with [Lit Framework](https://lit.dev/) and 
 ### For Bundled Projects (Vite, Webpack, etc.)
 
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 // or
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 ```
 
 ### Development
@@ -234,18 +237,18 @@ A versatile dialog overlay component with comprehensive accessibility features, 
 **Option 2: Bundled project (npm install):**
 
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ```javascript
 // Import individual component
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Or import from main library
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Or import everything
-import 'sample-design-system';
+import 'sample-design-system-educkf';
 ```
 
 ```html

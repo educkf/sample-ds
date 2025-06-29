@@ -118,7 +118,7 @@ Organize installation and usage examples:
   
   {% tab title="Script Tag" icon="🎯" %}
   ```html
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
   ```
   {% /tab %}
 {% /tabs %}
@@ -396,4 +396,5 @@ const components = [
 - ✅ Callouts display with correct styling
 
 **Remember: The documentation site is the primary discovery mechanism for developers using the Design System. It must be comprehensive, interactive, and flawless.**
+
 

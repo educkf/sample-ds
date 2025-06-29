@@ -5,7 +5,7 @@ This shows how to use the Design System components in projects with build tools 
 ## Installation
 
 ```bash
-npm install sample-design-system
+npm install sample-design-system-educkf
 ```
 
 ## Usage Patterns
@@ -14,7 +14,7 @@ npm install sample-design-system
 
 ```javascript
 // Import and auto-register the component
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 // Now use in HTML
 // <sample-button variant="primary">Click me!</sample-button>
@@ -24,7 +24,7 @@ import 'sample-design-system/components/sample-button';
 
 ```javascript
 // Import the component class
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Register manually if needed
 customElements.define('my-button', SampleButton);
@@ -34,7 +34,7 @@ customElements.define('my-button', SampleButton);
 
 ```javascript
 // Import and register all components
-import 'sample-design-system';
+import 'sample-design-system-educkf';
 
 // All components are now available:
 // <sample-button>, etc.
@@ -46,7 +46,7 @@ import 'sample-design-system';
 
 ```jsx
 import React from 'react';
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 function App() {
   return (
@@ -79,7 +79,7 @@ function App() {
 </template>
 
 <script>
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 export default {
   methods: {
@@ -96,7 +96,7 @@ export default {
 ```typescript
 // app.module.ts
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import 'sample-design-system/components/sample-button';
+import 'sample-design-system-educkf/components/sample-button';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -118,7 +118,7 @@ export class AppModule { }
 
 ```svelte
 <script>
-  import 'sample-design-system/components/sample-button';
+  import 'sample-design-system-educkf/components/sample-button';
   
   function handleClick(event) {
     console.log('Clicked!', event.detail);
@@ -138,7 +138,7 @@ export class AppModule { }
 The library includes full TypeScript definitions:
 
 ```typescript
-import { SampleButton } from 'sample-design-system';
+import { SampleButton } from 'sample-design-system-educkf';
 
 // Full type safety
 const button: SampleButton = document.querySelector('sample-button')!;

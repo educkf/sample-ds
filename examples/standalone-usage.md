@@ -19,7 +19,7 @@ Use individual component files for optimal loading:
   </sample-button>
 
   <!-- Load the component (only ~21KB) -->
-  <script src="https://unpkg.com/sample-design-system/dist/components/sample-button.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js"></script>
   
   <!-- Add event listeners -->
   <script>
@@ -50,7 +50,7 @@ Load all components at once:
   <!-- <sample-input placeholder="Enter text..."></sample-input> -->
 
   <!-- Load complete library -->
-  <script src="https://unpkg.com/sample-design-system/dist/standalone/index.js"></script>
+  <script src="https://unpkg.com/sample-design-system-educkf/dist/standalone/index.js"></script>
 </body>
 </html>
 ```
@@ -61,23 +61,23 @@ Load all components at once:
 
 ```html
 <!-- From unpkg -->
-<script src="https://unpkg.com/sample-design-system@latest/dist/components/sample-button.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf@latest/dist/components/sample-button.js"></script>
 
 <!-- From jsdelivr -->
-<script src="https://cdn.jsdelivr.net/npm/sample-design-system@latest/dist/components/sample-button.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sample-design-system-educkf@latest/dist/components/sample-button.js"></script>
 
 <!-- From esm.sh -->
-<script src="https://esm.sh/sample-design-system/dist/components/sample-button.js"></script>
+<script src="https://esm.sh/sample-design-system-educkf/dist/components/sample-button.js"></script>
 ```
 
 ### Complete Library
 
 ```html
 <!-- From unpkg -->
-<script src="https://unpkg.com/sample-design-system@latest/dist/standalone/index.js"></script>
+<script src="https://unpkg.com/sample-design-system-educkf@latest/dist/standalone/index.js"></script>
 
 <!-- From jsdelivr -->
-<script src="https://cdn.jsdelivr.net/npm/sample-design-system@latest/dist/standalone/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sample-design-system-educkf@latest/dist/standalone/index.js"></script>
 ```
 
 ## Local Development
@@ -97,7 +97,7 @@ Download the files and host them locally:
 <script>
   // Load components on demand
   async function loadButton() {
-    await import('https://unpkg.com/sample-design-system/dist/components/sample-button.js');
+    await import('https://unpkg.com/sample-design-system-educkf/dist/components/sample-button.js');
     
     // Component is now available
     const button = document.createElement('sample-button');
