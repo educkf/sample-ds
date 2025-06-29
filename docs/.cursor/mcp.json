@@ -1,7 +1,8 @@
 {
   "mcpServers": {
     "hello-world-server": {
-      "url": "http://localhost:3000/mcp"
+      "url": "https://sample-ds.vercel.app/mcp",
+      "transport": "http"
     }
   }
-} 
+}
