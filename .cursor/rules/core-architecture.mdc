@@ -46,15 +46,24 @@ import { SampleButton } from 'sample-design-system';
 <script src="dist/components/sample-button.js"></script>
 ```
 
-## 🤖 MCP Server Integration
+## 🤖 Enhanced MCP Server Integration
 
-The documentation site includes a **Model Context Protocol (MCP) server** at `/api/mcp/http` that provides:
+The documentation site includes a **production-ready Model Context Protocol (MCP) server** with full MCP 2025-06-18 specification compliance at `/api/mcp/http` and `/api/mcp/sse` that provides:
 
-- **Component Information** - Complete API documentation
-- **Implementation Guides** - Framework-specific integration examples
-- **System Architecture** - Technical details and browser support
-- **Component Search** - Find components by features or use cases
-- **Live Documentation** - Always up-to-date component information
+### Complete MCP Capabilities
+- **Tools (5)** - Interactive design system assistance including code validation
+- **Resources (3)** - Structured documentation access 
+- **Prompts (3)** - Pre-built guidance templates for common tasks
+- **Completion** - Intelligent auto-completion for enhanced developer experience
+- **Logging** - Configurable logging system with 8 log levels
+
+### Advanced Features
+- **Code Validation** - Real-time component implementation analysis with scoring
+- **Enhanced Search** - Category and complexity-based component filtering
+- **Framework Guidance** - Specific integration help for all supported frameworks
+- **Accessibility Validation** - Built-in WCAG compliance checking
+- **Performance Analysis** - Automated performance optimization suggestions
+- **Auto-Completion** - Intelligent suggestions for components, frameworks, and resources
 
 ## 🚨 Never Break These Principles:
 
@@ -116,17 +125,29 @@ Every component change MUST include:
 - **Tabbed Content** - Installation and usage examples
 - **Custom Callouts** - Important notes and tips
 
-## 🎯 Quality Gates
+## 🎯 Enhanced Quality Gates
 
 Before shipping any component:
 - [ ] **Dual usage patterns** work (bundled + standalone)
-- [ ] **Next.js documentation** complete with playgrounds
-- [ ] **MCP server data** updated and accessible
+- [ ] **Next.js documentation** complete with interactive playgrounds
+- [ ] **MCP server integration** complete with all capabilities:
+  - [ ] Component data added to tools
+  - [ ] Resources updated with component info
+  - [ ] Prompts work for component integration/troubleshooting
+  - [ ] Code validation rules implemented
+  - [ ] Component categorization assigned
+  - [ ] Auto-completion data updated
 - [ ] **All demos** functional (standalone + development)
-- [ ] **API documentation** complete with examples
-- [ ] **Navigation** updated in sidebar
+- [ ] **API documentation** complete with interactive examples
+- [ ] **Navigation** updated in sidebar and component index
 - [ ] **Build system** generates all required outputs
 - [ ] **TypeScript definitions** generated and valid
+- [ ] **MCP server testing** passes all validation:
+  - [ ] All 5 tools work correctly
+  - [ ] All 3 resources accessible
+  - [ ] All 3 prompts functional
+  - [ ] Completion and logging work
+  - [ ] Code validation provides accurate results
 
 
 

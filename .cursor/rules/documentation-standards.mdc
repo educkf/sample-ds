@@ -348,10 +348,12 @@ const [name]: Sample[Name] = document.querySelector('sample-[name]');
 {% /codeBlock %}
 ```
 
-## 🤖 MCP Server Data Requirements
+## 🤖 Enhanced MCP Server Integration Requirements
 
-### Component Data Entry
-Each component MUST have corresponding data in the MCP server at `docs/pages/api/mcp/[transport].js`:
+### Complete MCP Server Integration
+Each component MUST have full integration across ALL MCP capabilities in `docs/pages/api/mcp/[transport].js`:
+
+#### 1. Component Data Entry (Tools)
 
 ```javascript
 const COMPONENTS = {
@@ -381,7 +383,55 @@ const COMPONENTS = {
 };
 ```
 
-### MCP Data Quality Standards
+#### 2. Component Categorization (Search Enhancement)
+```javascript
+// Add to componentCategories mapping
+const componentCategories = {
+  '[component-name]': 'form', // or 'navigation', 'feedback', 'layout', 'data-display', 'overlay'
+};
+
+// Add to componentComplexity mapping  
+const componentComplexity = {
+  '[component-name]': 'simple', // or 'moderate', 'complex'
+};
+```
+
+#### 3. Validation Rules (Code Validation Tool)
+```javascript
+// Add component-specific validation logic in validateComponentSpecific()
+function validateComponentSpecific(code, componentName, validation, strict) {
+  if (componentName === '[component-name]') {
+    // Add specific validation rules for your component
+    if (!code.includes('required-attribute')) {
+      validation.warnings.push('Component should include required-attribute');
+    }
+    
+    if (strict && code.includes('deprecated-pattern')) {
+      validation.errors.push('Deprecated pattern detected, use new-pattern instead');
+    }
+  }
+}
+```
+
+#### 4. Resources Integration
+Ensure component appears in all relevant resources:
+- `design-system://components/all` - Component automatically included
+- `design-system://architecture` - Update if component affects architecture
+- `design-system://browser-support` - Update if component has specific browser requirements
+
+#### 5. Prompts Integration
+Component should work with all prompts:
+- `component_integration` - Framework-specific integration steps
+- `troubleshoot_component` - Common issues and solutions
+- `design_review` - Best practices and compliance checks
+
+#### 6. Completion Support
+Component should appear in auto-completion for:
+- Component names in `get_component_info` tool
+- Component names in `validate_component_usage` tool
+- Prompt arguments for `component_integration` and `troubleshoot_component`
+
+### Enhanced MCP Data Quality Standards
 
 #### Description Requirements:
 - **Clear Purpose** - Explain what the component does in 1-2 sentences
@@ -422,12 +472,32 @@ node scripts/test-mcp-proper.mjs http://localhost:3000
 node scripts/test-mcp-proper.mjs https://your-domain.com
 ```
 
-Required test results:
-- ✅ Component listed in `list_components` response
-- ✅ Component details returned by `get_component_info`
-- ✅ Component discoverable via `search_components`
-- ✅ All properties and features documented
-- ✅ No errors in MCP server responses
+Enhanced test results required:
+- ✅ **Tools Testing:**
+  - Component listed in `list_components` response with category and complexity
+  - Component details returned by `get_component_info` with full metadata
+  - Component discoverable via `search_components` with proper categorization
+  - Component code validation works via `validate_component_usage`
+  - Implementation guides include component examples
+- ✅ **Resources Testing:**
+  - Component appears in `design-system://components/all` resource
+  - Architecture resource updated if component affects system design
+  - Browser support resource updated if component has specific requirements
+- ✅ **Prompts Testing:**
+  - `component_integration` prompt works for component
+  - `troubleshoot_component` prompt provides relevant assistance
+  - `design_review` prompt includes component best practices
+- ✅ **Completion Testing:**
+  - Component name appears in auto-completion for tools
+  - Component name appears in auto-completion for prompts
+- ✅ **Validation Testing:**
+  - Component-specific validation rules work correctly
+  - Framework-specific validation includes component patterns
+  - Accessibility validation covers component requirements
+- ✅ **Error Handling:**
+  - Invalid component names return helpful errors
+  - Malformed requests handled gracefully
+  - All JSON-RPC 2.0 error responses properly formatted
 
 ## 🚀 Documentation Commands
 

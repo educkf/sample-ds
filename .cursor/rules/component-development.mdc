@@ -262,8 +262,10 @@ const components = [
 
 - `docs/pages/components/index.md` - Update component status table
 
-### 7. MCP Server Integration
-**MUST UPDATE** `docs/pages/api/mcp/[transport].js` - Add component data:
+### 7. Enhanced MCP Server Integration
+**MUST UPDATE** `docs/pages/api/mcp/[transport].js` with complete MCP integration:
+
+#### A. Component Data (Tools)
 ```javascript
 const COMPONENTS = {
   // ... existing components
@@ -281,6 +283,51 @@ const COMPONENTS = {
   }
 };
 ```
+
+#### B. Component Categorization (Search Enhancement)
+```javascript
+const componentCategories = {
+  '[name]': 'form', // Choose: form, navigation, feedback, layout, data-display, overlay
+};
+
+const componentComplexity = {
+  '[name]': 'simple', // Choose: simple, moderate, complex
+};
+```
+
+#### C. Validation Rules (Code Validation Tool)
+```javascript
+// Add to validateComponentSpecific() function
+if (componentName === '[name]') {
+  // Component-specific validation logic
+  if (!code.includes('variant=')) {
+    validation.warnings.push('[Name] should specify a variant attribute');
+  }
+  
+  if (strict && code.includes('deprecated-attribute')) {
+    validation.errors.push('deprecated-attribute is no longer supported, use new-attribute');
+  }
+  
+  // Accessibility checks
+  if (!code.includes('aria-') && strict) {
+    validation.accessibility_issues.push('[Name] should include ARIA attributes for accessibility');
+  }
+}
+```
+
+#### D. Framework Integration (Implementation Guides)
+Ensure component examples are included in framework guides for:
+- Vanilla JavaScript usage
+- React integration patterns
+- Vue.js implementation
+- Angular component usage
+- Svelte integration
+
+#### E. Resources & Prompts Integration
+Component automatically appears in:
+- Resources: `design-system://components/all`
+- Prompts: `component_integration`, `troubleshoot_component`, `design_review`
+- Completion: Auto-completion for component names in tools and prompts
 
 ## 🚀 MANDATORY: Demo Requirements
 
@@ -341,11 +388,16 @@ const COMPONENTS = {
 - [ ] **Component navigation** updated in `docs/components/ComponentsSidebar.js`
 - [ ] **Components index** updated in `docs/pages/components/index.md`
 
-### MCP Server Integration:
-- [ ] **Component data** added to MCP server API
-- [ ] **LLM-friendly descriptions** and usage examples
-- [ ] **Feature list** for component search functionality
-- [ ] **Use cases** documented for discovery
+### Enhanced MCP Server Integration:
+- [ ] **Component data** added to MCP server API with full metadata
+- [ ] **Component categorization** assigned (category and complexity)
+- [ ] **Validation rules** implemented for code validation tool
+- [ ] **Framework integration** examples included in implementation guides
+- [ ] **Resources integration** - component appears in all relevant resources
+- [ ] **Prompts integration** - component works with all prompt templates
+- [ ] **Completion support** - component appears in auto-completion
+- [ ] **LLM-friendly descriptions** and comprehensive usage examples
+- [ ] **Enhanced search** - component discoverable by category and features
 
 ### Demo Requirements:
 - [ ] **Standalone demo** created/updated in `demo/[name].html`
@@ -360,19 +412,31 @@ const COMPONENTS = {
 - [ ] **Build passes** for all formats (ES modules, UMD, individual)
 - [ ] **Documentation site builds** without errors (`npm run build` in docs/)
 - [ ] **Playground functionality** works in documentation
-- [ ] **MCP server** returns component information correctly
+- [ ] **Enhanced MCP server testing** passes comprehensive validation:
+  - [ ] All 5 tools work correctly with component
+  - [ ] All 3 resources include component information
+  - [ ] All 3 prompts work for component integration/troubleshooting
+  - [ ] Code validation tool validates component implementations
+  - [ ] Component appears in search results with proper categorization
+  - [ ] Auto-completion includes component in suggestions
+  - [ ] Framework-specific validation rules work correctly
 - [ ] **No console errors** in either mode
 - [ ] **Bundle sizes** documented and reasonable
 
 ## 🚨 CRITICAL: Never Ship Without
 
-1. **Complete Next.js documentation** with interactive examples
-2. **Working playgrounds** in documentation site
-3. **MCP server integration** for LLM accessibility
-4. **Updated component navigation** in sidebar
-5. **Framework integration** examples tested
-6. **Accessibility compliance** verified
-7. **All demos functional** in both modes
+1. **Complete Next.js documentation** with interactive examples and API tables
+2. **Working playgrounds** in documentation site with live component interaction
+3. **Comprehensive MCP server integration** with ALL capabilities:
+   - Component data with full metadata and categorization
+   - Code validation rules implemented and tested
+   - Framework integration examples in implementation guides
+   - Resources, prompts, and completion support verified
+4. **Updated component navigation** in sidebar and component index
+5. **Framework integration** examples tested for all supported frameworks
+6. **Accessibility compliance** verified in both documentation and MCP validation
+7. **All demos functional** in both bundled and standalone modes
+8. **Enhanced MCP testing** passes all validation requirements
 
-**Remember**: Interactive documentation with live playgrounds and MCP server integration are NOT optional - they are required deliverables for every component!
+**Remember**: The enhanced MCP server with code validation, categorization, and comprehensive testing is now a critical component of the architecture. Interactive documentation with live playgrounds and full MCP server integration (including the new validation tool) are NOT optional - they are required deliverables for every component!
 
