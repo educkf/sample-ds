@@ -1,0 +1,7 @@
+{
+  "name": "sample-design-system-docs",
+  "buildCommand": "cd docs && npm ci && npm run build",
+  "outputDirectory": "docs/.next",
+  "installCommand": "cd docs && npm ci",
+  "framework": "nextjs"
+}

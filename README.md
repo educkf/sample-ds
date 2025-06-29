@@ -329,16 +329,24 @@ Each component is built as a standalone UMD bundle that can be used directly in 
 
 Our documentation is built with **Next.js and Markdoc** for an enhanced interactive experience:
 
-### 🚀 Documentation Site
+### 🚀 Live Documentation Site
+🌐 **[Visit Live Docs](https://sample-design-system-docs.vercel.app)** - Deployed on Vercel
+
+### 🏠 Local Development
 ```bash
 cd docs
 npm run dev
 ```
-Visit `http://localhost:3000` for comprehensive documentation with:
+Visit `http://localhost:3000` for local development with:
 - **Interactive Playgrounds** - Live component examples
 - **Complete API Reference** - Properties, events, CSS variables
 - **Framework Integration** - React, Vue, Angular, Svelte examples
 - **Responsive Design** - Mobile and desktop optimized
+
+### 📦 Deploy Your Own
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Feduckf%2Fsample-ds&project-name=sample-design-system-docs&repository-name=sample-ds-docs)
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
 ### 📖 Key Documentation Pages
 - **[How to Use](http://localhost:3000/how-to-use)** - Installation, usage patterns, and framework integration
