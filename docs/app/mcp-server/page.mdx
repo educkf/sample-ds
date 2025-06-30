@@ -1,10 +1,165 @@
 
 # MCP Server
 
-AI/LLM integration via Model Context Protocol - Documentation coming soon.
+AI/LLM integration via Model Context Protocol for seamless Design System development assistance.
 
-## 🚧 Under Construction
+## 🤖 What is MCP (Model Context Protocol)?
 
-This page is currently being developed. We will add comprehensive documentation for our Model Context Protocol server integration.
+The **Model Context Protocol (MCP)** is an open standard for connecting AI assistants and large language models (LLMs) to external data sources and tools. It enables AI assistants like Cursor, Claude, and others to access real-time information and interact with specific services or APIs.
 
-Stay tuned for updates on AI-powered development assistance and LLM integration features. 
+Our MCP Server provides AI assistants with direct access to the Sample Design System documentation, component information, and utility tools, making it easier for developers to get contextual help while building applications.
+
+## 🏗️ How Our MCP Server is Built
+
+Our MCP server is built using modern web technologies and deployed on Vercel:
+
+### Architecture
+- **Framework**: Built with the `@vercel/mcp-adapter` for seamless integration
+- **Language**: TypeScript with full type safety
+- **Validation**: Zod schemas for parameter validation
+- **Deployment**: Vercel Edge Functions for global availability
+- **Protocol**: Implements MCP specification for AI assistant compatibility
+
+### Production Endpoint
+**🌍 Production URL**: `https://sample-ds.vercel.app/mcp`
+
+The server exposes multiple HTTP endpoints (GET, POST, DELETE) to handle different MCP transport protocols and ensure compatibility with various AI assistants.
+
+## 🛠️ Available Tools
+
+Our MCP server provides **2 powerful tools** for Design System development:
+
+### 1. 📦 **list_components**
+- **Purpose**: Get an overview of all available Design System components
+- **Parameters**: None required
+- **Returns**: Complete list of 6 components with descriptions, features, and navigation links
+- **Includes**: Button, Card, Alert, Accordion, Breadcrumb, Modal components
+- **Example Output**: Formatted component library overview with installation instructions
+
+### 2. 📚 **get_component_details**
+- **Purpose**: Get detailed documentation for specific components
+- **Parameters**:
+  - `componentName`: button, card, alert, accordion, breadcrumb, modal
+- **Returns**: 
+  - Complete property tables with types and defaults
+  - Usage examples and code snippets
+  - Installation instructions (NPM + Script tags)
+  - Framework compatibility information
+  - Accessibility and theming details
+
+## 🎯 Adding MCP Server to Cursor
+
+Follow these steps to integrate our MCP server with Cursor AI:
+
+### Step 1: Open Cursor Settings
+1. Open Cursor IDE
+2. Open File + Preferences + Cursor Settings
+
+### Step 2: Add MCP Server Configuration
+Add our server configuration to your MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "sample-design-system-server": {
+      "url": "https://sample-ds.vercel.app/mcp",
+      "transport": "http"
+    }
+  }
+}
+```
+
+### Step 3: Restart Cursor
+1. Close and restart Cursor IDE
+2. The MCP server will be automatically detected
+3. You should see "sample-design-system" in your available tools
+
+### Step 4: Verify Connection
+Test the connection by asking Cursor:
+- "List all available components in the design system"
+- "Show me details about the button component"
+
+## 🚀 Usage Examples
+
+Once integrated, you can use natural language to interact with our Design System:
+
+### Component Discovery
+```
+"What components are available in the design system?"
+→ Uses list_components tool to show all 6 components
+```
+
+### Detailed Component Information
+```
+"Show me how to use the modal component"
+→ Uses get_component_details('modal') to provide comprehensive documentation
+```
+
+### Development Assistance
+```
+"I need a button with loading state - show me the properties"
+→ AI uses get_component_details('button') to show loading property usage
+```
+
+## 🔧 Technical Details
+
+### Server Capabilities
+- **Real-time**: Always up-to-date component information
+- **Type-safe**: Full TypeScript integration with Zod validation
+- **Error handling**: Comprehensive error messages and validation
+- **Performance**: Edge-deployed for global low-latency access
+- **Scalable**: Handles multiple concurrent AI assistant connections
+
+### Protocol Compliance
+- ✅ **MCP 1.0 Compatible**: Follows official MCP specification
+- ✅ **HTTP Transport**: Standard HTTP endpoints for maximum compatibility
+- ✅ **JSON-RPC**: Proper request/response formatting
+- ✅ **Error Handling**: Standard MCP error codes and messages
+
+### Security Features
+- **CORS Enabled**: Cross-origin requests allowed for AI assistants
+- **Rate Limiting**: Built-in Vercel protection against abuse
+- **Input Validation**: All parameters validated with Zod schemas
+- **Type Safety**: TypeScript ensures reliable responses
+
+## 🌟 Benefits of MCP Integration
+
+### For Developers
+- **Instant Documentation**: Get component info without leaving your IDE
+- **Code Generation**: AI can generate component usage examples
+- **Contextual Help**: Relevant suggestions based on your current code
+- **Rapid Prototyping**: Quickly explore component capabilities
+
+### For AI Assistants
+- **Accurate Information**: Real-time access to current documentation
+- **Structured Data**: Well-formatted responses for better understanding
+- **Tool Integration**: Seamless integration with AI workflows
+- **Extensible**: Easy to add new tools and capabilities
+
+## 🔗 Related Resources
+
+- **Production Server**: [https://sample-ds.vercel.app](https://sample-ds.vercel.app/)
+- **Component Library**: [Browse Components](https://sample-ds.vercel.app/components)
+- **Installation Guide**: [How to Use](https://sample-ds.vercel.app/how-to-use)
+- **MCP Specification**: Learn more about Model Context Protocol standards
+
+## 🆘 Troubleshooting
+
+### Common Issues
+
+**MCP Server Not Detected**
+- Verify the URL is exactly: `https://sample-ds.vercel.app/mcp`
+- Check Cursor's MCP configuration syntax
+- Restart Cursor after configuration changes
+
+**Tool Calls Not Working**
+- Ensure internet connectivity to reach our Vercel deployment
+- Check if the server is responding: visit https://sample-ds.vercel.app
+- Verify tool names match exactly: `list_components`, `get_component_details`
+
+**Parameter Validation Errors**
+- Component names must be lowercase: `button`, not `Button`
+- Check parameter types match the expected schema
+
+### Getting Help
+If you encounter issues with our MCP server integration, the server provides detailed error messages to help diagnose problems. All responses include clear formatting and helpful context for troubleshooting.

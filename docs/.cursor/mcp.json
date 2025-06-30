@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "hello-world-server": {
+    "sample-design-system-server": {
       "url": "http://localhost:3000/mcp",
       "transport": "http"
     }
