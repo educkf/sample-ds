@@ -3,6 +3,7 @@ import { createMcpHandler } from '@vercel/mcp-adapter';
 
 const handler = createMcpHandler(
   async (server) => {
+    console.log('\n\n🚀 LOCAL MCP SERVER STARTED ON PORT 3000! 🚀\n\n')
     // Define a simple "Hello World" tool
     server.tool(
       'hello_world',
@@ -12,8 +13,8 @@ const handler = createMcpHandler(
       },
       async ({ name }) => {
         const greeting = name 
-          ? `Hello, ${name}! Welcome to our MCP server! 🌟` 
-          : 'Hello, World! Welcome to our MCP server! 🌟';
+          ? `🎯 LOCALHOST:3001 - Hello, ${name}! Welcome to our LOCAL MCP server!! 🌟🎯` 
+          : '🎯 LOCALHOST:3001 - Hello, World! Welcome to our LOCAL MCP server!! 🌟🎯';
         
         return {
           content: [{ 
